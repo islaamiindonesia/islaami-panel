@@ -59,7 +59,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany('App\Channel', 'followers', 'user_id', 'channel_id');
     }
 
-    public function blacklists()
+    public function blacklistChannels()
     {
         return $this->belongsToMany('App\Channel', 'blacklists', 'user_id', 'channel_id');
     }

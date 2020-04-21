@@ -25,6 +25,7 @@ class UsersTableSeeder extends Seeder
         $user->save();
 
         $user->followChannels()->attach(1);
+//        $user->blacklistChannels()->attach(1);
         $user->videoView()->attach(1);
 
         /*DB::table('blacklists')->insert([

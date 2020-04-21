@@ -46,26 +46,11 @@ class ChannelController extends Controller
         }
 
         if (Channel::find($id)->blacklists->contains($authID)) {
-            $channel->is_blacklisted = true;
-        } else {
-            $channel->is_blacklisted = false;
+            return $this->errorResponse("CHANNEL_BLACKLISTED", 401);
         }
+
         $channel->followers = $channel->followers()->count();
-
-        $videos = $channel->videos()->get();
-
-        $videoArray = array();
-        foreach ($videos as $video) {
-            $video->channel;
-            $video->category;
-            $video->subcategory;
-            $video->labels;
-            $video->views = $video->views()->count();
-
-            array_push($videoArray, $video);
-        }
-
-        $channel->videos = $videoArray;
+        $channel->videos = $channel->videos()->count();
 
         return $this->successResponseWithData($channel);
     }

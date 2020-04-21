@@ -46,7 +46,7 @@ class Video extends Model
     /* RELATIONSHIP */
     public function users()
     {
-        return $this->belongsToMany('App\Users', 'later_video', 'video_id', 'user_id');
+        return $this->belongsToMany('App\User', 'later_video', 'video_id', 'user_id');
     }
 
     public function playlist()
@@ -83,7 +83,8 @@ class Video extends Model
      */
     public function labels()
     {
-        return $this->belongsToMany('App\Label', 'video_labels');
+        return $this->belongsToMany('App\Label', 'video_labels', 'video_id', 'label_id')
+            ->select(array('label_id as id', 'name'));
     }
 
     /**

@@ -76,6 +76,8 @@ Route::middleware('auth.api:api')->group(function () {
     Route::prefix("videos")->group(function () {
 
         Route::get('', 'API\VideoController@index');
+
+        Route::get('{id}', 'API\VideoController@show');
     });
 
     /* USER */
