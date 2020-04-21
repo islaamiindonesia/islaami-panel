@@ -32,16 +32,17 @@ class UsersTableSeeder extends Seeder
             'channel_id' => 1
         ]);*/
 
-//        $playlist = new Playlist();
-//        $playlist->name = "Uno";
-//        $playlist->user_id = 1;
-//        $playlist->save();
-//
-//        $playlist = new Playlist();
-//        $playlist->name = "Dos";
-//        $playlist->user_id = 1;
-//        $playlist->save();
-//
-//        $user->videos()->attach(1);
+        $playlist = new Playlist();
+        $playlist->name = "Uno";
+        $playlist->user_id = 1;
+        $playlist->save();
+        $playlist->videos()->attach(1);
+
+        $playlist = new Playlist();
+        $playlist->name = "Dos";
+        $playlist->user_id = 1;
+        $playlist->save();
+
+        $user->videos()->attach(1);
     }
 }

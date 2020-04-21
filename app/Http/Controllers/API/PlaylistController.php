@@ -24,6 +24,9 @@ class PlaylistController extends Controller
     {
         $authID = auth('api')->id();
         $playlists = Playlist::where('user_id', $authID)->get();
+        foreach ($playlists as $playlist) {
+            $playlist->video_count = $playlist->videos()->count();
+        }
 
         return $this->successResponseWithData($playlists);
     }
@@ -44,6 +47,7 @@ class PlaylistController extends Controller
             $video->category;
             $video->subcategory;
             $video->labels;
+            $video->views = $video->views()->count();
 
             array_push($videoArray, $video);
         }
@@ -116,17 +120,18 @@ class PlaylistController extends Controller
         $videos = $playlist->videos()->get();
 
         $videoArray = array();
-        foreach ($videos as $video) {
+        foreach ($playlist->videos as $video) {
             $video->channel;
             $video->category;
             $video->subcategory;
             $video->labels;
+            $video->views = $video->views()->count();
 
             array_push($videoArray, $video);
         }
 
+        $playlist->video_count = $playlist->videos()->count();
         $playlist->videos = $videoArray;
-
 
         return $this->successResponseWithData($playlist);
     }

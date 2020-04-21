@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
                 ->nullable()
                 ->default(null);
             $table->text('fcm_token')
-                ->nullable()
+		->nullable()
                 ->default(null);
             $table->timestamp('suspended_at')->nullable();
             $table->timestamps();

@@ -26,7 +26,7 @@
                         </div>
                         <table id="channelTable" class="table table-bordered table-striped">
                             <thead>
-                            <tr>
+                            <tr style="text-align: center;">
                                 <th>Thumbnail</th>
                                 <th>Nama Kanal</th>
                                 <th>Video</th>
@@ -37,8 +37,8 @@
                             </thead>
                             <tbody>
                             @foreach($channels as $channel)
-                                <tr>
-                                    <td style="text-align: center;">
+                                <tr style="text-align: center;">
+                                    <td>
                                         <img src="{{ asset('storage/'. $channel->thumbnail) }}" width="100"/></td>
                                     <td>
                                         <a href="{{ route('admin.channels.show', ['id' => $channel->id]) }}">
@@ -48,7 +48,7 @@
                                     <td>{{ $channel->videos }}</td>
                                     <td>{{ $channel->followers }}</td>
                                     <td>{{ date('d-M-Y', strtotime($channel->created_at) )}}</td>
-                                    <td class="project-actions text-left">
+                                    <td class="project-actions">
                                         <a class="btn btn-info btn-sm"
                                            href="{{ route('admin.channels.edit', ['id' => $channel->id]) }}">
                                             <i class="fas fa-pencil-alt"></i>
@@ -138,7 +138,7 @@
                     },
                     {
                         "targets": [5],
-                        "width": 300,
+                        "width": 250,
                         "orderable": false,
                     }
                 ],

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Notifications\ForgotPasswordMail;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Auth\Passwords\PasswordBroker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;

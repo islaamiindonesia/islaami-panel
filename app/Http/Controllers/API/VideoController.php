@@ -23,6 +23,8 @@ class VideoController extends Controller
         $videoArray = array();
         foreach ($videos as $video) {
             $video->channel;
+            $video->channel->followers = $video->channel->followers()->count();
+            $video->channel->videos = $video->channel->videos()->count();
             $video->category;
             $video->subcategory;
             $video->labels;

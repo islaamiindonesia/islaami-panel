@@ -132,9 +132,15 @@ class ChannelController extends Controller
 
         if ($validate->fails()) return back()->withErrors($validate)->withInput($request->all());
 
+        if (Storage::disk('public')->exists($channel->thumbnail)) {
+            Storage::disk('public')->delete($channel->thumbnail);
+        } else {
+            return back()->withErrors('Upload thumbnail failed');
+        }
+
         $path = Storage::disk('public')->putFile('channel_thumbnails', $request->file('thumbnail'));
 
-        if (Storage::disk('public')->exists($path)) {
+        if (!Storage::disk('public')->exists($path)) {
             return back()->withErrors('Upload thumbnail failed');
         }
 
@@ -185,12 +191,13 @@ class ChannelController extends Controller
     public function destroy($id)
     {
         $channel = Channel::find($id);
-        dd(Storage::disk('public')->delete($channel->thumbnail));
-        /*$channel->followers()->detach();
+//        dd(Storage::disk('public')->delete($channel->thumbnail));
+        $channel->followers()->detach();
+        $channel->videos()->delete();
         $channel->videos()->delete();
         $channel->blacklists()->detach();
 
-        Channel::destroy($id);*/
+        Channel::destroy($id);
 
 
         return redirect()->route('admin.channels.all');
