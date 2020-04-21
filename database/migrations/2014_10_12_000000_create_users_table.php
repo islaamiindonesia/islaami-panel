@@ -22,9 +22,11 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->text('verification_number')->nullable(true);
-            $table->text('reset_token')->nullable()
+            $table->text('reset_token')
+                ->nullable()
                 ->default(null);
-            $table->text('fcm_token')->nullable()
+            $table->text('fcm_token')
+		->nullable()
                 ->default(null);
             $table->timestamp('suspended_at')->nullable();
             $table->timestamps();
