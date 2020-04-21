@@ -134,8 +134,6 @@ class ChannelController extends Controller
 
         if (Storage::disk('public')->exists($channel->thumbnail)) {
             Storage::disk('public')->delete($channel->thumbnail);
-        } else {
-            return back()->withErrors('Upload thumbnail failed');
         }
 
         $path = Storage::disk('public')->putFile('channel_thumbnails', $request->file('thumbnail'));
