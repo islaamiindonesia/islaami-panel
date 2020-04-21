@@ -37,6 +37,9 @@ class SubcategoryController extends Controller
             $video->category;
             $video->subcategory;
             $video->labels;
+            $video->views = $video->views()->count();
+            $video->channel->followers = $video->channel->followers()->count();
+            $video->channel->videos = $video->channel->videos()->count();
 
             array_push($videoArray, $video);
         }

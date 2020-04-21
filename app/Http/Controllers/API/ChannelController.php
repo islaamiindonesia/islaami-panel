@@ -22,6 +22,7 @@ class ChannelController extends Controller
 
         foreach ($channels as $channel) {
             $channel->is_followed = Channel::find($channel->id)->followers->contains($authID);
+            $channel->followers = $channel->followers()->count();
         }
 
         return $this->successResponseWithData($channels);
@@ -49,6 +50,7 @@ class ChannelController extends Controller
         } else {
             $channel->is_blacklisted = false;
         }
+        $channel->followers = $channel->followers()->count();
 
         $videos = $channel->videos()->get();
 
@@ -58,6 +60,7 @@ class ChannelController extends Controller
             $video->category;
             $video->subcategory;
             $video->labels;
+            $video->views = $video->views()->count();
 
             array_push($videoArray, $video);
         }

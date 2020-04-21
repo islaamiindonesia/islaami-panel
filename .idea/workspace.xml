@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ChannelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ChannelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_07_095053_create_video_views_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_07_095053_create_video_views_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/channel/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/channel/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/channel/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/channel/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/channel/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/channel/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/ChannelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/ChannelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/LabelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/LabelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/PlaylistController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/PlaylistController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/SubcategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/SubcategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/VideoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/VideoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,7 +262,7 @@
       <workItem from="1587354863715" duration="2034000" />
       <workItem from="1587368088542" duration="21318000" />
       <workItem from="1587443412245" duration="4504000" />
-      <workItem from="1587452258345" duration="1130000" />
+      <workItem from="1587452258345" duration="3798000" />
     </task>
     <servers />
   </component>
@@ -328,10 +332,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.800@0.0.1280.800" timestamp="1587197991282" />
-    <state x="305" y="63" width="670" height="737" key="search.everywhere.popup" timestamp="1587453696072">
+    <state x="305" y="63" width="670" height="737" key="search.everywhere.popup" timestamp="1587457083499">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="305" y="63" width="670" height="737" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1587453696072" />
+    <state x="305" y="63" width="670" height="737" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1587457083499" />
     <state x="305" y="81" width="670" height="676" key="search.everywhere.popup/0.23.1280.734@0.23.1280.734" timestamp="1585992592103" />
   </component>
 </project>
