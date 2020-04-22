@@ -97,11 +97,11 @@ class ChannelController extends Controller
     public function addBlackList($id)
     {
         $user = User::find(auth('api')->id());
-        if ($user->blacklists->contains($id)) {
+        if ($user->blacklistChannels->contains($id)) {
             return $this->errorResponse("DATA_EXIST");
         }
 
-        $user->blacklists()->attach($id);
+        $user->blacklistChannels()->attach($id);
 
         return $this->successResponse();
     }
@@ -116,7 +116,7 @@ class ChannelController extends Controller
     {
         $user = User::find(auth('api')->id());
 
-        $user->blacklists()->detach($id);
+        $user->blacklistChannels()->detach($id);
 
         return $this->successResponse();
     }
