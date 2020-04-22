@@ -61,6 +61,8 @@ Route::middleware('auth.api:api')->group(function () {
 
         Route::get('', 'API\ChannelController@index');
 
+        Route::get('blacklist', 'API\ChannelController@indexBlacklist');
+
         Route::get('{id}', 'API\ChannelController@show');
 
         Route::put('{id}/follow', 'API\ChannelController@follow');

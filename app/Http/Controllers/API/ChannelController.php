@@ -18,14 +18,41 @@ class ChannelController extends Controller
     {
         $authID = auth('api')->id();
 
-        $channels = Channel::where('suspended_at', null)->doesntHave('blacklists')->get();
+        $channels = Channel::where('suspended_at', null)->get();
 
+        $channelArray = array();
         foreach ($channels as $channel) {
             $channel->is_followed = Channel::find($channel->id)->followers->contains($authID);
             $channel->followers = $channel->followers()->count();
+            if (!Channel::find($channel->id)->blacklists->contains($authID)) {
+                array_push($channelArray, $channel);
+            }
         }
 
-        return $this->successResponseWithData($channels);
+        return $this->successResponseWithData($channelArray);
+    }
+
+    /**
+     * Get blacklisted channel.
+     *
+     * @return JsonResponse
+     */
+    public function indexBlacklist()
+    {
+        $authID = auth('api')->id();
+
+        $user = User::find($authID);
+
+        $channels = $user->blacklistChannels()->get();
+
+        $channelArray = array();
+        foreach ($channels as $channel) {
+            $channel->is_followed = Channel::find($channel->id)->followers->contains($authID);
+            $channel->followers = $channel->followers()->count();
+            array_push($channelArray, $channel);
+        }
+
+        return $this->successResponseWithData($channelArray);
     }
 
     /**
