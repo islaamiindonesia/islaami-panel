@@ -61,6 +61,8 @@ Route::middleware('auth.api:api')->group(function () {
 
         Route::get('', 'API\ChannelController@index');
 
+        Route::get('{id}/videos', 'API\ChannelController@videosChannel');
+
         Route::get('follow', 'API\ChannelController@indexFollow');
 
         Route::get('blacklist', 'API\ChannelController@indexBlacklist');

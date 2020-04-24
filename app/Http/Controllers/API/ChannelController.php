@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Channel;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Video;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 
 class ChannelController extends Controller
@@ -30,6 +32,42 @@ class ChannelController extends Controller
         }
 
         return $this->successResponseWithData($channelArray);
+    }
+
+    /**
+     * Videos by Channel.
+     *
+     * @return JsonResponse
+     */
+    public function videosChannel($id)
+    {
+        $authID = auth('api')->id();
+        $now = Carbon::now()->toDateTimeString();
+
+        $videos = Channel::find($id)->videos()->withCount('views as views')
+            ->with([
+                'channel' => function ($query) {
+                    $query->select(['id', 'name', 'thumbnail']);
+                },
+                'category' => function ($query) {
+                    $query->select(['id', 'name']);
+                },
+                'subcategory' => function ($query) {
+                    $query->select(['id', 'name']);
+                },
+                'labels'
+            ])
+            ->where('published_at', '<=', $now)
+            ->orderBy('published_at', 'desc')
+            ->paginate(10);
+
+        $videoArray = array();
+        foreach ($videos->toArray()["data"] as $video) {
+            $video["is_saved_later"] = Video::find($video["id"])->users->contains($video["id"]);
+            array_push($videoArray, $video);
+        }
+
+        return $this->successResponseWithData($videoArray);
     }
 
     /**
