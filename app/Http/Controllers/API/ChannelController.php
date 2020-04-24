@@ -159,7 +159,7 @@ class ChannelController extends Controller
 
         $user->followChannels()->attach($id);
 
-        return $this->successResponse();
+        return $this->successResponseWithData(["is_followed" => true]);
     }
 
     /**
@@ -174,7 +174,7 @@ class ChannelController extends Controller
 
         $user->followChannels()->detach($id);
 
-        return $this->successResponse();
+        return $this->successResponseWithData(["is_followed" => false]);
     }
 
     /**

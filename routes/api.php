@@ -83,6 +83,8 @@ Route::middleware('auth.api:api')->group(function () {
 
         Route::get('', 'API\VideoController@index');
 
+        Route::get('following', 'API\VideoController@indexFollowing');
+
         Route::get('{id}', 'API\VideoController@show');
     });
 

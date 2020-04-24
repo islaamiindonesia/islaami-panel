@@ -50,6 +50,47 @@ class VideoController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return JsonResponse
+     */
+    public function indexFollowing()
+    {
+        $authID = auth('api')->id();
+        $now = Carbon::now()->toDateTimeString();
+
+        $videos = Video::withCount('views as views')
+            ->with([
+                'channel' => function ($query) {
+                    $query->select(['id', 'name', 'thumbnail']);
+                },
+                'category' => function ($query) {
+                    $query->select(['id', 'name']);
+                },
+                'subcategory' => function ($query) {
+                    $query->select(['id', 'name']);
+                },
+                'labels'
+            ])
+            ->where('published_at', '<=', $now)
+            ->orderBy('published_at', 'desc')
+            ->paginate(10);
+
+        $videoArray = array();
+        foreach ($videos->toArray()["data"] as $video) {
+            $video["is_saved_later"] = Video::find($video["id"])->users->contains($video["id"]);
+            $video["channel"]["is_followed"] = Channel::find($video["channel"]["id"])->followers->contains($authID);
+            if (!Channel::find($video["channel"]["id"])->blacklists->contains($authID) &&
+                $video["channel"]["is_followed"]) {
+
+                array_push($videoArray, $video);
+            }
+        }
+
+        return $this->successResponseWithData($videoArray);
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param int $id
