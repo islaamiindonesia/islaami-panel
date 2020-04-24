@@ -27,15 +27,16 @@
                             <thead>
                             <tr style="text-align: center">
                                 <th>Nama</th>
-                                <th>Status</th>
                                 <th>Dibuat</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($reports as $report)
                                 <tr style="text-align: center">
-                                    <td>{{ $report->user->name }}</td>
+                                    <td>{{ $report->user->fullname }}</td>
+                                    <td>{{ date('d F Y', strtotime($report->created_at)) }}</td>
                                     <td>
                                         @if($report->is_solved)
                                             Selesai
@@ -43,8 +44,7 @@
                                             Belum Selesai
                                         @endif
                                     </td>
-                                    <td>{{ date('d F Y', strtotime($report->created_at)) }}</td>
-                                    <td class="project-actions text-left">
+                                    <td class="project-actions">
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('admin.reports.show', ['id' => $report->id]) }}">
                                             <i class="fas fa-folder"></i>
@@ -54,7 +54,7 @@
                                            data-id="{{ $report->id  }}"
                                            href="#" @if($report->is_solved) aria-disabled="true" role="button" @endif>
                                             <i class="fas fa-trash"></i>
-                                            Ubah Status
+                                            Tandai Selesai
                                         </a>
                                     </td>
                                 </tr>
@@ -123,7 +123,7 @@
                     {
                         "targets": [3],
                         "orderable": false,
-                        "width": 200,
+                        "width": 300,
                     }
                 ],
             });
@@ -137,7 +137,7 @@
             Swal.fire({
                 icon: 'question',
                 title: 'Apakah Anda yakin ?',
-                text: 'Dengan ini maka laporan telah dikerjakan dan status laporan akan berubah menjadi selesai',
+                text: 'Dengan ini maka status laporan akan berubah menjadi selesai dan tidak dapat diubah kembali',
                 confirmButtonText: 'Yakin',
                 cancelButtonText: 'Batal',
                 showCancelButton: true,

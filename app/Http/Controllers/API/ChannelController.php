@@ -33,6 +33,30 @@ class ChannelController extends Controller
     }
 
     /**
+     * Get followed channel.
+     *
+     * @return JsonResponse
+     */
+    public function indexFollow()
+    {
+        $authID = auth('api')->id();
+
+        $user = User::find($authID);
+
+        $channels = $user->followChannels()->get();
+
+        $channelArray = array();
+        foreach ($channels as $channel) {
+            $channel->followers = $channel->followers()->count();
+            if (Channel::find($channel->id)->followers->contains($authID)) {
+                array_push($channelArray, $channel);
+            }
+        }
+
+        return $this->successResponseWithData($channelArray);
+    }
+
+    /**
      * Get blacklisted channel.
      *
      * @return JsonResponse

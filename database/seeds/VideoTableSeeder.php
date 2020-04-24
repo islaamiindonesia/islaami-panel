@@ -16,7 +16,7 @@ class VideoTableSeeder extends Seeder
     {
         $channel = new Channel();
         $channel->name = "Channel Uno";
-        $channel->thumbnail = "";
+        $channel->thumbnail = "channel_thumbnails/pQB3mKpFu5vK6A3H6esBQ8GdveMX13eiOMY5p32u.jpeg";
         $channel->description = "Lorem ipsum dolor sit amet";
         $channel->save();
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Report;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -45,5 +46,20 @@ class ReportController extends Controller
         $report = Report::find($id);
 
         return view('report.show', ['admin' => Auth::user(), 'report' => $report, 'menu' => 'category']);
+    }
+
+    /**
+     * Verify report.
+     *
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function verify($id)
+    {
+        $report = Report::find($id);
+        $report->is_solved = true;
+        $report->save();
+
+        return redirect()->route('admin.reports.all');
     }
 }

@@ -32,6 +32,127 @@ class PlaylistController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function store(Request $request)
+    {
+        $authID = auth('api')->id();
+        $playlist = new Playlist();
+        $playlist->name = $request->name;
+        $playlist->user_id = $authID;
+        $playlist->save();
+
+        return $this->successResponse();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function show($id)
+    {
+        $authID = auth('api')->id();
+        $playlist = User::find($authID)->playlists()->where('id', $id)->first();
+        $videos = $playlist->videos()->get();
+
+        $videoArray = array();
+        foreach ($playlist->videos as $video) {
+            $video->channel;
+            $video->category;
+            $video->subcategory;
+            $video->labels;
+            $video->views = $video->views()->count();
+
+            array_push($videoArray, $video);
+        }
+
+        $playlist->video_count = $playlist->videos()->count();
+        $playlist->videos = $videoArray;
+
+        return $this->successResponseWithData($playlist);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function update(Request $request, $id)
+    {
+        $authID = auth('api')->id();
+        $playlist = User::find($authID)->playlists()->where('id', $id)->first();
+        if ($playlist == null) {
+            return $this->errorResponse("DATA_NOT_FOUND", 200);
+        }
+        $playlist->name = $request->name;
+        $playlist->save();
+
+        return $this->successResponse();
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function destroy($id)
+    {
+        $authID = auth('api')->id();
+        $user = User::find($authID);
+        $user->playlists()->where('id', $id)->delete();
+
+        return $this->successResponse();
+    }
+
+    /**
+     * Add video to playlist
+     *
+     * @param Request $request
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function addVideo(Request $request, $id)
+    {
+        $authID = auth('api')->id();
+        $playlist = User::find($authID)->playlists()->where('id', $id)->first();
+
+        if ($playlist->videos->contains($request->video_id)) {
+            return $this->errorResponse("DATA_EXIST");
+        }
+
+        $playlist->videos()->attach($request->video_id);
+
+        return $this->successResponse();
+    }
+
+    /**
+     * Remove video from playlist
+     *
+     * @param Request $request
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function removeVideo(Request $request, $id)
+    {
+        $authID = auth('api')->id();
+        $playlist = User::find($authID)->playlists()->where('id', $id)->first();
+
+        $playlist->videos()->detach($request->video_id);
+
+        return $this->successResponse();
+    }
+
+    /* WATCHLATER */
+    /**
      * Display a watch later videos
      *
      * @return JsonResponse
@@ -89,107 +210,4 @@ class PlaylistController extends Controller
 
         return $this->successResponse();
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return JsonResponse
-     */
-    public function store(Request $request)
-    {
-        $authID = auth('api')->id();
-        $playlist = new Playlist();
-        $playlist->name = $request->name;
-        $playlist->user_id = $authID;
-        $playlist->save();
-
-        return $this->successResponse();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return JsonResponse
-     */
-    public function show($id)
-    {
-        $authID = auth('api')->id();
-        $playlist = User::find($authID)->playlists()->where('id', $id)->first();
-        $videos = $playlist->videos()->get();
-
-        $videoArray = array();
-        foreach ($playlist->videos as $video) {
-            $video->channel;
-            $video->category;
-            $video->subcategory;
-            $video->labels;
-            $video->views = $video->views()->count();
-
-            array_push($videoArray, $video);
-        }
-
-        $playlist->video_count = $playlist->videos()->count();
-        $playlist->videos = $videoArray;
-
-        return $this->successResponseWithData($playlist);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param int $id
-     * @return JsonResponse
-     */
-    public function update(Request $request, $id)
-    {
-        $authID = auth('api')->id();
-        $playlist = User::find($authID)->playlists()->where('id', $id)->first();
-        $playlist->name = $request->name;
-        $playlist->save();
-
-        return $this->successResponse();
-    }
-
-    /**
-     * Add video to playlist
-     *
-     * @param Request $request
-     * @param int $id
-     * @return JsonResponse
-     */
-    public function addVideo(Request $request, $id)
-    {
-        $authID = auth('api')->id();
-        $playlist = User::find($authID)->playlists()->where('id', $id)->first();
-
-        if ($playlist->videos->contains($request->video_id)) {
-            return $this->errorResponse("DATA_EXIST");
-        }
-
-        $playlist->videos()->attach($request->video_id);
-
-        return $this->successResponse();
-    }
-
-    /**
-     * Remove video from playlist
-     *
-     * @param Request $request
-     * @param int $id
-     * @return JsonResponse
-     */
-    public function removeVideo(Request $request, $id)
-    {
-        $authID = auth('api')->id();
-        $playlist = User::find($authID)->playlists()->where('id', $id)->first();
-
-        $playlist->videos()->detach($request->video_id);
-
-        return $this->successResponse();
-    }
-
-
 }

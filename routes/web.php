@@ -228,6 +228,8 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('', 'ReportController@index')->name('all');
 
                 Route::get('{id}/show', 'ReportController@show')->name('show');
+
+                Route::put('{id}/verify', 'ReportController@show')->name('show');
             });
 
             /* INSIGHTS */

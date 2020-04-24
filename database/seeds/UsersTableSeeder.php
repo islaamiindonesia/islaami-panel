@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
         $user->password = Hash::make("password");
         $user->save();
 
-//        $user->followChannels()->attach(1);
+        $user->followChannels()->attach(1);
 //        $user->blacklistChannels()->attach(1);
         $user->videoView()->attach(1);
 

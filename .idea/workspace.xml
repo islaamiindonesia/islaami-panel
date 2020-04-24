@@ -4,8 +4,14 @@
     <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/ChannelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/ChannelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/PlaylistController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/PlaylistController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/firebase.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/VideoTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/VideoTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/report/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/report/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,7 +266,8 @@
       <workItem from="1587470982596" duration="3661000" />
       <workItem from="1587482853125" duration="186000" />
       <workItem from="1587484406555" duration="271000" />
-      <workItem from="1587565472824" duration="1230000" />
+      <workItem from="1587565472824" duration="1891000" />
+      <workItem from="1587724198799" duration="2026000" />
     </task>
     <servers />
   </component>
@@ -321,19 +328,19 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="584" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1587387869042" />
-    <state x="317" y="222" key="com.intellij.ide.util.TipDialog" timestamp="1587565474740">
+    <state x="317" y="222" key="com.intellij.ide.util.TipDialog" timestamp="1587736177288">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1587565474740" />
+    <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1587736177288" />
     <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.23.1280.734@0.23.1280.734" timestamp="1587484406288" />
     <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587197991282">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.800@0.0.1280.800" timestamp="1587197991282" />
-    <state x="305" y="63" width="670" height="737" key="search.everywhere.popup" timestamp="1587566701058">
+    <state x="305" y="63" width="670" height="737" key="search.everywhere.popup" timestamp="1587728872939">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="305" y="63" width="670" height="737" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1587566701058" />
+    <state x="305" y="63" width="670" height="737" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1587728872939" />
     <state x="305" y="81" width="670" height="676" key="search.everywhere.popup/0.23.1280.734@0.23.1280.734" timestamp="1585992592103" />
   </component>
 </project>

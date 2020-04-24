@@ -61,6 +61,8 @@ Route::middleware('auth.api:api')->group(function () {
 
         Route::get('', 'API\ChannelController@index');
 
+        Route::get('follow', 'API\ChannelController@indexFollow');
+
         Route::get('blacklist', 'API\ChannelController@indexBlacklist');
 
         Route::get('{id}', 'API\ChannelController@show');
@@ -99,11 +101,13 @@ Route::middleware('auth.api:api')->group(function () {
 
             Route::post('add', 'API\PlaylistController@store');
 
+            Route::patch('{id}', 'API\PlaylistController@update');
+
+            Route::delete('{id}', 'API\PlaylistController@destroy');
+
             Route::put('{id}/addvideo', 'API\PlaylistController@addVideo');
 
             Route::put('{id}/removevideo', 'API\PlaylistController@removeVideo');
-
-            Route::put('{id}/update', 'API\PlaylistController@update');
         });
 
         Route::prefix("watchlater")->group(function () {
