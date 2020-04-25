@@ -35,6 +35,32 @@ class ChannelController extends Controller
     }
 
     /**
+     * Get followed channel.
+     *
+     * @return JsonResponse
+     */
+    public function indexFollow()
+    {
+        $authID = auth('api')->id();
+
+        $user = User::find($authID);
+
+        $channels = $user->followChannels()->get();
+
+        $channelArray = array();
+        foreach ($channels as $channel) {
+            $channel->followers = $channel->followers()->count();
+            if (Channel::find($channel->id)->followers->contains($authID) &&
+                !Channel::find($channel->id)->blacklists->contains($authID)) {
+                array_push($channelArray, $channel);
+            }
+        }
+
+
+        return $this->successResponseWithData($channelArray);
+    }
+
+    /**
      * Videos by Channel.
      *
      * @return JsonResponse
@@ -68,30 +94,6 @@ class ChannelController extends Controller
         }
 
         return $this->successResponseWithData($videoArray);
-    }
-
-    /**
-     * Get followed channel.
-     *
-     * @return JsonResponse
-     */
-    public function indexFollow()
-    {
-        $authID = auth('api')->id();
-
-        $user = User::find($authID);
-
-        $channels = $user->followChannels()->get();
-
-        $channelArray = array();
-        foreach ($channels as $channel) {
-            $channel->followers = $channel->followers()->count();
-            if (Channel::find($channel->id)->followers->contains($authID)) {
-                array_push($channelArray, $channel);
-            }
-        }
-
-        return $this->successResponseWithData($channelArray);
     }
 
     /**
@@ -139,7 +141,24 @@ class ChannelController extends Controller
         }
 
         $channel->followers = $channel->followers()->count();
-        $channel->videos = $channel->videos()->count();
+
+        $now = Carbon::now()->toDateTimeString();
+        $channel->videos = $channel->videos()->withCount('views as views')
+            ->with([
+                'channel' => function ($query) {
+                    $query->select(['id', 'name', 'thumbnail']);
+                },
+                'category' => function ($query) {
+                    $query->select(['id', 'name']);
+                },
+                'subcategory' => function ($query) {
+                    $query->select(['id', 'name']);
+                },
+                'labels'
+            ])
+            ->where("channel_id", $id)
+            ->where('published_at', '<=', $now)
+            ->orderBy('published_at', 'desc')->get();
 
         return $this->successResponseWithData($channel);
     }
@@ -159,7 +178,7 @@ class ChannelController extends Controller
 
         $user->followChannels()->attach($id);
 
-        return $this->successResponseWithData(["is_followed" => true]);
+        return $this->successResponse();
     }
 
     /**
@@ -174,7 +193,7 @@ class ChannelController extends Controller
 
         $user->followChannels()->detach($id);
 
-        return $this->successResponseWithData(["is_followed" => false]);
+        return $this->successResponse();
     }
 
     /**
