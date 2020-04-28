@@ -100,7 +100,6 @@ class PlaylistController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
      * @param int $id
      * @return JsonResponse
      */
@@ -108,6 +107,7 @@ class PlaylistController extends Controller
     {
         $authID = auth('api')->id();
         $user = User::find($authID);
+
         $user->playlists()->where('id', $id)->delete();
 
         return $this->successResponse();
@@ -125,11 +125,9 @@ class PlaylistController extends Controller
         $authID = auth('api')->id();
         $playlist = User::find($authID)->playlists()->where('id', $id)->first();
 
-        if ($playlist->videos->contains($request->video_id)) {
-            return $this->errorResponse("DATA_EXIST");
+        if (!$playlist->videos->contains($request->video_id)) {
+            $playlist->videos()->attach($request->video_id);
         }
-
-        $playlist->videos()->attach($request->video_id);
 
         return $this->successResponse();
     }
@@ -187,11 +185,9 @@ class PlaylistController extends Controller
         $authID = auth('api')->id();
         $user = User::find($authID);
 
-        if ($user->videos->contains($request->video_id)) {
-            return $this->errorResponse("DATA_EXIST");
+        if (!$user->videos->contains($request->video_id)) {
+            $user->videos()->attach($request->video_id);
         }
-
-        $user->videos()->attach($request->video_id);
 
         return $this->successResponse();
     }
@@ -206,6 +202,7 @@ class PlaylistController extends Controller
     {
         $authID = auth('api')->id();
         $user = User::find($authID);
+
         $user->videos()->detach($request->video_id);
 
         return $this->successResponse();
