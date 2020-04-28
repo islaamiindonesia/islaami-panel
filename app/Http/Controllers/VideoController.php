@@ -80,6 +80,7 @@ class VideoController extends Controller
 
         $video = new Video();
         $video->title = $request->title;
+        $video->video_id = $videoID;
         $video->url = $request->url;
         $video->description = $request->description;
         $video->thumbnail = $thumbnail;
