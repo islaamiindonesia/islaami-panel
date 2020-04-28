@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/ChannelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/ChannelController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -262,7 +261,7 @@
       <workItem from="1587724198799" duration="2026000" />
       <workItem from="1587746971459" duration="4325000" />
       <workItem from="1587826505775" duration="1255000" />
-      <workItem from="1588034932576" duration="239000" />
+      <workItem from="1588034932576" duration="648000" />
     </task>
     <servers />
   </component>
@@ -307,6 +306,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="390" y="320" key="ComposerInitDialogKey/0.0.1280.800@0.0.1280.800" timestamp="1586678563917" />
+    <state x="100" y="100" width="1080" height="600" key="DiffContextDialog" timestamp="1588036322330">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="100" y="100" width="1080" height="600" key="DiffContextDialog/0.0.1280.800@0.0.1280.800" timestamp="1588036322330" />
     <state x="458" y="320" key="NewPhpFileDialog" timestamp="1585910125786">
       <screen x="0" y="23" width="1280" height="734" />
     </state>

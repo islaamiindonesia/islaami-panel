@@ -132,6 +132,7 @@ class ChannelController extends Controller
 
         $channel->is_followed = Channel::find($id)->followers->contains($authID);
         $channel->followers = $channel->followers()->count();
+        $channel->videos = $channel->videos()->count();
 
         if (Channel::find($id)->blacklists->contains($authID)) {
             return $this->errorResponse("CHANNEL_BLACKLISTED", 401);
@@ -149,11 +150,10 @@ class ChannelController extends Controller
     public function follow($id)
     {
         $user = User::find(auth('api')->id());
-        if ($user->followChannels->contains($id)) {
-            return $this->errorResponse("DATA_EXIST");
-        }
 
-        $user->followChannels()->attach($id);
+        if (!$user->followChannels->contains($id)) {
+            $user->followChannels()->attach($id);
+        }
 
         return $this->successResponse();
     }
@@ -182,11 +182,10 @@ class ChannelController extends Controller
     public function addBlackList($id)
     {
         $user = User::find(auth('api')->id());
-        if ($user->blacklistChannels->contains($id)) {
-            return $this->errorResponse("DATA_EXIST");
-        }
 
-        $user->blacklistChannels()->attach($id);
+        if (!$user->blacklistChannels->contains($id)) {
+            $user->blacklistChannels()->attach($id);
+        }
 
         return $this->successResponse();
     }
