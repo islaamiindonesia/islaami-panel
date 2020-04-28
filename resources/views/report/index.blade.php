@@ -50,9 +50,8 @@
                                             <i class="fas fa-folder"></i>
                                             Lihat Laporan
                                         </a>
-                                        <a class="btn btn-info btn-sm swalUpdateStatus @if($report->is_solved) disabled @endif"
-                                           data-id="{{ $report->id  }}"
-                                           href="#" @if($report->is_solved) aria-disabled="true" role="button" @endif>
+                                        <a class="btn btn-info btn-sm @if($report->is_solved) disabled @endif"
+                                           href="{{ route('admin.reports.verify', ['id'=>$report->id]) }}" @if($report->is_solved) aria-disabled="true"@endif>
                                             <i class="fas fa-trash"></i>
                                             Tandai Selesai
                                         </a>

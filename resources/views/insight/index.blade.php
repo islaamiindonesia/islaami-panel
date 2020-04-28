@@ -24,7 +24,7 @@
                             <tbody>
                             @foreach($insights as $insight)
                                 <tr style="text-align: center">
-                                    <td>{{ $insight->user->name }}</td>
+                                    <td>{{ $insight->user->fullname }}</td>
                                     <td>{{ $insight->created_at }}</td>
                                     <td class="project-actions ">
                                         <a class="btn btn-primary btn-sm"
