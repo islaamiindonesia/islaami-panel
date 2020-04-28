@@ -45,6 +45,34 @@ class PlaylistController extends Controller
         $playlist->user_id = $authID;
         $playlist->save();
 
+        if ($request->video_id != null) {
+            $this->addVideo(null, $playlist->id, $request->video_id);
+        }
+
+        return $this->successResponseWithData($playlist);
+    }
+
+    /**
+     * Add video to playlist
+     *
+     * @param Request $request
+     * @param int $id
+     * @param null $videoId
+     * @return JsonResponse
+     */
+    public function addVideo(Request $request = null, $id = null, $videoId = null)
+    {
+        $authID = auth('api')->id();
+        $playlist = User::find($authID)->playlists()->where('id', $id)->first();
+
+        if ($request != null) {
+            if (!$playlist->videos->contains($request->video_id)) {
+                $playlist->videos()->attach($request->video_id);
+            }
+        } else {
+            $playlist->videos()->attach($videoId);
+        }
+
         return $this->successResponse();
     }
 
@@ -109,25 +137,6 @@ class PlaylistController extends Controller
         $user = User::find($authID);
 
         $user->playlists()->where('id', $id)->delete();
-
-        return $this->successResponse();
-    }
-
-    /**
-     * Add video to playlist
-     *
-     * @param Request $request
-     * @param int $id
-     * @return JsonResponse
-     */
-    public function addVideo(Request $request, $id)
-    {
-        $authID = auth('api')->id();
-        $playlist = User::find($authID)->playlists()->where('id', $id)->first();
-
-        if (!$playlist->videos->contains($request->video_id)) {
-            $playlist->videos()->attach($request->video_id);
-        }
 
         return $this->successResponse();
     }
