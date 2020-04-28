@@ -25,7 +25,7 @@
                             <tbody>
                             @foreach($recommendations as $recommendation)
                                 <tr style="text-align: center">
-                                    <td>{{ $recommendation->user->name }}</td>
+                                    <td>{{ $recommendation->user->fullname }}</td>
                                     <td>{{ $recommendation->channel_name }}</td>
                                     <td><a href="{{ $recommendation->channel_url }}">Link Channel</a></td>
                                     <td>{{ date('d F Y', strtotime($recommendation->created_at)) }}</td>
