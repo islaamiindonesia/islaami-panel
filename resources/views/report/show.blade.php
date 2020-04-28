@@ -46,7 +46,7 @@
 
                             <p class="text-muted">
                                 <img class="img-fluid" width="200" data-toggle="modal" data-target="#modal-default"
-                                     src="{{ asset('storage/'. $report->image_url) }}" alt="Photo">
+                                     src="{{ $report->image_url }}" alt="Photo">
 
                             <div class="modal fade" id="modal-default">
                                 <div class="modal-dialog">
@@ -59,7 +59,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <img class="img-fluid" style="width:100%;max-width:300px"
-                                                 src="{{ asset('storage/'. $report->image_url) }}" alt="Photo">
+                                                 src="{{ $report->image_url }}" alt="Photo">
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-primary float-right"
