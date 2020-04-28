@@ -57,7 +57,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">
+                                        <div class="modal-body" style="text-align: center;">
                                             <img class="img-fluid" style="width:100%;max-width:300px"
                                                  src="{{ $report->image_url }}" alt="Photo">
                                         </div>
@@ -76,7 +76,8 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <form role="form" action="{{ route('admin.reports.verify', ['id'=>$report->id]) }}" method="post">
+                            <form role="form" action="{{ route('admin.reports.verify', ['id'=>$report->id]) }}"
+                                  method="post">
                                 @method('PATCH')
                                 @csrf
                                 <button type="submit" class="btn btn-primary" @if($report->is_solved) disabled @endif>

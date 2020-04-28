@@ -229,7 +229,7 @@ Route::group(['middleware' => ['auth']], function () {
 
                 Route::get('{id}/show', 'ReportController@show')->name('show');
 
-                Route::put('{id}/verify', 'ReportController@verify')->name('verify');
+                Route::patch('{id}/verify', 'ReportController@verify')->name('verify');
             });
 
             /* INSIGHTS */
