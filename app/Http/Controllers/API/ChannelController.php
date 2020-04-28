@@ -130,35 +130,12 @@ class ChannelController extends Controller
         $authID = auth('api')->id();
         $channel = Channel::where('id', $id)->where('suspended_at', null)->first();
 
-        if (Channel::find($id)->followers->contains($authID)) {
-            $channel->is_followed = true;
-        } else {
-            $channel->is_followed = false;
-        }
+        $channel->is_followed = Channel::find($id)->followers->contains($authID);
+        $channel->followers = $channel->followers()->count();
 
         if (Channel::find($id)->blacklists->contains($authID)) {
             return $this->errorResponse("CHANNEL_BLACKLISTED", 401);
         }
-
-        $channel->followers = $channel->followers()->count();
-
-        $now = Carbon::now()->toDateTimeString();
-        $channel->videos = $channel->videos()->withCount('views as views')
-            ->with([
-                'channel' => function ($query) {
-                    $query->select(['id', 'name', 'thumbnail']);
-                },
-                'category' => function ($query) {
-                    $query->select(['id', 'name']);
-                },
-                'subcategory' => function ($query) {
-                    $query->select(['id', 'name']);
-                },
-                'labels'
-            ])
-            ->where("channel_id", $id)
-            ->where('published_at', '<=', $now)
-            ->orderBy('published_at', 'desc')->get();
 
         return $this->successResponseWithData($channel);
     }
