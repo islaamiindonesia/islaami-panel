@@ -22,6 +22,7 @@ class VideoTableSeeder extends Seeder
 
         $video = new Video();
         $video->title = "Uno Video";
+        $video->video_id = "TtpX0NHU3hI";
         $video->url = "https://www.youtube.com/watch?v=TtpX0NHU3hI";
         $video->thumbnail = "https://img.youtube.com/vi/TtpX0NHU3hI/hqdefault.jpg";
         $video->description = "Lorem ipsum dolor sit amet";
