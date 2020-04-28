@@ -32,15 +32,11 @@
                                 {{ $report->user->fullname }}
                             </p>
 
-                            <hr>
-
                             <strong><i class="fas fa-map-marker-alt mr-1"></i> Laporan</strong>
 
                             <p class="text-muted">
                                 {{ $report->description }}
                             </p>
-
-                            <hr>
 
                             <strong><i class="fas fa-map-marker-alt mr-1"></i> Lihat Foto</strong>
 

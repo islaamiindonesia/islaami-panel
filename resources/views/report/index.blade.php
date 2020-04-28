@@ -50,8 +50,9 @@
                                             <i class="fas fa-folder"></i>
                                             Lihat Laporan
                                         </a>
-                                        <a class="btn btn-info btn-sm @if($report->is_solved) disabled @endif"
-                                           href="{{ route('admin.reports.verify', ['id'=>$report->id]) }}" @if($report->is_solved) aria-disabled="true"@endif>
+                                        <a class="btn btn-info btn-sm swalUpdateStatus @if($report->is_solved) disabled @endif"
+                                           data-id="{{ $report->id  }}"
+                                           href="#" @if($report->is_solved) aria-disabled="true" role="button" @endif>
                                             <i class="fas fa-trash"></i>
                                             Tandai Selesai
                                         </a>
@@ -142,17 +143,22 @@
                 showCancelButton: true,
                 preConfirm: (confirmed) => {
                     if (confirmed) {
-                        axios.patch(route('reports.verify', {id: $(this).data("id")}).url())
-                            .then(() => {
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Laporan telah diverifikasi',
-                                    text: 'Terima kasih',
-                                    preConfirm: (confirmed) => {
-                                        if (confirmed) window.location.href = route('admin.reports.all');
-                                    }
-                                });
-                            })
+                        axios.patch
+                        (
+                            route('admin.reports.verify').url(),
+                            {
+                                id: $(this).data("id")
+                            }
+                        ).then(() => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Laporan telah diverifikasi',
+                                text: 'Terima kasih',
+                                preConfirm: (confirmed) => {
+                                    if (confirmed) window.location.href = route('admin.reports.all');
+                                }
+                            });
+                        })
                     }
                 },
             })

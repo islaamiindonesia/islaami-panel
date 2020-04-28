@@ -22,7 +22,7 @@ class AuthenticateAPI extends Middleware
         if (!Auth::guard($guard)->check()) {
             return response()->json([
                 'success' => false,
-                'message' => "Invalid Token"
+                'message' => "INVALID_TOKEN"
             ], 401);
         }
 
