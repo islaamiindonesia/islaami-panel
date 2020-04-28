@@ -10,7 +10,7 @@
     <li class="breadcrumb-item">
         <a href="{{ route('admin.reports.all') }}">Laporan</a>
     </li>
-    <li class="breadcrumb-item active">{{    date('d F Y', strtotime($report->created_at)) }}</li>
+    <li class="breadcrumb-item active">{{ date('d F Y', strtotime($report->created_at)) }}</li>
 @endsection
 
 @section('mainContent')
@@ -29,7 +29,7 @@
                             <strong><i class="fas fa-book mr-1"></i> Nama Pengguna</strong>
 
                             <p class="text-muted">
-                                {{ $report->user->name }}
+                                {{ $report->user->fullname }}
                             </p>
 
                             <hr>
@@ -42,28 +42,28 @@
 
                             <hr>
 
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Evidence</strong>
+                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Lihat Foto</strong>
 
                             <p class="text-muted">
                                 <img class="img-fluid" width="200" data-toggle="modal" data-target="#modal-default"
-                                     src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="Photo">
+                                     src="{{ asset('storage/'. $report->image_url) }}" alt="Photo">
 
                             <div class="modal fade" id="modal-default">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Evidence</h4>
+                                            <h4 class="modal-title">Lihat Foto</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
                                             <img class="img-fluid" style="width:100%;max-width:300px"
-                                                 src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="Photo">
+                                                 src="{{ asset('storage/'. $report->image_url) }}" alt="Photo">
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-primary float-right"
-                                                    data-dismiss="modal"> Close
+                                                    data-dismiss="modal"> Tutup
                                             </button>
                                         </div>
                                     </div>
@@ -76,10 +76,12 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <form role="form" action="{{ route('reports.verify', ['id'=>$report->id]) }}" method="post">
+                            <form role="form" action="{{ route('admin.reports.verify', ['id'=>$report->id]) }}" method="post">
                                 @method('PATCH')
                                 @csrf
-                                <button type="submit" class="btn btn-primary" @if($report->is_solved) disabled @endif>Verify</button>
+                                <button type="submit" class="btn btn-primary" @if($report->is_solved) disabled @endif>
+                                    Verify
+                                </button>
                             </form>
                         </div>
                     </div>
