@@ -20,44 +20,21 @@
 </head>
 
 <body>
-<!-- Navigation -->
-<nav class="navbar navbar-custom fixed-top">
-    <div class="container">
-        <!-- Brand Logo -->
-        <img src="{{ asset("assets/img/islaami_logo.png") }}" alt="Islaami Logo" style="width: 100px;">
-    </div>
-</nav>
-
-<header class="masthead text-center text-white">
-    <div class="masthead-content">
-        <div class="container">
-            <h1 class="masthead-heading mb-sm-auto">{{ $title }}</h1>
-        </div>
-    </div>
-    <div class="bg-circle-1 bg-circle"></div>
-    <div class="bg-circle-2 bg-circle"></div>
-    <div class="bg-circle-3 bg-circle"></div>
-    <div class="bg-circle-4 bg-circle"></div>
-</header>
 
 <section>
     <div class="container">
         <div class="row align-items-center">
             <div class="col-sm-12">
-                <div class="p-5">
+                <div class="p-5" style="text-align: center">
+                    <!-- Brand Logo -->
+                    <img src="{{ asset("assets/img/islaami_logo.png") }}" alt="Islaami Logo" style="width: 200px;" class="mb-3">
+                    <h2 class="display-4 mb-3">{{ $title }}</h2>
                     {!! $content !!}
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-<!-- Footer -->
-<footer class="py-1 bg-black">
-    <div class="container">
-        <p class="m-0 text-center text-white small">Copyright &copy; Your Website 2019</p>
-    </div>
-</footer>
 
 <!-- Bootstrap core JavaScript -->
 <script src="{{ asset("assets/onepage/vendor/jquery/jquery.min.js") }}"></script>
