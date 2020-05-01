@@ -239,6 +239,19 @@ Route::group(['middleware' => ['auth']], function () {
 
                 Route::get('{id}/show', 'InsightController@show')->name('show');
             });
+
+            /* POLICIES */
+            Route::get('aboutapp', 'ArticleController@about')->name('about');
+            Route::patch('aboutapp/edit', 'ArticleController@editAbout')->name('editAbout');
+
+            Route::get('cooperation', 'ArticleController@cooperation')->name('cooperation');
+            Route::patch('cooperation/edit', 'ArticleController@editCoop')->name('editCoop');
+
+            Route::get('usertnc', 'ArticleController@usertnc')->name('usertnc');
+            Route::patch('usertnc/edit', 'ArticleController@editTNC')->name('editTNC');
+
+            Route::get('privacy', 'ArticleController@privacy')->name('privacy');
+            Route::patch('privacy/edit', 'ArticleController@editPrivacy')->name('editPrivacy');
         });
     });
 });

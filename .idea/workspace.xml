@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/AppPolicy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_04_30_170423_create_app_policy_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/article/policy.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +176,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/assets/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/article" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -181,16 +187,16 @@
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/video" />
+      <recent name="$PROJECT_DIR$/public/assets" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/article" />
       <recent name="$PROJECT_DIR$/public/assets/img" />
       <recent name="$PROJECT_DIR$/resources/views/admin" />
       <recent name="$PROJECT_DIR$/resources/views/mail/user" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/resources/views/role" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/video" />
-      <recent name="$PROJECT_DIR$/public/assets" />
     </key>
   </component>
   <component name="RunManager">
@@ -264,7 +270,10 @@
       <workItem from="1588034932576" duration="3329000" />
       <workItem from="1588047979677" duration="324000" />
       <workItem from="1588059496632" duration="1428000" />
-      <workItem from="1588068887119" duration="682000" />
+      <workItem from="1588068887119" duration="841000" />
+      <workItem from="1588237671618" duration="38000" />
+      <workItem from="1588238722753" duration="3237000" />
+      <workItem from="1588317709737" duration="2988000" />
     </task>
     <servers />
   </component>
@@ -329,19 +338,19 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="584" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1587387869042" />
-    <state x="317" y="222" key="com.intellij.ide.util.TipDialog" timestamp="1588068887149">
+    <state x="317" y="222" key="com.intellij.ide.util.TipDialog" timestamp="1588317742483">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1588068887149" />
+    <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1588317742483" />
     <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.23.1280.734@0.23.1280.734" timestamp="1587484406288" />
     <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587197991282">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.800@0.0.1280.800" timestamp="1587197991282" />
-    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup" timestamp="1588070981621">
+    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup" timestamp="1588320186923">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1588070981621" />
+    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1588320186923" />
     <state x="305" y="63" width="670" height="158" key="search.everywhere.popup/0.23.1280.734@0.23.1280.734" timestamp="1588037942591" />
   </component>
 </project>

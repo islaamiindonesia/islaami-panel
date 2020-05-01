@@ -68,8 +68,8 @@
                         </li>--}}
                     @endif
                     @if(Auth::user()->hasRole("playmi"))
-                        <li class="nav-item has-treeview @if($parent ?? '' == "playmi") menu-open @endif">
-                            <a href="#" class="nav-link @if($parent ?? '' == "playmi") active @endif">
+                        <li class="nav-item has-treeview @isset($parent) @if($parent== "playmi") menu-open @endif @endisset">
+                            <a href="#" class="nav-link @isset($parent) @if($parent== "playmi") active @endif @endisset">
                                 <img class="nav-icon" src="{{ asset("assets/img/playmi_icon.png")  }}" width="25">
                                 <p>
                                     Playmi
@@ -151,6 +151,53 @@
                                     Admin
                                 </p>
                             </a>
+                        </li>
+                        <li class="nav-item has-treeview @isset($parent) @if($parent == "policy") menu-open @endif @endisset">
+                            <a href="#" class="nav-link @isset($parent) @if($parent == "policy") active @endif @endisset">
+                                <i class="nav-icon fas fa-landmark"></i>
+                                <p>
+                                    Ketentuan
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.about')  }}"
+                                       class="nav-link @if($menu == "about") active @endif">
+                                        <i class="nav-icon fas fa-mobile-alt"></i>
+                                        <p>
+                                            Tentang Aplikasi
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.cooperation')  }}"
+                                       class="nav-link @if($menu == "coop") active @endif">
+                                        <i class="nav-icon fas fa-handshake"></i>
+                                        <p>
+                                            Kerjasama
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.usertnc')  }}"
+                                       class="nav-link @if($menu == "user_tnc") active @endif">
+                                        <i class="nav-icon fas fa-address-book"></i>
+                                        <p>
+                                            Ketentuan Pengguna
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.privacy')  }}"
+                                       class="nav-link @if($menu == "privacy") active @endif">
+                                        <i class="nav-icon fas fa-user-shield"></i>
+                                        <p>
+                                            Kebijakan Privasi
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     @endif
                     <li class="nav-item">

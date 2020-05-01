@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\AppPolicy;
 use App\Article;
 use App\ArticleCategory;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\View\View;
 
 class ArticleController extends Controller
@@ -105,5 +107,118 @@ class ArticleController extends Controller
         Article::where('id', $id)->where('category_id', $categoryId)->delete();
 
         return true;
+    }
+
+    /* POLICY */
+    public function about()
+    {
+        $content = '';
+        $policy = AppPolicy::find("ABOUT_PLAYMI");
+
+        if ($policy != null) {
+            $content = $policy->content;
+        }
+
+        return view('article.policy', [
+            'title' => "Tentang Aplikasi",
+            'content' => $content,
+            'edit' => 'editAbout',
+            'menu' => 'about',
+            'parent' => 'policy',
+        ]);
+    }
+
+    public function editAbout(Request $request)
+    {
+        AppPolicy::updateOrCreate(
+            ["name" => "ABOUT_PLAYMI"],
+            ["content" => $request->contents]
+        );
+
+        return redirect()->route('admin.about');
+    }
+
+    public function cooperation()
+    {
+        $content = '';
+        $policy = AppPolicy::find("COOP_PLAYMI");
+
+        if ($policy != null) {
+            $content = $policy->content;
+        }
+
+        return view('article.policy', [
+            'title' => "Kerjasama",
+            'content' => $content,
+            'edit' => 'editCoop',
+            'menu' => 'coop',
+            'parent' => 'policy',
+        ]);
+    }
+
+    public function editCoop(Request $request)
+    {
+        AppPolicy::updateOrCreate(
+            ["name" => "COOP_PLAYMI"],
+            ["content" => $request->contents]
+        );
+
+        return redirect()->route('admin.cooperation');
+    }
+
+    public function usertnc()
+    {
+        $content = '';
+        $policy = AppPolicy::find("TNC_PLAYMI");
+
+        if ($policy != null) {
+            $content = $policy->content;
+        }
+
+        return view('article.policy', [
+            'title' => "Ketentuan Pengguna",
+            'content' => $content,
+            'edit' => 'editTNC',
+            'menu' => 'user_tnc',
+            'parent' => 'policy',
+        ]);
+    }
+
+    public function editTNC(Request $request)
+    {
+        AppPolicy::updateOrCreate(
+            ["name" => "TNC_PLAYMI"],
+            ["content" => $request->contents]
+        );
+
+        return redirect()->route('admin.usertnc');
+    }
+
+    public function privacy()
+    {
+        $content = '';
+        $policy = AppPolicy::find("PRIVACY_PLAYMI");
+
+        if ($policy != null) {
+            $content = $policy->content;
+        }
+
+        return view('article.policy', [
+            'title' => "Kebijakan Privasi",
+            'content' => $content,
+            'edit' => 'editPrivacy',
+            'menu' => 'privacy',
+            'parent' => 'policy',
+        ]);
+    }
+
+    public function editPrivacy(Request $request)
+    {
+        AppPolicy::updateOrCreate(
+            ["name" => "PRIVACY_PLAYMI"],
+            ["content" => $request->contents]
+        );
+
+        return redirect()->route('admin.privacy');
     }
 }
