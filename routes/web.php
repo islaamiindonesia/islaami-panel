@@ -1,5 +1,6 @@
 <?php
 
+use App\AppPolicy;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+Route::get('about', function () {
+    $policy = AppPolicy::find("ABOUT_PLAYMI");
+    return view('onepage', ['title' => "Tentang Aplikasi", "content" => $policy->content]);
+});
+
+Route::get('cooperation', function () {
+    $policy = AppPolicy::find("COOP_PLAYMI");
+    return view('onepage', ['title' => "Kerjasama", "content" => $policy->content]);
+});
+
+Route::get('terms-and-condition', function () {
+    $policy = AppPolicy::find("TNC_PLAYMI");
+    return view('onepage', ['title' => "Ketentuan Pengguna", "content" => $policy->content]);
+});
+
+Route::get('privacy-policy', function () {
+    $policy = AppPolicy::find("PRIVACY_PLAYMI");
+    return view('onepage', ['title' => "Kebijakan Privasi", "content" => $policy->content]);
+});
 
 Route::group(['middleware' => ['guest']], function () {
 
