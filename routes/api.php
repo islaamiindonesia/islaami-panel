@@ -169,4 +169,10 @@ Route::middleware('auth.api:api')->group(function () {
 
         Route::post('add', 'API\RecommendationController@store');
     });
+
+    /* APP POLICY */
+    Route::get('about', 'API\ArticleController@about');
+    Route::get('cooperation', 'API\ArticleController@cooperation');
+    Route::get('tnc', 'API\ArticleController@tnc');
+    Route::get('privacy', 'API\ArticleController@privacy');
 });

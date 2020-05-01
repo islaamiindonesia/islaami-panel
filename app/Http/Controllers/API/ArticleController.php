@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
+use App\AppPolicy;
 use App\Article;
 use App\ArticleCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class ArticleController extends Controller
@@ -44,5 +44,50 @@ class ArticleController extends Controller
         $article = Article::find($id);
 
         return $this->successResponseWithData($article);
+    }
+
+    /* APP POLICY */
+    public function about()
+    {
+        $policy = AppPolicy::find("ABOUT_PLAYMI");
+
+        if ($policy != null) {
+            return $this->successResponseWithData($policy);
+        }
+
+        return $this->successResponse();
+    }
+
+    public function cooperation()
+    {
+        $policy = AppPolicy::find("COOP_PLAYMI");
+
+        if ($policy != null) {
+            return $this->successResponseWithData($policy);
+        }
+
+        return $this->successResponse();
+    }
+
+    public function tnc()
+    {
+        $policy = AppPolicy::find("TNC_PLAYMI");
+
+        if ($policy != null) {
+            return $this->successResponseWithData($policy);
+        }
+
+        return $this->successResponse();
+    }
+
+    public function privacy()
+    {
+        $policy = AppPolicy::find("PRIVACY_PLAYMI");
+
+        if ($policy != null) {
+            return $this->successResponseWithData($policy);
+        }
+
+        return $this->successResponse();
     }
 }
