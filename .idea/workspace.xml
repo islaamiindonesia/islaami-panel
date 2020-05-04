@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/onepage.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/onepage.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,7 +272,11 @@
       <workItem from="1588317709737" duration="4227000" />
       <workItem from="1588323002451" duration="218000" />
       <workItem from="1588330752477" duration="2419000" />
-      <workItem from="1588347184753" duration="548000" />
+      <workItem from="1588347184753" duration="746000" />
+      <workItem from="1588354039513" duration="19000" />
+      <workItem from="1588375887092" duration="275000" />
+      <workItem from="1588406211884" duration="465000" />
+      <workItem from="1588558263919" duration="909000" />
     </task>
     <servers />
   </component>
@@ -316,10 +321,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="390" y="320" key="ComposerInitDialogKey/0.0.1280.800@0.0.1280.800" timestamp="1586678563917" />
-    <state x="100" y="100" width="1080" height="600" key="DiffContextDialog" timestamp="1588036322330">
+    <state x="100" y="100" width="1080" height="600" key="DiffContextDialog" timestamp="1588379049478">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="100" y="100" width="1080" height="600" key="DiffContextDialog/0.0.1280.800@0.0.1280.800" timestamp="1588036322330" />
+    <state x="100" y="100" width="1080" height="600" key="DiffContextDialog/0.0.1280.800@0.0.1280.800" timestamp="1588379049478" />
     <state x="458" y="320" key="NewPhpFileDialog" timestamp="1585910125786">
       <screen x="0" y="23" width="1280" height="734" />
     </state>
@@ -336,10 +341,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="584" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1587387869042" />
-    <state x="317" y="222" key="com.intellij.ide.util.TipDialog" timestamp="1588347188088">
+    <state x="317" y="222" key="com.intellij.ide.util.TipDialog" timestamp="1588558278477">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1588347188088" />
+    <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1588558278477" />
     <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.23.1280.734@0.23.1280.734" timestamp="1587484406288" />
     <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587197991282">
       <screen x="0" y="0" width="1280" height="800" />
@@ -349,10 +354,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.0.1280.800@0.0.1280.800" timestamp="1588332994037" />
-    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup" timestamp="1588347207028">
+    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup" timestamp="1588564079910">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1588347207028" />
+    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1588564079910" />
     <state x="305" y="63" width="670" height="158" key="search.everywhere.popup/0.23.1280.734@0.23.1280.734" timestamp="1588037942591" />
   </component>
 </project>

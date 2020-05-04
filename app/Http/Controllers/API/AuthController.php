@@ -103,7 +103,7 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if ($user != null) {
-            $user->reset_token = $user->createToken('appToken')->accessToken;
+            $user->reset_token = Str::random(60);
             $user->password = Str::random(8);
             $user->save();
 
