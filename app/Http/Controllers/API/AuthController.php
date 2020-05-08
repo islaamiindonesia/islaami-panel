@@ -52,20 +52,13 @@ class AuthController extends Controller
 
     public function verify(Request $request)
     {
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $request->get("email"))->first();
 
-        if ($user != null) {
-            if ($user->verification_number == $request->verification) {
-                $user->email_verified_at = Carbon::now()->toDateTimeString();
-                $user->verification_number = null;
-                $user->save();
-                return $this->successResponse();
-            } else {
-                return $this->errorResponse("Invalid Verification");
-            }
-        }
+        $user->email_verified_at = Carbon::now()->toDateTimeString();
+//                $user->verification_number = null;
+        $user->save();
 
-        return $this->errorResponse("Error", 500);
+        return $this->successResponse();
     }
 
     public function resendEmail(Request $request)
