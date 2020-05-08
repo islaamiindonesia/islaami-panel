@@ -15,12 +15,11 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('email')->unique();
             $table->string('fullname');
             $table->enum('gender', ['L', 'P'])->nullable(true);
             $table->string('birthdate')->nullable(true);
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            /*$table->timestamp('email_verified_at')->nullable();
             $table->text('verification_number')->nullable(true);
             $table->text('reset_token')
                 ->nullable()
@@ -28,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->text('fcm_token')
 		->nullable()
                 ->default(null);
-            $table->timestamp('suspended_at')->nullable();
+            $table->timestamp('suspended_at')->nullable();*/
             $table->timestamps();
             $table->softDeletes();
         });

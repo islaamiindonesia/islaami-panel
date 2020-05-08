@@ -6,10 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Notifications\ForgotPasswordMail;
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Auth\Passwords\PasswordBroker;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class AuthController extends Controller
@@ -22,8 +19,8 @@ class AuthController extends Controller
             $user = auth('api')->user();
 
             $data = [
-                'user'=>$user,
-                'auth_token'=>$token,
+                'user' => $user,
+                'auth_token' => $token,
             ];
             //After successfull authentication, notice how I return json parameters
             return $this->successResponseWithData($data);
@@ -41,31 +38,16 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $user = User::where('email', $request->email)->first();
+        $user = User::firstOrCreate(
+            ['email' => $request->email],
+            [
+                'fullname' => $request->fullname,
+                'birthdate' => $request->birthdate,
+                'gender' => $request->gender,
+            ]
+        );
 
-        if ($user != null) {
-            if ($user->email_verified_at > 0) {
-                return $this->errorResponse("Akun ini sudah diverifikasi. Silahkan Login kembali", 403);
-            }
-        }
-
-        $newuser = new User();
-        $newuser->fullname = $request->fullname;
-        $newuser->email = $request->email;
-        $newuser->password = Hash::make($request->password);
-        $newuser->birthdate = $request->birthdate;
-        $newuser->gender = $request->gender;
-        $newuser->fcm_token = $request->notif_token;
-        $newuser->verification_number = mt_rand(100000, 999999);
-        $newuser->save();
-
-        $data = $this->successResponse();
-        if ($data->isOk()) {
-//            $newuser->notify(new UserRegistrationMail);
-            return $data;
-        }
-
-        return $this->errorResponse("Error", 500);
+        return $this->successResponseWithData($user);
     }
 
     public function verify(Request $request)
