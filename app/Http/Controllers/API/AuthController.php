@@ -15,19 +15,25 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $logUser = User::where('email', $request->email)->first();
-        if ($logUser != null) {
-            $token = auth('api')->login($logUser);
-            $user = auth('api')->user();
+        if ($logUser != null) { // if user found
+            if ($logUser->email_verified_at != null) { // if user is verified
+                $token = auth('api')->login($logUser);
+                $user = auth('api')->user();
 
-            $data = [
-                'user' => $user,
-                'auth_token' => $token,
-            ];
-            //After successfull authentication, notice how I return json parameters
-            return $this->successResponseWithData($data);
-        } else {
-            return $this->errorResponse('EMAIL_NOT_FOUND');
+                $data = [
+                    'user' => $user,
+                    'auth_token' => $token,
+                ];
+                //After successfull authentication, notice how I return json parameters
+                return $this->successResponseWithData($data);
+            }
+
+            // if not verified
+            return $this->errorResponse('UNVERIFIED');
         }
+
+        // if user not found
+        return $this->errorResponse('EMAIL_NOT_FOUND');
     }
 
     public function logout()
