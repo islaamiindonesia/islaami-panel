@@ -33,8 +33,8 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
-        /*'fcm_token',
-        'verification_number',*/
+        'fcm_token',
+        'verification_number',
     ];
 
     /**
