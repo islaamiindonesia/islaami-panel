@@ -17,18 +17,13 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('email')->unique();
             $table->string('fullname');
-            $table->enum('gender', ['L', 'P'])->nullable(true);
-            $table->string('birthdate')->nullable(true);
+            $table->enum('gender', ['L', 'P'])->nullable();
+            $table->string('birthdate')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            /*
-            $table->text('verification_number')->nullable(true);
-            $table->text('reset_token')
-                ->nullable()
-                ->default(null);
-            $table->text('fcm_token')
-		->nullable()
-                ->default(null);
-            $table->timestamp('suspended_at')->nullable();*/
+            $table->text('verification_number')->nullable();
+            $table->text('fcm_token')->nullable();
+            $table->text('reset_token')->nullable();
+            $table->timestamp('suspended_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

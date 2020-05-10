@@ -2,9 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Notifications/AfterRegister.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/firebase.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/islaami-firebase-adminsdk-hocs8-6db91f3530.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/admin-panel-lte.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/admin-panel-lte.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,23 +150,20 @@
       <path value="$PROJECT_DIR$/vendor/kreait/laravel-firebase" />
       <path value="$PROJECT_DIR$/vendor/google/crc32" />
       <path value="$PROJECT_DIR$/vendor/kreait/clock" />
-      <path value="$PROJECT_DIR$/vendor/kreait/gcp-metadata" />
       <path value="$PROJECT_DIR$/vendor/kreait/firebase-php" />
       <path value="$PROJECT_DIR$/vendor/kreait/firebase-tokens" />
       <path value="$PROJECT_DIR$/vendor/fig/http-message-util" />
-      <path value="$PROJECT_DIR$/vendor/spatie/enum" />
       <path value="$PROJECT_DIR$/vendor/rize/uri-template" />
       <path value="$PROJECT_DIR$/vendor/giggsey/locale" />
       <path value="$PROJECT_DIR$/vendor/giggsey/libphonenumber-for-php" />
       <path value="$PROJECT_DIR$/vendor/psr/cache" />
-      <path value="$PROJECT_DIR$/vendor/laravel-notification-channels/fcm" />
       <path value="$PROJECT_DIR$/vendor/riverline/multipart-parser" />
-      <path value="$PROJECT_DIR$/vendor/superbalist/flysystem-google-storage" />
-      <path value="$PROJECT_DIR$/vendor/benwilkins/laravel-fcm-notification" />
       <path value="$PROJECT_DIR$/vendor/namshi/jose" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php56" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-util" />
       <path value="$PROJECT_DIR$/vendor/tymon/jwt-auth" />
+      <path value="$PROJECT_DIR$/vendor/spatie/enum" />
+      <path value="$PROJECT_DIR$/vendor/laravel-notification-channels/fcm" />
     </include_path>
   </component>
   <component name="ProjectId" id="1Zz5yvim5Rwv8SsgiDPxahOn8ab" />
@@ -172,7 +180,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/assets/onepage" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -183,16 +191,16 @@
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/video" />
+      <recent name="$PROJECT_DIR$/public/assets" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/public/assets/onepage" />
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/views/article" />
       <recent name="$PROJECT_DIR$/public/assets/img" />
-      <recent name="$PROJECT_DIR$/resources/views/admin" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/video" />
-      <recent name="$PROJECT_DIR$/public/assets" />
     </key>
   </component>
   <component name="RunManager">
@@ -279,7 +287,13 @@
       <workItem from="1588558263919" duration="1519000" />
       <workItem from="1588852503084" duration="253000" />
       <workItem from="1588865376266" duration="771000" />
-      <workItem from="1588918535809" duration="1000000" />
+      <workItem from="1588918535809" duration="1719000" />
+      <workItem from="1588966129345" duration="1095000" />
+      <workItem from="1589000208825" duration="1809000" />
+      <workItem from="1589010526131" duration="483000" />
+      <workItem from="1589105571764" duration="658000" />
+      <workItem from="1589110722548" duration="229000" />
+      <workItem from="1589111094708" duration="3513000" />
     </task>
     <servers />
   </component>
@@ -324,10 +338,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="390" y="320" key="ComposerInitDialogKey/0.0.1280.800@0.0.1280.800" timestamp="1586678563917" />
-    <state x="100" y="100" width="1080" height="600" key="DiffContextDialog" timestamp="1588379049478">
+    <state x="100" y="100" width="1080" height="600" key="DiffContextDialog" timestamp="1588925864355">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="100" y="100" width="1080" height="600" key="DiffContextDialog/0.0.1280.800@0.0.1280.800" timestamp="1588379049478" />
+    <state x="100" y="100" width="1080" height="600" key="DiffContextDialog/0.0.1280.800@0.0.1280.800" timestamp="1588925864355" />
     <state x="458" y="320" key="NewPhpFileDialog" timestamp="1585910125786">
       <screen x="0" y="23" width="1280" height="734" />
     </state>
@@ -344,11 +358,11 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="584" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1587387869042" />
-    <state x="317" y="222" key="com.intellij.ide.util.TipDialog" timestamp="1588918585910">
+    <state x="317" y="222" key="com.intellij.ide.util.TipDialog" timestamp="1589111094558">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1588918585910" />
-    <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.23.1280.734@0.23.1280.734" timestamp="1587484406288" />
+    <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1589111094558" />
+    <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.23.1280.734@0.23.1280.734" timestamp="1589000208558" />
     <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587197991282">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
@@ -357,10 +371,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.0.1280.800@0.0.1280.800" timestamp="1588332994037" />
-    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup" timestamp="1588921758027">
+    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup" timestamp="1589113799977">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1588921758027" />
+    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1589113799977" />
     <state x="305" y="63" width="670" height="158" key="search.everywhere.popup/0.23.1280.734@0.23.1280.734" timestamp="1588037942591" />
   </component>
 </project>

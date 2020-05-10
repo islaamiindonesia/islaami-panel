@@ -21,9 +21,9 @@ class User extends Authenticatable implements JWTSubject
         'gender',
         'birthdate',
         'email',
-//        'fcm_token',
-//        'verification_number',
-//        'suspended_at',
+        'fcm_token',
+        'verification_number',
+        'suspended_at',
         'email_verified_at'
     ];
 
@@ -33,8 +33,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
-//        'password',
-//        'fcm_token',
+        'fcm_token',
     ];
 
     /**
@@ -90,5 +89,15 @@ class User extends Authenticatable implements JWTSubject
         return [
             'email' => $this->email,
         ];
+    }
+
+    /**
+     * Specifies the user's FCM token
+     *
+     * @return string
+     */
+    public function routeNotificationForFcm()
+    {
+        return $this->fcm_token;
     }
 }

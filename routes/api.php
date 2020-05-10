@@ -1,6 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Request;
+use App\Notifications\AfterRegister;
+use App\User;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,18 +35,24 @@ Route::prefix("categories")->group(function () {
     });
 });
 
-Route::get('', function (Request $request) {
+Route::get('', function () {
     return response()->json([
         'app' => config('app.name'),
         'version' => '1.0.0',
     ]);
+});
+// test api
+Route::get('sendnotification', function (Request $request) {
+    $user = new User();
+    $user->fcm_token = $request->fcm_token;
+    $user->notify(new AfterRegister());
 });
 
 Route::post('login', 'API\AuthController@login');
 
 Route::post('register', 'API\AuthController@register');
 
-Route::get('resend', 'API\AuthController@resendEmail');
+Route::get('resend', 'API\AuthController@resendVerification');
 
 Route::patch('verify', 'API\AuthController@verify');
 
