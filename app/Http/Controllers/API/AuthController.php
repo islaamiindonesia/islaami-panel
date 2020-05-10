@@ -45,13 +45,13 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $user = User::firstOrCreate(
-            ['email' => $request->email],
+            ['email' => $request->input('email')],
             [
-                'fullname' => $request->fullname,
-                'birthdate' => $request->birthdate,
-                'gender' => $request->gender,
+                'fullname' => $request->input('fullname'),
+                'birthdate' => $request->input('birthdate'),
+                'gender' => $request->input('gender'),
                 'verification_number' => mt_rand(100000, 999999),
-                'fcm_token' => $request->fcm_token
+                'fcm_token' => $request->input('fcm_token')
             ]
         );
 
