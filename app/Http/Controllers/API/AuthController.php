@@ -80,7 +80,7 @@ class AuthController extends Controller
     {
         $user = User::where('email', $request->get('email'))->first();
 
-        if ($user->email_verified_at == null) { // if not verified
+        if ($user['email_verified_at'] == null) { // if not verified
             $user->notify(new AfterRegister());
 
             return $this->successResponse();
