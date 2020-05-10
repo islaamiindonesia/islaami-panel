@@ -6,7 +6,6 @@
       <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/asm89/stack-cors" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/benwilkins/laravel-fcm-notification" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dnoegel/php-xdg-base-dir" />
@@ -37,7 +36,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/kreait/clock" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kreait/firebase-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kreait/firebase-tokens" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/kreait/gcp-metadata" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kreait/laravel-firebase" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-notification-channels/fcm" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/framework" />
@@ -93,7 +91,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/type" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/version" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/enum" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/superbalist/flysystem-google-storage" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/css-selector" />

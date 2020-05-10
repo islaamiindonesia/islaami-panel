@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\AfterRegister;
 use App\Notifications\ForgotPasswordMail;
 use App\User;
 use Carbon\Carbon;
@@ -44,33 +45,41 @@ class AuthController extends Controller
                 'fullname' => $request->fullname,
                 'birthdate' => $request->birthdate,
                 'gender' => $request->gender,
+                'verification_number' => mt_rand(100000, 999999),
+                'fcm_token' => $request->fcm_token
             ]
         );
+
+        $user->notify(new AfterRegister());
 
         return $this->successResponseWithData($user);
     }
 
     public function verify(Request $request)
     {
-        $user = User::where('email', $request->get("email"))->first();
-
-        $user->email_verified_at = Carbon::now()->toDateTimeString();
-//                $user->verification_number = null;
-        $user->save();
-
-        return $this->successResponse();
-    }
-
-    public function resendEmail(Request $request)
-    {
         $user = User::where('email', $request->email)->first();
+        if ($user->email_verified_at == null) { // if not verified
+            if ($user->verification_number != $request->verification_number) { // if wrong number
+                return $this->errorResponse("WRONG_VERIFICATION_NUMBER", 403);
+            }
 
-        if ($user != null) {
-//            $user->notify(new UserRegistrationMail);
-            return $this->successResponse();
+            $user->verification_number = "";
+            $user->email_verified_at = Carbon::now()->toDateTimeString();
+            $user->save();
         }
 
-        return $this->errorResponse("Error", 500);
+        return $this->successResponseWithData($user);
+    }
+
+    public function resendVerification(Request $request)
+    {
+        $user = User::where('email', $request->get('email'))->first();
+
+        if ($user->email_verified_at == null) { // if not verified
+            $user->notify(new AfterRegister());
+        }
+
+        return $this->successResponse();
     }
 
     public function forgotPassword(Request $request)

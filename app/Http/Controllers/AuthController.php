@@ -37,7 +37,6 @@ class AuthController extends Controller
             return back()->withErrors('Invalid Password');
         }
 
-
         return redirect()->route('admin.home');
     }
 
