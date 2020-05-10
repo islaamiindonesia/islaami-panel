@@ -82,9 +82,11 @@ class AuthController extends Controller
 
         if ($user->email_verified_at == null) { // if not verified
             $user->notify(new AfterRegister());
+
+            return $this->successResponse();
         }
 
-        return $this->successResponse();
+        return $this->errorResponse("EMAIL_NOT_FOUND");
     }
 
     public function forgotPassword(Request $request)
