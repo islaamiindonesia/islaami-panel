@@ -79,14 +79,14 @@ class AuthController extends Controller
     public function resendVerification(Request $request)
     {
         $user = User::where('email', $request->get('email'))->first();
-
-        if ($user['email_verified_at'] == null) { // if not verified
+        return $user;
+        /*if ($user->email_verified_at == null) { // if not verified
             $user->notify(new AfterRegister());
 
             return $this->successResponse();
         }
 
-        return $this->errorResponse("EMAIL_NOT_FOUND");
+        return $this->errorResponse("EMAIL_NOT_FOUND");*/
     }
 
     public function forgotPassword(Request $request)
