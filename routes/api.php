@@ -41,6 +41,7 @@ Route::get('', function () {
         'version' => '1.0.0',
     ]);
 });
+
 // test api
 Route::get('sendnotification', function (Request $request) {
     $user = new User();
