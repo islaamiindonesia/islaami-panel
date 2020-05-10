@@ -16,7 +16,11 @@ class AfterRegister extends Notification
     public function toFcm($notifiable)
     {
         return FcmMessage::create()
-            ->setData(['type' => 'VERIFICATION', 'forUserEmail' => $notifiable->email])
+            ->setData([
+                'type' => 'VERIFICATION',
+                'email' => $notifiable->email,
+                'code' => $notifiable->verification_number
+            ])
             ->setNotification(\NotificationChannels\Fcm\Resources\Notification::create()
                 ->setTitle('Kode Verifikasi')
                 ->setBody('Kode Anda: ' . $notifiable->verification_number));

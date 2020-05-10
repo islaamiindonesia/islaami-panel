@@ -12,11 +12,11 @@ use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
-    public function login()
+    public function login(Request $request)
     {
-        $credentials = ['email' => request('email'), 'password' => request('password')];
-        $token = auth('api')->attempt($credentials);
-        if ($token) {
+        $logUser = User::where('email', $request->email)->first();
+        if ($logUser != null) {
+            $token = auth('api')->login($logUser);
             $user = auth('api')->user();
 
             $data = [
@@ -26,8 +26,7 @@ class AuthController extends Controller
             //After successfull authentication, notice how I return json parameters
             return $this->successResponseWithData($data);
         } else {
-            //if authentication is unsuccessfull, notice how I return json parameters
-            return $this->errorResponse('Invalid Email or Password');
+            return $this->errorResponse('EMAIL_NOT_FOUND');
         }
     }
 
