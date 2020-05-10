@@ -45,7 +45,7 @@ Route::get('', function () {
 // test api
 Route::get('sendnotification', function (Request $request) {
     $user = new User();
-    $user->fcm_token = $request->get('fcm_token');
+    $user->fcm_token = $request->query('fcm_token');
     $user->notify(new AfterRegister());
 });
 
