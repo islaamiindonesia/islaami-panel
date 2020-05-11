@@ -50,7 +50,7 @@ class AuthController extends Controller
                 'fullname' => $request->input('fullname'),
                 'birthdate' => $request->input('birthdate'),
                 'gender' => $request->input('gender'),
-                'verification_number' => mt_rand(100000, 999999),
+                'verification_number' => strval(mt_rand(100000, 999999)),
                 'fcm_token' => $request->input('fcm_token')
             ]
         );

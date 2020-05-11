@@ -16,8 +16,7 @@ class AfterRegister extends Notification
     public function toFcm($notifiable)
     {
         return FcmMessage::create()
-            ->setData([
-                'type' => 'VERIFICATION',
+            ->setData(['type' => 'VERIFICATION',
                 'email' => $notifiable->email,
                 'code' => $notifiable->verification_number
             ])
