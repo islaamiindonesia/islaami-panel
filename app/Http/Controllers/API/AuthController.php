@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Notifications\AfterRegister;
-use App\Notifications\ForgotPasswordMail;
+use App\Notifications\RequestResetPassword;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -93,16 +93,21 @@ class AuthController extends Controller
     {
         $user = User::where('email', $request->email)->first();
 
-        if ($user != null) {
-            $user->reset_token = Str::random(60);
-            $user->password = Str::random(8);
-            $user->save();
+        if ($user != null) { // if user found
+            if ($user->reset_token != null) { // if reset token exist
+                return $this->successResponseWithData($user);
+            }
 
-            $user->notify(new ForgotPasswordMail);
-            return $this->successResponse();
+            // if not
+            $user->reset_token = Str::random(60);
+            $user->save();
+            $user->notify(new RequestResetPassword());
+
+            return $this->successResponseWithData($user);
         }
 
-        return $this->errorResponse("Error", 500);
+        // if user not found
+        return $this->errorResponse("EMAIL_NOT_FOUND", 403);
     }
 
     public function resetPassword(Request $request, $token)
