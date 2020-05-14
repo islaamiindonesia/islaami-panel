@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('contentHeaderTitle', 'Show Video')
+@section('contentHeaderTitle', 'Lihat Detail Video')
 
 @section('contentHeaderExtra')
 @endsection
@@ -89,6 +89,7 @@
                                 {{ $video->category->name }}
                             </p>
 
+                            @if($video->subcategory != null)
                             <hr>
 
                             <strong><i class="fas fa-pencil-alt mr-1"></i> Subcategory</strong>
@@ -96,7 +97,9 @@
                             <p class="text-muted">
                                 {{ $video->subcategory->name }}
                             </p>
+                            @endif
 
+                            @if(!empty($video->labels->toArray()))
                             <hr>
 
                             <strong><i class="fas fa-pencil-alt mr-1"></i> Labels</strong>
@@ -106,6 +109,7 @@
                                     <span class="badge badge-pill badge-primary">{{ $label->name }}</span>
                                 @endforeach
                             </p>
+                            @endif
                         </div>
                         <!-- /.card-body -->
                     </div>

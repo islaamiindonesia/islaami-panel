@@ -2,10 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Notifications/RequestResetPassword.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/dist/css/icheck-material-custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/dist/css/icheck-material.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/VideoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/VideoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VideoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VideoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Video.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Video.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_07_091825_create_videos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_07_091825_create_videos_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/VideoTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/VideoTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/video/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/video/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/video/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/video/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/video/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/video/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/video/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/video/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -171,7 +180,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/assets/dist/css" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -182,16 +191,16 @@
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/video" />
-      <recent name="$PROJECT_DIR$/public/assets" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/assets/dist/css" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/public/assets/onepage" />
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/views/article" />
-      <recent name="$PROJECT_DIR$/public/assets/img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/video" />
+      <recent name="$PROJECT_DIR$/public/assets" />
     </key>
   </component>
   <component name="RunManager">
@@ -290,6 +299,13 @@
       <workItem from="1589167903953" duration="16000" />
       <workItem from="1589169702626" duration="1211000" />
       <workItem from="1589178967346" duration="4556000" />
+      <workItem from="1589201723472" duration="299000" />
+      <workItem from="1589254411272" duration="1969000" />
+      <workItem from="1589301105118" duration="1821000" />
+      <workItem from="1589346293547" duration="3253000" />
+      <workItem from="1589351852938" duration="3973000" />
+      <workItem from="1589356718971" duration="30000" />
+      <workItem from="1589420817291" duration="8988000" />
     </task>
     <servers />
   </component>
@@ -354,10 +370,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="584" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1587387869042" />
-    <state x="317" y="222" key="com.intellij.ide.util.TipDialog" timestamp="1589178997575">
+    <state x="317" y="222" key="com.intellij.ide.util.TipDialog" timestamp="1589420836557">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1589178997575" />
+    <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1589420836557" />
     <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.23.1280.734@0.23.1280.734" timestamp="1589000208558" />
     <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587197991282">
       <screen x="0" y="0" width="1280" height="800" />
@@ -367,10 +383,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.0.1280.800@0.0.1280.800" timestamp="1588332994037" />
-    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup" timestamp="1589184787204">
+    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup" timestamp="1589432080975">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1589184787204" />
+    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1589432080975" />
     <state x="305" y="63" width="670" height="158" key="search.everywhere.popup/0.23.1280.734@0.23.1280.734" timestamp="1588037942591" />
   </component>
 </project>

@@ -21,7 +21,7 @@
                                 <i class="ion ion-person-add"></i>
                             </div>
                             @if(!Auth::user()->hasRole('super admin'))
-                                <a href="{{ route('admin.users.all') }}" class="small-box-footer">More info <i
+                                <a href="{{ route('admin.users.all') }}" class="small-box-footer">Lihat Selengkapnya <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @endif
                         </div>
@@ -40,7 +40,7 @@
                                 <i class="ion ion-ios-videocam"></i>
                             </div>
                             @if(!Auth::user()->hasRole('super admin'))
-                                <a href="{{ route('admin.videos.all') }}" class="small-box-footer">More info <i
+                                <a href="{{ route('admin.videos.all') }}" class="small-box-footer">Lihat Selengkapnya <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @endif
                         </div>

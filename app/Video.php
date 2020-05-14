@@ -20,7 +20,7 @@ class Video extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'video_id', 'url', 'thumbnail', 'description', 'published_at', 'channel_id', 'category_id', 'subcategory_id',
+        'title', 'video_id', 'url', 'thumbnail', 'description', 'published_at', 'drafted_at', 'channel_id', 'category_id', 'subcategory_id',
     ];
 
     /**
@@ -38,6 +38,7 @@ class Video extends Model
      * @var array
      */
     protected $casts = [
+        'drafted_at' => 'datetime',
         'published_at' => 'datetime',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

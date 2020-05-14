@@ -46,7 +46,7 @@ Route::get('', function () {
 Route::get('sendnotification', function (Request $request) {
     $user = new User();
     $user->fcm_token = $request->query('fcm_token');
-    $user->notify(new RequestResetPassword());
+    $user->notify(new AfterRegister());
 });
 
 Route::post('login', 'API\AuthController@login');

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Channel;
-use App\Label;
 use App\Subcategory;
 use App\Video;
 use App\VideoLabel;
@@ -30,13 +29,13 @@ class VideoController extends Controller
 
         if ($filter != null) {
             if ($filter == "draft") {
-                $videos = Video::where('published_at', null);
+                $videos = Video::where('drafted_at', '<>', null);
             } else {
-                $videos = Video::where('published_at', '<>', null);
+                $videos = Video::where('drafted_at', null);
             }
             $selected = $filter;
         } else {
-            $videos = Video::where('published_at', '<>', null);
+            $videos = Video::where('drafted_at', null);
         }
 
         $videoArray = array();
@@ -72,19 +71,24 @@ class VideoController extends Controller
         $videoID = $this->getVideoID($request->url);
         $thumbnail = "https://img.youtube.com/vi/" . $videoID . "/hqdefault.jpg";
 
-        if ($request->upload == "on") {
-            $publishedAt = Carbon::now()->toDateString();
-        } else {
-            $publishedAt = Carbon::parse($request->published);
+        $video = new Video();
+
+        if ($request->action == 'publish') {
+            $video->drafted_at = null;
+            if ($request->uploadNow == "on") {
+                $video->published_at = Carbon::now()->toDateString();
+            } else {
+                $video->published_at = Carbon::make($request->published)->toDateString();
+            }
+        } elseif ($request->action == 'draft') {
+            $video->drafted_at = Carbon::now()->toDateString();
         }
 
-        $video = new Video();
         $video->title = $request->title;
         $video->video_id = $videoID;
         $video->url = $request->url;
         $video->description = $request->description;
         $video->thumbnail = $thumbnail;
-        $video->published_at = $publishedAt;
         $video->channel_id = $request->channel;
         $video->category_id = $request->category;
         $video->subcategory_id = $request->subcategory;
@@ -145,27 +149,16 @@ class VideoController extends Controller
         $channels = Channel::all();
         $categories = Category::all();
         $subcategories = Subcategory::where('category_id', $video->category->id)->get();
-        $labels = Label::where('subcategory_id', $video->subcategory->id)->get();
 
-        $selectedLabels = $video->labels;
-        $publishedAt = Carbon::parse($video->published_at);
-
-        return view('video.edit',
-            [
-                'video' => $video,
-                'channels' => $channels,
-                'categories' => $categories,
-                'subcategories' => $subcategories,
-                'labels' => $labels,
-                'selectedLabels' => $selectedLabels,
-                'publishedAt' => $publishedAt,
-                'parent' => 'playmi',
-                'menu' => 'video'
-            ]
-        );
+        return view('video.edit', [
+            'video' => $video,
+            'channels' => $channels,
+            'categories' => $categories,
+            'subcategories' => $subcategories,
+            'parent' => 'playmi',
+            'menu' => 'video'
+        ]);
     }
-
-    /* CUSTOM METHODS */
 
     /**
      * Update the specified resource in storage.
@@ -179,7 +172,30 @@ class VideoController extends Controller
         $videoID = $this->getVideoID($request->url);
         $thumbnail = "https://img.youtube.com/vi/" . $videoID . "/hqdefault.jpg";
 
-        $video = Video::updateOrCreate(
+        $video = Video::find($id);
+
+        if ($request->action == 'publish') {
+            $video->drafted_at = null;
+            if ($request->uploadNow == "on") {
+                $video->published_at = Carbon::now()->toDateString();
+            } else {
+                $video->published_at = Carbon::make($request->published)->toDateString();
+            }
+        } elseif ($request->action == 'draft') {
+            $video->drafted_at = Carbon::now()->toDateString();
+        }
+
+        $video->title = $request->title;
+        $video->url = $request->url;
+        $video->thumbnail = $thumbnail;
+        $video->description = $request->description;
+        $video->channel_id = $request->channel;
+        $video->category_id = $request->category;
+        $video->subcategory_id = $request->subcategory;
+        $video->save();
+        $video->labels()->sync($request->labels);
+
+        /*$video = Video::updateOrCreate(
             ['id' => $id],
             [
                 'title' => $request->title,
@@ -190,14 +206,14 @@ class VideoController extends Controller
                 'category_id' => $request->category,
                 'subcategory_id' => $request->subcategory,
             ]
-        );
+        );*/
 
-        VideoLabel::where('video_id', $video->id)->delete();
+        /*VideoLabel::where('video_id', $video->id)->delete();
         foreach ($request->labels as $label) {
             VideoLabel::updateOrCreate(
                 ['video_id' => $video->id, 'label_id' => $label]
             );
-        }
+        }*/
 
         return redirect()->route('admin.videos.all');
     }
