@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
-@section('contentHeaderTitle', 'Profil Kanal')
+@section('contentHeaderTitle', 'Lihat Detail Kanal')
 
 @section('contentHeaderExtra')
     <a href="{{ route('admin.channels.edit', ['id'=>$channel->id]) }}" type="button"
-       class="btn btn-primary float-right">Update Kanal</a>
+       class="btn btn-primary float-right">Edit Kanal</a>
 @endsection
 
 @section('mainContent')
@@ -15,7 +15,7 @@
                 <div class="col-md-3">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Informasi Umum</h3>
+                            <h3 class="card-title">Info Kanal</h3>
                         </div>
                         <div class="card-body box-profile">
                             <div class="text-center">
@@ -26,14 +26,14 @@
 
                             <ul class="list-group list-group-unbordered mt-3">
                                 <li class="list-group-item">
-                                    <b>Followers</b> <a class="float-right">1,322</a>
+                                    <b>Pengikut</b> <a class="float-right">{{ $channel->followers->count() }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Videos</b> <a class="float-right">1,322</a>
+                                    <b>Video</b> <a class="float-right">{{ $channel->videos->count() }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Created At</b> <a
-                                        class="float-right">{{ date('d-m-Y', strtotime($createdAt)) }}</a>
+                                    <b>Dibuat Pada</b> <a
+                                        class="float-right">{{ date('d/m/Y', strtotime($createdAt)) }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -46,11 +46,11 @@
                     <!-- Video Detail -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Rincian</h3>
+                            <h3 class="card-title">Detail Kanal</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <strong><i class="fas fa-book mr-1"></i> Nama Kanal</strong>
+                            <strong><i class="fas fa-desktop mr-1"></i> Nama Kanal</strong>
 
                             <p class="text-muted">
                                 {{ $channel->name }}
@@ -58,7 +58,7 @@
 
                             <hr>
 
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Deskripsi</strong>
+                            <strong><i class="fas fa-file-alt mr-1"></i> Deskripsi</strong>
 
                             <p class="text-muted">
                                 {{ $channel->description }}
@@ -69,6 +69,73 @@
                     <!-- /.card -->
                 </div>
                 <!--/.col (left) -->
+            </div>
+            <div class="row">
+                @routes('admin.videos.*')
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- select -->
+                            <div class="form-group">
+                                <label>Tampilkan</label>
+                                <select class="form-control" id="filterDropdown">
+                                    <option value="published" @if($selected == "published") selected @endif>Diunggah
+                                    <option value="draft" @if($selected == "draft") selected @endif>Draft</option>
+                                    </option>
+                                </select>
+                            </div>
+                            <table id="videoTable" class="table table-bordered table-striped display"
+                                   style="width:100%">
+                                <thead>
+                                <tr style="text-align: center">
+                                    <th>Judul Video</th>
+                                    <th>Ditonton</th>
+                                    <th>Diunggah Pada</th>
+                                    <th>Aksi</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($videos as $video)
+                                    <tr style="text-align: center;">
+                                        <td>
+                                            <img src="{{ $video->thumbnail }}" width="120">
+                                            <br>
+                                            {{ $video->title }}
+                                        </td>
+                                        <td>{{ $video->views->count() }}x</td>
+                                        <td>
+                                            @if($video->published_at != null)
+                                                {{ date('d F Y', strtotime($video->published_at)) }}
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                        <td class="project-actions" style="text-align: center;">
+                                            <a class="btn btn-primary btn-sm"
+                                               href="{{ route('admin.videos.show', ['id' => $video->id]) }}">
+                                                <i class="fas fa-folder"></i>
+                                                Lihat Detail
+                                            </a>
+                                            <a class="btn btn-info btn-sm"
+                                               href="{{ route('admin.videos.edit', ['id' => $video->id]) }}">
+                                                <i class="fas fa-pencil-alt"></i>
+                                                Ubah
+                                            </a>
+                                            <a class="btn btn-danger btn-sm swalDelete" data-id="{{ $video->id  }}"
+                                               href="#">
+                                                <i class="fas fa-trash"></i>
+                                                Hapus
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -82,6 +149,11 @@
     <link rel="stylesheet" href="{{ asset("assets/plugins/fontawesome-free/css/all.min.css") }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="{{ asset("assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css") }}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset("assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css") }}">
+    <link rel="stylesheet" href="{{ asset("assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css") }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset("assets/dist/css/adminlte.min.css") }}">
     <!-- Google Font: Source Sans Pro -->
@@ -91,10 +163,66 @@
 @push('scripts')
     <!-- jQuery -->
     <script src="{{ asset("assets/plugins/jquery/jquery.min.js") }}"></script>
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset("assets/plugins/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
+    <!-- SweetAlert2 -->
+    <script src="{{ asset("assets/plugins/sweetalert2/sweetalert2.min.js") }}"></script>
+    <!-- DataTables -->
+    <script src="{{ asset("assets/plugins/datatables/jquery.dataTables.min.js") }}"></script>
+    <script src="{{ asset("assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js") }}"></script>
+    <script src="{{ asset("assets/plugins/datatables-responsive/js/dataTables.responsive.min.js") }}"></script>
+    <script src="{{ asset("assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js") }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset("assets/dist/js/adminlte.min.js") }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset("assets/dist/js/demo.js") }}"></script>
+    <!-- page script -->
+    <script>
+        $("#videoTable").DataTable({
+            "autoWidth": true,
+            "responsive": true,
+            "columnDefs": [
+                {
+                    "targets": [0, 1, 2],
+                    "width": 100
+                },
+                {
+                    "targets": [3],
+                    'width': 200,
+                    "orderable": false,
+                }
+            ],
+        });
+        $('#filterDropdown').on('change', function () {
+            window.location.href = route('admin.videos.all', {filter: $(this).val()});
+        });
+        // SweetAlert
+        $('.swalDelete').click(function () {
+            Swal.fire({
+                icon: 'question',
+                title: 'Apakah Anda yakin ?',
+                text: 'Video ini tidak akan dapat dilihat kembali jika terhapus.',
+                confirmButtonText: 'Yakin',
+                cancelButtonText: 'Batal',
+                showCancelButton: true,
+                preConfirm: (confirmed) => {
+                    if (confirmed) {
+                        axios.post(route('admin.videos.delete', {id: $(this).data("id")}).url())
+                            .then(() => {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Video Deleted',
+                                    text: 'Anda sudah menghapus video ini',
+                                    preConfirm: (confirmed) => {
+                                        if (confirmed) window.location.href = route('admin.channels.show', {id: '{{ $channel->id }}'});
+                                    }
+                                });
+                            })
+                    }
+                },
+            })
+        });
+    </script>
 @endpush

@@ -14,7 +14,7 @@
                     <!-- Video Stats -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Video Stats</h3>
+                            <h3 class="card-title">Info Video</h3>
                         </div>
                         <div class="card-body box-profile">
                             <div class="text-center">
@@ -25,10 +25,14 @@
 
                             <ul class="list-group list-group-unbordered mt-3">
                                 <li class="list-group-item">
-                                    <b>Views</b> <a class="float-right">1,322</a>
+                                    <b>Views</b> <a class="float-right">{{ $video->views->count() }}x</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Published At</b> <a class="float-right">31/12/2002</a>
+                                    @if($video->drafted_at != null)
+                                        <b>Draft Pada</b> <a class="float-right">{{ date('d/m/Y', strtotime($video->drafted_at)) }}</a>
+                                    @else
+                                        <b>Diunggah Pada</b> <a class="float-right">{{ date('d/m/Y', strtotime($video->published_at)) }}</a>
+                                    @endif
                                 </li>
                             </ul>
                         </div>
@@ -38,13 +42,13 @@
                     <!-- Channel -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Channel Info</h3>
+                            <h3 class="card-title">Info Kanal</h3>
                         </div>
                         <div class="card-body">
                             <h3 class="profile-username text-center">{{ $video->channel->name }}</h3>
 
                             <a href="{{ route('admin.channels.show', ['id'=>$video->channel_id]) }}"
-                               class="btn btn-outline-primary btn-block"><b>Go to Channel</b></a>
+                               class="btn btn-outline-primary btn-block"><b>Lihat Kanal</b></a>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -55,11 +59,11 @@
                     <!-- Video Detail -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Video Detail</h3>
+                            <h3 class="card-title">Detail Video</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <strong><i class="fas fa-book mr-1"></i> Title</strong>
+                            <strong><i class="fas fa-video mr-1"></i> Judul</strong>
 
                             <p class="text-muted">
                                 {{ $video->title }}
@@ -67,7 +71,7 @@
 
                             <hr>
 
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Video URL</strong>
+                            <strong><i class="fas fa-link mr-1"></i> Link Youtube</strong>
 
                             <p class="text-muted">
                                 <a href="{{ $video->url }}">{{ $video->url }}</a>
@@ -75,40 +79,40 @@
 
                             <hr>
 
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Description</strong>
+                            <strong><i class="fas fa-file-alt mr-1"></i> Deskripsi</strong>
 
                             <p class="text-muted">
-                                {{ $video->description }}
+                                {!! $video->description !!}
                             </p>
 
                             <hr>
 
-                            <strong><i class="fas fa-pencil-alt mr-1"></i> Category</strong>
+                            <strong><i class="fas fa-folder-open mr-1"></i> Saluran</strong>
 
                             <p class="text-muted">
                                 {{ $video->category->name }}
                             </p>
 
                             @if($video->subcategory != null)
-                            <hr>
+                                <hr>
 
-                            <strong><i class="fas fa-pencil-alt mr-1"></i> Subcategory</strong>
+                                <strong><i class="fas fa-folder-open mr-1"></i> Subcategory</strong>
 
-                            <p class="text-muted">
-                                {{ $video->subcategory->name }}
-                            </p>
+                                <p class="text-muted">
+                                    {{ $video->subcategory->name }}
+                                </p>
                             @endif
 
                             @if(!empty($video->labels->toArray()))
-                            <hr>
+                                <hr>
 
-                            <strong><i class="fas fa-pencil-alt mr-1"></i> Labels</strong>
+                                <strong><i class="fas fa-folder-open mr-1"></i> Labels</strong>
 
-                            <p class="text-muted">
-                                @foreach($video->labels as $label)
-                                    <span class="badge badge-pill badge-primary">{{ $label->name }}</span>
-                                @endforeach
-                            </p>
+                                <p class="text-muted">
+                                    @foreach($video->labels as $label)
+                                        <span class="badge badge-pill badge-primary">{{ $label->name }}</span>
+                                    @endforeach
+                                </p>
                             @endif
                         </div>
                         <!-- /.card-body -->

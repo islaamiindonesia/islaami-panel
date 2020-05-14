@@ -42,7 +42,7 @@
                                     <td>{{ $video->views->count() }}x</td>
                                     <td>
                                         @if($video->published_at != null)
-                                            {{ date('d F Y', strtotime($video->published_at)) }}
+                                            {{ date('d/m/Y', strtotime($video->published_at)) }}
                                         @else
                                             -
                                         @endif
@@ -117,28 +117,23 @@
     <script src="{{ asset("assets/dist/js/demo.js") }}"></script>
     <!-- page script -->
     <script>
-        $(function () {
-// DataTable
-            $(function () {
-                $("#videoTable").DataTable({
-                    "autoWidth": true,
-                    "responsive": true,
-                    "columnDefs": [
-                        {
-                            "targets": [0, 1, 2],
-                            "width": 100
-                        },
-                        {
-                            "targets": [3],
-                            'width': 200,
-                            "orderable": false,
-                        }
-                    ],
-                });
-                $('#filterDropdown').on('change', function () {
-                    window.location.href = route('admin.videos.all', {filter: $(this).val()});
-                });
-            });
+        $("#videoTable").DataTable({
+            "autoWidth": true,
+            "responsive": true,
+            "columnDefs": [
+                {
+                    "targets": [0, 1, 2],
+                    "width": 100
+                },
+                {
+                    "targets": [3],
+                    'width': 200,
+                    "orderable": false,
+                }
+            ],
+        });
+        $('#filterDropdown').on('change', function () {
+            window.location.href = route('admin.videos.all', {filter: $(this).val()});
         });
 
         // SweetAlert
