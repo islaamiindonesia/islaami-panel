@@ -43,8 +43,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea class="form-control" name="description" required rows="10"
-                                              placeholder="Masukkan deskripsi kanal">{{ old('description') ?? $channel->description }}</textarea>
+                                    <textarea name="description" class="textarea" placeholder="Masukkan deskripsi kanal"
+                                              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                                        {{ old('description') ?? $channel->description}}
+                                    </textarea>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -70,6 +72,8 @@
     <link rel="stylesheet" href="{{ asset("assets/plugins/fontawesome-free/css/all.min.css") }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{ asset("assets/plugins/summernote/summernote-bs4.css") }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset("assets/dist/css/adminlte.min.css") }}">
     <!-- Google Font: Source Sans Pro -->
@@ -87,9 +91,16 @@
     <script src="{{ asset("assets/dist/js/adminlte.min.js") }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset("assets/dist/js/demo.js") }}"></script>
+    <!-- Summernote -->
+    <script src="{{ asset("assets/plugins/summernote/summernote-bs4.min.js") }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             bsCustomFileInput.init();
+        });
+
+        // Summernote
+        $('.textarea').summernote({
+            height: 300,
         });
     </script>
 @endpush
