@@ -25,8 +25,8 @@ class UserController extends Controller
      */
     public function getUser()
     {
-        $auth = auth('api')->user();
-        return $this->successResponseWithData($auth);
+       $auth = auth('api')->user();
+       return $this->successResponseWithData($auth);
     }
 
     /**

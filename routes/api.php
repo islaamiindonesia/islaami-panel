@@ -1,8 +1,8 @@
 <?php
 
 use App\Notifications\AfterRegister;
+use App\Notifications\RequestResetPassword;
 use App\User;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -46,7 +46,7 @@ Route::get('', function () {
 Route::get('sendnotification', function (Request $request) {
     $user = new User();
     $user->fcm_token = $request->query('fcm_token');
-    $user->notify(new AfterRegister());
+    $user->notify(new RequestResetPassword());
 });
 
 Route::post('login', 'API\AuthController@login');
@@ -57,12 +57,12 @@ Route::get('resend', 'API\AuthController@resendVerification');
 
 Route::patch('verify', 'API\AuthController@verify');
 
-Route::prefix("password")->group(function () {
-
-    Route::post('forgot', 'API\AuthController@forgotPassword');
-
-    Route::get('reset/{token}', 'API\AuthController@resetPassword');
-});
+//Route::prefix("password")->group(function () {
+//
+//    Route::post('forgot', 'API\AuthController@forgotPassword');
+//
+//    Route::get('reset/{token}', 'API\AuthController@resetPassword');
+//});
 
 Route::middleware('auth.api:api')->group(function () {
 

@@ -91,7 +91,7 @@
                                             @for($i = 0; $i < count($labels); $i++)
                                                 <option value="{{ $labels[$i]->id }}"
                                                         @if($selectedLabels->contains($labels[$i]->id)) selected @endif>
-                                                    {{ $labels[$i]->id }}
+                                                    {{ $labels[$i]->name }}
                                                 </option>
                                             @endfor
                                         @endif
