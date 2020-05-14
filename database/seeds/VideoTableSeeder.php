@@ -29,7 +29,7 @@ class VideoTableSeeder extends Seeder
         $video->channel_id = 1;
         $video->category_id = 1;
         $video->subcategory_id = 1;
-        $video->published_at = Carbon::now()->toDateTimeString();
+        $video->published_at = Carbon::now()->toDateString();
         $video->save();
 
         $video->labels()->sync(1);

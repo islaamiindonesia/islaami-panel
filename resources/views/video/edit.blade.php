@@ -6,6 +6,7 @@
 @endsection
 
 @section('mainContent')
+    @routes('categories.*')
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -22,17 +23,17 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="title">Title</label>
+                                    <label for="title">Judul</label>
                                     <input name="title" type="text" class="form-control" placeholder="Enter video title"
                                            value="{{$video->title}}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="url">Video URL</label>
+                                    <label for="url">Link Youtube</label>
                                     <input name="url" type="text" class="form-control" value="{{$video->url}}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Description</label>
+                                    <label>Deskripsi</label>
                                     <textarea name="description" class="textarea" placeholder="Place some text here"
                                               style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
                                         {{$video->description}}
@@ -40,7 +41,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Channel</label>
+                                    <label>Kanal</label>
                                     <select name="channel" class="form-control select2" style="width: 100%;">
                                         <option value="">Pilih Channel</option>
                                         @foreach($channels as $channel)
@@ -53,10 +54,10 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Category</label>
+                                    <label>Saluran</label>
                                     <select id="category" name="category" class="form-control select2"
                                             style="width: 100%;">
-                                        <option value="">Pilih Category</option>
+                                        <option value="">Pilih Saluran</option>
                                         @foreach($categories as $category)
                                             <option value="{{ $category->id }}"
                                                     @if($video->category->id == $category->id) selected @endif>
@@ -67,18 +68,16 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Subcategory</label>
+                                    <label>Kategori</label>
                                     <select id="subcategory" name="subcategory" class="form-control select2"
                                             style="width: 100%;">
-                                        <option value="">Pilih Subcategory</option>
-                                        @if($video->subcategory->name != "")
-                                            @foreach($subcategories as $subcategory)
-                                                <option value="{{ $subcategory->id }}"
-                                                        @if($video->subcategory->id == $subcategory->id) selected @endif>
-                                                    {{ $subcategory->name }}
-                                                </option>
-                                            @endforeach
-                                        @endif
+                                        <option value="">Pilih Kategori</option>
+                                        @foreach($subcategories as $subcategory)
+                                            <option value="{{ $subcategory->id }}"
+                                                    @if($video->subcategory != null && $video->subcategory->id == $subcategory->id) selected @endif>
+                                                {{ $subcategory->name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -87,29 +86,53 @@
                                     <select id="label" name="labels[]" class="select2" multiple="multiple"
                                             data-placeholder="Pilih Label" style="width: 100%;">
                                         <option value="">Pilih Label</option>
-                                        @if(count($selectedLabels) > 0)
-                                            @for($i = 0; $i < count($labels); $i++)
-                                                <option value="{{ $labels[$i]->id }}"
-                                                        @if($selectedLabels->contains($labels[$i]->id)) selected @endif>
-                                                    {{ $labels[$i]->name }}
-                                                </option>
-                                            @endfor
+                                        @if($video->subcategory)
+                                            @php($labels = \App\Label::where('subcategory_id', $video->subcategory->id)->get()->toArray())
+                                            @if(!empty($labels))
+                                                @for($i = 0; $i < count($labels); $i++)
+                                                    <option value="{{ $labels[$i]["id"] }}"
+                                                            @if($video->labels->contains($labels[$i]["id"])) selected @endif>
+                                                        {{ $labels[$i]["name"] }}
+                                                    </option>
+                                                @endfor
+                                            @endif
                                         @endif
                                     </select>
                                 </div>
 
+
                                 <!-- time Picker -->
+                                @if($video->published_at)
+                                    @php($published_at = \Carbon\Carbon::make($video->published_at)->toDateString())
+                                @endif
+                                @php($now = \Carbon\Carbon::now()->toDateString())
                                 <div class="form-group">
-                                    <label>Upload</label>
-                                    <input class="form-control" type="checkbox" name="upload" disabled
-                                           data-bootstrap-switch>
-                                    <div class="input-group date" id="datetimePicker" data-target-input="nearest">
-                                        <div class="input-group-append" data-target="#datetimePicker">
+                                    <label>Waktu Unggah</label>
+                                    <div class="icheck-material-blue">
+                                        <input type="radio" id="now" name="uploadNow" value="on"
+                                               @if($video->published_at != null) checked disabled @endif
+                                               @if($video->published_at == null && $video->drafted_at != null) checked @endif
+                                        />
+                                        <label for="now">Hari Ini</label>
+                                    </div>
+                                    <div class="icheck-material-blue">
+                                        <input type="radio" id="later" name="uploadNow" value="off"
+                                               @if($video->published_at != null) disabled @endif
+                                               @if($video->published_at != null && $published_at > $now) checked @endif
+                                        />
+                                        <label for="later">Nanti</label>
+                                    </div>
+                                    <div class="input-group date" id="timepicker" data-target-input="nearest">
+                                        <div class="input-group-append" data-target="#timepicker"
+                                             data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="far fa-clock"></i></div>
                                         </div>
-                                        <input data-toggle="datetimepicker" type="text" name="published"
-                                               class="form-control datetimepicker-input"
-                                               data-target="#datetimePicker" placeholder="{{ $publishedAt }}" disabled/>
+                                        <input id="timeField" name="published"
+                                               @if($video->published_at != null || $video->drafted_at != null) disabled @endif
+                                               type="text" class="form-control datetimepicker-input"
+                                               data-target="#timepicker"
+                                               placeholder="{{ date('d/m/Y', strtotime($now)) }}"
+                                        />
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -118,7 +141,18 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <!-- if draft -->
+                                @if($video->drafted_at != null)
+                                    <button type="submit" class="btn btn-primary" name="action" value="publish">
+                                        Terbitkan
+                                    </button>
+                                    <button type="submit" class="btn btn-link" name="action" value="draft">
+                                        Simpan Sebagai Draft
+                                    </button>
+                                    <!-- if publish -->
+                                @else
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                @endif
                             </div>
                         </form>
                     </div>
@@ -134,6 +168,8 @@
 
 <!-- STYLES & SCRIPTS -->
 @prepend('styles')
+    <!-- iCheckMaterial CSS -->
+    <link rel="stylesheet" href="{{ asset("assets/dist/css/icheck-material.css") }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset("assets/plugins/fontawesome-free/css/all.min.css") }}">
     <!-- Ionicons -->
@@ -162,8 +198,6 @@
     <script src="{{ asset("assets/plugins/moment/moment.min.js") }}"></script>
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="{{ asset("assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js") }}"></script>
-    <!-- Bootstrap Switch -->
-    <script src="{{ asset("assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js") }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset("assets/dist/js/adminlte.min.js") }}"></script>
     <!-- AdminLTE for demo purposes -->
@@ -176,22 +210,28 @@
             $('.select2').select2();
 
             // Summernote
-            $('.textarea').summernote();
+            $('.textarea').summernote({
+                height: 300,
+            });
 
             $('#category').on('change', function () {
                 let selectedCategoryID = $(this).find(':selected').attr('value');
                 $('#subcategory').empty();
+                $('#label').empty();
+                $('#subcategory').append('<option value="">Pilih Kategori </option>');
+                $('#label').append('<option value="">Pilih Label</option>');
 
                 if (selectedCategoryID) {
-                    axios.get(route('categories.subcategories.all', {categoryId: selectedCategoryID}))
-                        .then((response) => {
-                            $('#subcategory').append('<option value="">Pilih Subcategory</option>');
+                    $.ajax({
+                        url: route('allSubcategories', {categoryId: selectedCategoryID}),
+                        success: function (response) {
                             for (let i = 0; i < response.data.length; i++) {
                                 let id = response.data[i].id;
                                 let name = response.data[i].name;
                                 $('#subcategory').append('<option value="' + id + '">' + name + '</option>');
                             }
-                        })
+                        }
+                    })
                 }
             });
 
@@ -199,61 +239,44 @@
                 let selectedCategoryID = $(this).find(':selected').attr('value');
                 let selectedSubcategoryID = $(this).find(':selected').attr('value');
                 $('#label').empty();
+                $('#label').append('<option value="">Pilih Label</option>');
 
                 if (selectedSubcategoryID) {
-                    axios.get(route('categories.subcategories.labels.all', {
-                        categoryId: selectedCategoryID,
-                        subcategoryId: selectedSubcategoryID
-                    })).then((response) => {
-                        $('#label').append('<option value="">Pilih Label</option>');
-                        for (let i = 0; i < response.data.length; i++) {
-                            let id = response.data[i].id;
-                            let name = response.data[i].name;
-                            $('#label').append('<option value="' + id + '">' + name + '</option>');
+                    $.ajax({
+                        url: route('allLabels', {categoryId: selectedCategoryID, subcategoryId: selectedSubcategoryID}),
+                        success: function (response) {
+                            for (let i = 0; i < response.data.length; i++) {
+                                let id = response.data[i].id;
+                                let name = response.data[i].name;
+                                $('#label').append('<option value="' + id + '">' + name + '</option>');
+                            }
                         }
                     })
                 }
             });
 
-            //Datetime Picker
-            $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
-                icons: {
-                    time: 'far fa-clock',
-                    date: 'far fa-calendar',
-                    up: 'fas fa-arrow-up',
-                    down: 'fas fa-arrow-down',
-                    previous: 'fas fa-chevron-left',
-                    next: 'fas fa-chevron-right',
-                    today: 'far fa-calendar-check-o',
-                    clear: 'far fa-trash',
-                    close: 'far fa-times'
-                }
+            //Timepicker
+            $('#timepicker').datetimepicker({
+                format: 'DD/MM/YYYY',
+                defaultDate: '{{ $video->published_at }}',
             });
-            $('#datetimePicker').datetimepicker();
 
-            // Bootstrap Switch
-            $.fn.bootstrapSwitch.defaults.onText = 'Today';
-            $.fn.bootstrapSwitch.defaults.offText = 'Later';
-
-            let published = "{{ $publishedAt }}";
-            let todayDate = "{{ \Carbon\Carbon::now()->toDateTimeString() }}";
-            if (published === todayDate) {
-                $.fn.bootstrapSwitch.defaults.state = true
-            } else {
-                $.fn.bootstrapSwitch.defaults.state = false
-            }
-
-            $("input[data-bootstrap-switch]").bootstrapSwitch({
-                onInit: function (event, state) {
-                    $('#datetimePicker > .form-control').prop('disabled', state);
-                },
-                onSwitchChange: function (event, state) {
-                    $('#datetimePicker > .form-control').prop('disabled', state);
-                    if (state) {
-                        $('#datetimePicker').datetimepicker('clear');
+            $('#now').change(
+                function () {
+                    if ($(this).is(':checked')) {
+                        $('#timeField').attr('disabled', true)
+                        $('#timeField').attr('required', false)
+                        $('#timeField').val('')
                     }
-                }
-            });
+                });
+
+            $('#later').change(
+                function () {
+                    if ($(this).is(':checked')) {
+                        $('#timeField').attr('disabled', false)
+                        $('#timeField').attr('required', true)
+                    }
+                });
         });
     </script>
 @endpush

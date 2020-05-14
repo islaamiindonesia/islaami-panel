@@ -34,6 +34,7 @@ class VideoController extends Controller
                 'labels'
             ])
             ->where('published_at', '<=', $now)
+            ->where('drafted_at', null)
             ->orderBy('published_at', 'desc')
             ->paginate(10);
 

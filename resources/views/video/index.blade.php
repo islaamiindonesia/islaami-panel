@@ -27,7 +27,7 @@
                             <tr style="text-align: center">
                                 <th>Judul Video</th>
                                 <th>Ditonton</th>
-                                <th>Diunggah</th>
+                                <th>Diunggah Pada</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
@@ -41,27 +41,27 @@
                                     </td>
                                     <td>{{ $video->views->count() }}x</td>
                                     <td>
-                                        @if($video->published_at > $now)
-                                            Akan diunggah pada {{ date('d F Y', strtotime($video->published_at)) }}
-                                        @else
+                                        @if($video->published_at != null)
                                             {{ date('d F Y', strtotime($video->published_at)) }}
+                                        @else
+                                            -
                                         @endif
                                     </td>
                                     <td class="project-actions" style="text-align: center;">
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('admin.videos.show', ['id' => $video->id]) }}">
                                             <i class="fas fa-folder"></i>
-                                            View
+                                            Lihat Detail
                                         </a>
                                         <a class="btn btn-info btn-sm"
                                            href="{{ route('admin.videos.edit', ['id' => $video->id]) }}">
                                             <i class="fas fa-pencil-alt"></i>
-                                            Edit
+                                            Ubah
                                         </a>
                                         <a class="btn btn-danger btn-sm swalDelete" data-id="{{ $video->id  }}"
                                            href="#">
                                             <i class="fas fa-trash"></i>
-                                            Delete
+                                            Hapus
                                         </a>
                                     </td>
                                 </tr>
@@ -118,7 +118,7 @@
     <!-- page script -->
     <script>
         $(function () {
-            // DataTable
+// DataTable
             $(function () {
                 $("#videoTable").DataTable({
                     "autoWidth": true,
