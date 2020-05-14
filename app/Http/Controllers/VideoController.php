@@ -38,12 +38,6 @@ class VideoController extends Controller
             $videos = Video::where('drafted_at', null);
         }
 
-        $videoArray = array();
-        foreach ($videos->get() as $video) {
-            $video->views = $video->views->count();
-            array_push($videoArray, $video);
-        }
-
         return view('video.index', ['now' => $now, 'videos' => $videos->get(), 'selected' => $selected, 'parent' => 'playmi', 'menu' => 'video']);
     }
 

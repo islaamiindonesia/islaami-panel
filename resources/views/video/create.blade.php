@@ -61,7 +61,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Kategori</label>
+                                    <label>Kategori <small>(opsional)</small></label>
                                     <select id="subcategory" name="subcategory" class="form-control select2"
                                             style="width: 100%;">
                                         <option value="">Pilih Kategori</option>
@@ -69,7 +69,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Label</label>
+                                    <label>Label <small>(opsional)</small></label>
                                     <select id="label" name="labels[]" class="select2" multiple="multiple"
                                             data-placeholder="Pilih Label" style="width: 100%;">
                                         <option value="">Pilih Label</option>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Channel;
+use App\Video;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -89,15 +90,38 @@ class ChannelController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param Request $request
      * @param int $id
      * @return Factory|View
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $channel = Channel::find($id);
         $createdAt = Carbon::parse($channel->created_at);
 
-        return view('channel.show', ['channel' => $channel, 'createdAt' => $createdAt, 'parent' => 'playmi', 'menu' => 'channel']);
+        $selectedFilter = "published";
+        $filter = $request->query('filter');
+        $now = Carbon::now()->toDateTimeString();
+
+        if ($filter != null) {
+            if ($filter == "draft") {
+                $videos = Video::where('drafted_at', '<>', null);
+            } else {
+                $videos = Video::where('drafted_at', null);
+            }
+            $selectedFilter = $filter;
+        } else {
+            $videos = Video::where('drafted_at', null);
+        }
+
+        return view('channel.show', [
+            'channel' => $channel,
+            'videos' => $videos->where('channel_id', $id)->get(),
+            'now' => $now,
+            'selected' => $selectedFilter,
+            'createdAt' => $createdAt,
+            'parent' => 'playmi',
+            'menu' => 'channel']);
     }
 
     /**

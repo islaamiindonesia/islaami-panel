@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('contentHeaderTitle', 'Edit Channel')
+@section('contentHeaderTitle', 'Edit Kanal')
 
 @section('contentHeaderExtra')
 @endsection
@@ -27,12 +27,12 @@
                                     </div>
                                 @endif
                                 <div class="form-group">
-                                    <label for="title">Channel Name</label>
+                                    <label for="title">Nama Kanal</label>
                                     <input type="text" name="name" class="form-control" required id="exampleInputEmail1"
-                                           placeholder="Enter video title" value="{{ old('name') ?? $channel->name }}">
+                                           placeholder="Masukkan nama kanal" value="{{ old('name') ?? $channel->name }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">Channel Thumbnail</label>
+                                    <label for="exampleInputFile">Foto Kanal <small>(opsional)</small></label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" name="thumbnail" required class="custom-file-input"
@@ -42,15 +42,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea class="form-control" name="description" required rows="3"
-                                              placeholder="Enter video description">{{ old('description') ?? $channel->description }}</textarea>
+                                    <label>Deskripsi</label>
+                                    <textarea class="form-control" name="description" required rows="10"
+                                              placeholder="Masukkan deskripsi kanal">{{ old('description') ?? $channel->description }}</textarea>
                                 </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
                     </div>

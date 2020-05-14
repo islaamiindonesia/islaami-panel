@@ -27,7 +27,6 @@
                         <table id="channelTable" class="table table-bordered table-striped">
                             <thead>
                             <tr style="text-align: center;">
-                                <th>Thumbnail</th>
                                 <th>Nama Kanal</th>
                                 <th>Video</th>
                                 <th>Pengikut</th>
@@ -39,15 +38,15 @@
                             @foreach($channels as $channel)
                                 <tr style="text-align: center;">
                                     <td>
-                                        <img src="{{ asset('storage/'. $channel->thumbnail) }}" width="100"/></td>
-                                    <td>
+                                        <img src="{{ asset('storage/'. $channel->thumbnail) }}" width="120"/>
+                                        <br>
                                         <a href="{{ route('admin.channels.show', ['id' => $channel->id]) }}">
                                             {{ $channel->name }}
                                         </a>
                                     </td>
                                     <td>{{ $channel->videos }}</td>
                                     <td>{{ $channel->followers }}</td>
-                                    <td>{{ date('d-M-Y', strtotime($channel->created_at) )}}</td>
+                                    <td>{{ date('d/m/Y', strtotime($channel->created_at) )}}</td>
                                     <td class="project-actions">
                                         <a class="btn btn-info btn-sm"
                                            href="{{ route('admin.channels.edit', ['id' => $channel->id]) }}">
@@ -134,10 +133,10 @@
                 "columnDefs": [
                     {
                         "targets": [0],
-                        "width": 100,
+                        "width": 200,
                     },
                     {
-                        "targets": [5],
+                        "targets": [4],
                         "width": 250,
                         "orderable": false,
                     }
