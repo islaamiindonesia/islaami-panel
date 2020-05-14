@@ -93,10 +93,8 @@
     <script src="{{ asset("assets/dist/js/demo.js") }}"></script>
     <!-- Summernote -->
     <script src="{{ asset("assets/plugins/summernote/summernote-bs4.min.js") }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            bsCustomFileInput.init();
-        });
+    <script>
+        bsCustomFileInput.init();
 
         // Summernote
         $('.textarea').summernote({
