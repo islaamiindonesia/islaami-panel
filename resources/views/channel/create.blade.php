@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('contentHeaderTitle', 'Add Channel')
+@section('contentHeaderTitle', 'Buat Kanal')
 
 @section('contentHeaderExtra')
 @endsection
@@ -26,12 +26,12 @@
                                     </div>
                                 @endif
                                 <div class="form-group">
-                                    <label for="title">Channel Name</label>
+                                    <label for="title">Nama Kanal</label>
                                     <input name="name" type="text" class="form-control" required id="exampleInputEmail1"
-                                           placeholder="Enter video title" value="{{ old('name') }}">
+                                           placeholder="Masukkan nama kanal" value="{{ old('name') }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">Channel Thumbnail</label>
+                                    <label for="exampleInputFile">Foto Kanal</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" name="thumbnail" required class="custom-file-input"
@@ -42,8 +42,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <textarea name="description" required class="form-control" rows="3"
-                                              placeholder="Enter video description">{{ old('description') }}</textarea>
+                                    <textarea name="description" class="textarea" placeholder="Masukkan deskripsi kanal"
+                                              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                                        {{ old('description') }}
+                                    </textarea>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -69,6 +71,8 @@
     <link rel="stylesheet" href="{{ asset("assets/plugins/fontawesome-free/css/all.min.css") }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{ asset("assets/plugins/summernote/summernote-bs4.css") }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset("assets/dist/css/adminlte.min.css") }}">
     <!-- Google Font: Source Sans Pro -->
@@ -86,9 +90,14 @@
     <script src="{{ asset("assets/dist/js/adminlte.min.js") }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset("assets/dist/js/demo.js") }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            bsCustomFileInput.init();
+    <!-- Summernote -->
+    <script src="{{ asset("assets/plugins/summernote/summernote-bs4.min.js") }}"></script>
+    <script>
+        bsCustomFileInput.init();
+
+        // Summernote
+        $('.textarea').summernote({
+            height: 300,
         });
     </script>
 @endpush
