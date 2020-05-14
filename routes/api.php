@@ -53,6 +53,8 @@ Route::post('login', 'API\AuthController@login');
 
 Route::post('register', 'API\AuthController@register');
 
+Route::post('google/register', 'API\AuthController@profileCompletion');
+
 Route::get('resend', 'API\AuthController@resendVerification');
 
 Route::patch('verify', 'API\AuthController@verify');

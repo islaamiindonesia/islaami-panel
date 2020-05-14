@@ -60,6 +60,22 @@ class AuthController extends Controller
         return $this->successResponseWithData($user);
     }
 
+    public function profileCompletion(Request $request)
+    {
+        $user = User::firstOrCreate(
+            ['email' => $request->input('email')],
+            [
+                'fullname' => $request->input('fullname'),
+                'birthdate' => $request->input('birthdate'),
+                'gender' => $request->input('gender'),
+                'fcm_token' => $request->input('fcm_token'),
+                'email_verified_at' => Carbon::now()->toDateTimeString()
+            ]
+        );
+
+        return $this->successResponseWithData($user);
+    }
+
     public function verify(Request $request)
     {
         $user = User::where('email', $request->email)->first();
