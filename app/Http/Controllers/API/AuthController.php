@@ -73,7 +73,14 @@ class AuthController extends Controller
             ]
         );
 
-        return $this->successResponseWithData($user);
+        $token = auth('api')->login($user);
+
+        $data = [
+            'user' => $user,
+            'auth_token' => $token,
+        ];
+
+        return $this->successResponseWithData($data);
     }
 
     public function verify(Request $request)
