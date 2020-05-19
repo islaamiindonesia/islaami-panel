@@ -100,9 +100,10 @@ class VideoController extends Controller
     public function show($id)
     {
         $authID = auth('api')->id();
-        $video = Video::where('id', $id);
+        $video = Video::where('id', $id)->first();
         if ($video != null) {
-            $video->withCount('views as views')
+            $video = Video::where('id', $id)
+                ->withCount('views as views')
                 ->with([
                     'channel' => function ($query) {
                         $query->select(['id', 'name', 'thumbnail', 'description']);
