@@ -107,6 +107,7 @@ class AuthController extends Controller
             $user->fcm_token = $request->query('token');
             $user->save();
 
+            if ($user->fcm_token)
             $user->notify(new AfterRegister());
 
             return $this->successResponse();
