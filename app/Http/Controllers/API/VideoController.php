@@ -100,25 +100,29 @@ class VideoController extends Controller
     public function show($id)
     {
         $authID = auth('api')->id();
-        $video = Video::find($id)
-            ->withCount('views as views')
-            ->with([
-                'channel' => function ($query) {
-                    $query->select(['id', 'name', 'thumbnail', 'description']);
-                    $query->withCount('followers as followers');
-                },
-                'category' => function ($query) {
-                    $query->select(['id', 'name']);
-                },
-                'subcategory' => function ($query) {
-                    $query->select(['id', 'name']);
-                },
-                'labels'
-            ])
-            ->first();
+        $video = Video::where('id', $id);
+        if ($video != null) {
+            $video->withCount('views as views')
+                ->with([
+                    'channel' => function ($query) {
+                        $query->select(['id', 'name', 'thumbnail', 'description']);
+                        $query->withCount('followers as followers');
+                    },
+                    'category' => function ($query) {
+                        $query->select(['id', 'name']);
+                    },
+                    'subcategory' => function ($query) {
+                        $query->select(['id', 'name']);
+                    },
+                    'labels'
+                ])
+                ->first();
 
-        $video->is_saved_later = Video::find($video->id)->users->contains($video->id);
-        $video->channel->is_followed = Channel::find($video->channel->id)->followers->contains($authID);
-        return $this->successResponseWithData($video);
+            $video->is_saved_later = Video::find($video->id)->users->contains($video->id);
+            $video->channel->is_followed = Channel::find($video->channel->id)->followers->contains($authID);
+            return $this->successResponseWithData($video);
+        }
+
+        return $this->errorResponse("VIDEO_NOT_FOUND", 404);
     }
 }
