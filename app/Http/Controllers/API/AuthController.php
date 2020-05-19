@@ -104,6 +104,9 @@ class AuthController extends Controller
         $user = User::where('email', $request->query('email'))->first();
 
         if ($user->email_verified_at == null) { // if not verified
+            $user->fcm_token = $request->query('token');
+            $user->save();
+
             $user->notify(new AfterRegister());
 
             return $this->successResponse();
