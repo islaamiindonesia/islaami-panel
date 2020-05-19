@@ -96,7 +96,15 @@ class AuthController extends Controller
             $user->save();
         }
 
-        return $this->successResponseWithData($user);
+        $token = auth('api')->login($user);
+        $user = auth('api')->user();
+
+        $data = [
+            'user' => $user,
+            'auth_token' => $token,
+        ];
+        //After successfull authentication, notice how I return json parameters
+        return $this->successResponseWithData($data);
     }
 
     public function resendVerification(Request $request)
