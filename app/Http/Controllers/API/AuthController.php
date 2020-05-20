@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Notifications\AfterRegister;
-use App\Notifications\RequestResetPassword;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -14,12 +13,12 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $logUser = User::where('email', $request->email)->first();
+        $logUser = User::where('email', $request->input('email'))->first();
         if ($logUser != null) { // if user found
             if ($logUser->email_verified_at != null) { // if user is verified
                 $token = auth('api')->login($logUser);
                 $user = auth('api')->user();
-                $user->fcm_token = $request->query('fcm_token');
+                $user->fcm_token = $request->input('fcm_token');
                 $user->save();
 
                 $data = [
@@ -109,8 +108,7 @@ class AuthController extends Controller
             $user->fcm_token = $request->query('token');
             $user->save();
 
-            if ($user->fcm_token)
-                $user->notify(new AfterRegister());
+            if ($user->fcm_token != null) $user->notify(new AfterRegister());
 
             return $this->successResponse();
         }
