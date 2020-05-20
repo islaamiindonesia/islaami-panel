@@ -19,7 +19,8 @@ class AuthController extends Controller
             if ($logUser->email_verified_at != null) { // if user is verified
                 $token = auth('api')->login($logUser);
                 $user = auth('api')->user();
-                $user->fcm_token = $request->fcm_token;
+                $user->fcm_token = $request->query('fcm_token');
+                $user->save();
 
                 $data = [
                     'user' => $user,
@@ -97,15 +98,7 @@ class AuthController extends Controller
             $user->save();
         }
 
-        $token = auth('api')->login($user);
-        $user = auth('api')->user();
-
-        $data = [
-            'user' => $user,
-            'auth_token' => $token,
-        ];
-        //After successfull authentication, notice how I return json parameters
-        return $this->successResponseWithData($data);
+        return $this->successResponseWithData($user);
     }
 
     public function resendVerification(Request $request)
@@ -117,7 +110,7 @@ class AuthController extends Controller
             $user->save();
 
             if ($user->fcm_token)
-            $user->notify(new AfterRegister());
+                $user->notify(new AfterRegister());
 
             return $this->successResponse();
         }
