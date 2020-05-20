@@ -19,6 +19,7 @@ class AuthController extends Controller
             if ($logUser->email_verified_at != null) { // if user is verified
                 $token = auth('api')->login($logUser);
                 $user = auth('api')->user();
+                $user->fcm_token = $request->fcm_token;
 
                 $data = [
                     'user' => $user,
