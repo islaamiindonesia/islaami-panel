@@ -5,11 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-/**
- * @method static firstOrCreate(array $array, array $array1)
- * @method static find(int $id)
- * @method static updateOrCreate(array $array, array $array1)
- */
+
 class Video extends Model
 {
     use Notifiable;

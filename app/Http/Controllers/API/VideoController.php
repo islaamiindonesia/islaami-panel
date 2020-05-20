@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Channel;
 use App\Http\Controllers\Controller;
+use App\User;
 use App\Video;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
@@ -119,6 +120,10 @@ class VideoController extends Controller
                 ])
                 ->first();
 
+            $user = User::find($authID);
+            $user->videoView()->attach($video->id);
+
+            $video->views = Video::find($video->id)->users->contains($video->id);
             $video->is_saved_later = Video::find($video->id)->users->contains($video->id);
             $video->channel->is_followed = Channel::find($video->channel->id)->followers->contains($authID);
             return $this->successResponseWithData($video);
