@@ -103,6 +103,9 @@ class VideoController extends Controller
         $authID = auth('api')->id();
         $video = Video::where('id', $id)->first();
         if ($video != null) {
+            $user = User::find($authID);
+            $user->videoView()->attach($video->id);
+
             $video = Video::where('id', $id)
                 ->withCount('views as views')
                 ->with([
@@ -120,10 +123,6 @@ class VideoController extends Controller
                 ])
                 ->first();
 
-            $user = User::find($authID);
-            $user->videoView()->attach($video->id);
-
-            $video->views = Video::find($video->id)->users->contains($video->id);
             $video->is_saved_later = Video::find($video->id)->users->contains($video->id);
             $video->channel->is_followed = Channel::find($video->channel->id)->followers->contains($authID);
             return $this->successResponseWithData($video);
