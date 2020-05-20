@@ -104,7 +104,7 @@ class VideoController extends Controller
         $video = Video::where('id', $id)->first();
         if ($video != null) {
             $user = User::find($authID);
-            $videoView = $user->videoView()->where('user_id', $authID)->where('video_id', $id)->first();
+            $videoView = $user->videoView()->where('user_id', $authID)->where('video_views.video_id', $id)->first();
             if ($videoView == null) {
                 $user->videoView()->attach($id);
             }
