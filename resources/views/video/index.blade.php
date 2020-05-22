@@ -124,6 +124,7 @@
         $("#videoTable").DataTable({
             "autoWidth": true,
             "responsive": true,
+            "order": [[ 2, "asc" ]],
             "columnDefs": [
                 {
                     "targets": [0, 1, 2],
