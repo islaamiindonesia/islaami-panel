@@ -58,7 +58,7 @@
                                             <i class="fas fa-pencil-alt"></i>
                                             Ubah
                                         </a>
-                                        <a class="btn btn-danger btn-sm swalDelete" data-id="{{ $video->id  }}"
+                                        <a class="btn btn-danger btn-sm swalDelete" data-id="{{ $video->id }}"
                                            href="#">
                                             <i class="fas fa-trash"></i>
                                             Hapus
@@ -141,7 +141,7 @@
         });
 
         // SweetAlert
-        $('.swalDelete').click(function () {
+        $('#videoTable .swalDelete').on('click', function () {
             Swal.fire({
                 icon: 'question',
                 title: 'Apakah Anda yakin ?',
