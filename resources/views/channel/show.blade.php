@@ -61,7 +61,7 @@
                             <strong><i class="fas fa-file-alt mr-1"></i> Deskripsi</strong>
 
                             <p class="text-muted">
-                                {{ $channel->description }}
+                                {!! $channel->description !!}
                             </p>
                         </div>
                         <!-- /.card-body -->

@@ -3,6 +3,8 @@
 @section('contentHeaderTitle', 'Lihat Detail Video')
 
 @section('contentHeaderExtra')
+    <a href="{{ route('admin.videos.edit', ['id' => $video->id]) }}" type="button" class="btn btn-primary float-right">Ubah
+        Video</a>
 @endsection
 
 @section('mainContent')
@@ -29,9 +31,11 @@
                                 </li>
                                 <li class="list-group-item">
                                     @if($video->drafted_at != null)
-                                        <b>Draft Pada</b> <a class="float-right">{{ date('d/m/Y', strtotime($video->drafted_at)) }}</a>
+                                        <b>Draft Pada</b> <a
+                                            class="float-right">{{ date('d/m/Y', strtotime($video->drafted_at)) }}</a>
                                     @else
-                                        <b>Diunggah Pada</b> <a class="float-right">{{ date('d/m/Y', strtotime($video->published_at)) }}</a>
+                                        <b>Diunggah Pada</b> <a
+                                            class="float-right">{{ date('d/m/Y', strtotime($video->published_at)) }}</a>
                                     @endif
                                 </li>
                             </ul>
@@ -74,7 +78,7 @@
                             <strong><i class="fas fa-link mr-1"></i> Link Youtube</strong>
 
                             <p class="text-muted">
-                                <a href="{{ $video->url }}">{{ $video->url }}</a>
+                                <a href="{{ $video->url }}" target="_blank">{{ $video->url }}</a>
                             </p>
 
                             <hr>

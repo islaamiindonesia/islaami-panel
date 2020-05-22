@@ -151,23 +151,25 @@ class ChannelController extends Controller
         $validate = Validator::make($request->all(), [
             'name' => 'required',
             'description' => 'required',
-            'thumbnail' => 'required|max:1024',
+            'thumbnail' => 'max:1024',
         ]);
 
         if ($validate->fails()) return back()->withErrors($validate)->withInput($request->all());
 
-        if (Storage::disk('public')->exists($channel->thumbnail)) {
-            Storage::disk('public')->delete($channel->thumbnail);
-        }
+        if ($request->thumbnail != null) {
+            if (Storage::disk('public')->exists($channel->thumbnail)) {
+                Storage::disk('public')->delete($channel->thumbnail);
+            }
 
-        $path = Storage::disk('public')->putFile('channel_thumbnails', $request->file('thumbnail'));
+            $path = Storage::disk('public')->putFile('channel_thumbnails', $request->file('thumbnail'));
 
-        if (!Storage::disk('public')->exists($path)) {
-            return back()->withErrors('Upload thumbnail failed');
+            if (!Storage::disk('public')->exists($path)) {
+                return back()->withErrors('Upload thumbnail failed');
+            }
+            $channel->thumbnail = $path;
         }
 
         $channel->name = $request->name;
-        $channel->thumbnail = $path;
         $channel->description = $request->description;
         $channel->save();
 

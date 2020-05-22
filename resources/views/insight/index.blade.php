@@ -25,7 +25,7 @@
                             @foreach($insights as $insight)
                                 <tr style="text-align: center">
                                     <td>{{ $insight->user->fullname }}</td>
-                                    <td>{{ date('d F Y', strtotime($insight->created_at) }}</td>
+                                    <td>{{ date('d F Y', strtotime($insight->created_at)) }}</td>
                                     <td class="project-actions ">
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('admin.insights.show', ['id' => $insight->id]) }}">

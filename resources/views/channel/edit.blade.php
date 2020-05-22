@@ -35,7 +35,7 @@
                                     <label for="exampleInputFile">Foto Kanal <small>(opsional)</small></label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" name="thumbnail" required class="custom-file-input"
+                                            <input type="file" name="thumbnail" class="custom-file-input"
                                                    id="exampleInputFile">
                                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                         </div>

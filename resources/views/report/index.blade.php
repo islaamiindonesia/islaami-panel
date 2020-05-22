@@ -50,12 +50,23 @@
                                             <i class="fas fa-folder"></i>
                                             Lihat Laporan
                                         </a>
-                                        <a class="btn btn-info btn-sm swalUpdateStatus @if($report->is_solved) disabled @endif"
-                                           data-id="{{ $report->id  }}"
-                                           href="#" @if($report->is_solved) aria-disabled="true" role="button" @endif>
-                                            <i class="fas fa-trash"></i>
-                                            Tandai Selesai
-                                        </a>
+                                        @if($report->is_solved)
+                                            <a class="btn btn-info btn-sm swalUpdateStatus @if($report->is_solved) disabled @endif"
+                                               data-id="{{ $report->id  }}"
+                                               href="#" @if($report->is_solved) aria-disabled="true"
+                                               role="button" @endif>
+                                                <i class="fas fa-trash"></i>
+                                                Tandai Selesai
+                                            </a>
+                                        @else
+                                            <a class="btn btn-info btn-sm swalUpdateStatus @if($report->is_solved) disabled @endif"
+                                               data-id="{{ $report->id  }}"
+                                               href="#" @if($report->is_solved) aria-disabled="true"
+                                               role="button" @endif>
+                                                <i class="fas fa-trash"></i>
+                                                Tandai Selesai
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -115,6 +126,7 @@
             $("#reportTable").DataTable({
                 "autoWidth": true,
                 "responsive": true,
+                "order": [[ 1, "asc" ]],
                 "columnDefs": [
                     {
                         "targets": [0],
