@@ -91,14 +91,14 @@ class VideoController extends Controller
         $video->save();
         $video->labels()->attach($request->labels);
 
-        Notification::send(
+        /*Notification::send(
             $video->channel->followers()->get(),
             new NewVideo(
                 $video->channel->name,
                 $video->title,
                 $video->id
             )
-        );
+        );*/
 
         return redirect()->route('admin.videos.all');
     }
