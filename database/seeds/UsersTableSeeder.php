@@ -21,12 +21,11 @@ class UsersTableSeeder extends Seeder
         $user->email = "youdant@gmail.com";
         $dateOfBirth = Carbon::createFromFormat('Y-m-d', '1996-03-29');
         $user->birthdate = $dateOfBirth->format('d-m-Y');
-        $user->password = Hash::make("password");
         $user->save();
 
         $user->followChannels()->attach(1);
 //        $user->blacklistChannels()->attach(1);
-        $user->videoView()->attach(1);
+//        $user->videoView()->attach(1);
 
         /*DB::table('blacklists')->insert([
             'user_id' => 1,

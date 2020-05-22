@@ -3,20 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
-
 
 class Video extends Model
 {
-    use Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'title', 'video_id', 'url', 'thumbnail', 'description', 'published_at', 'drafted_at', 'channel_id', 'category_id', 'subcategory_id',
+        'title', 'video_id', 'url', 'thumbnail', 'description',
+        'published_at', 'drafted_at', 'channel_id', 'category_id', 'subcategory_id',
     ];
 
     /**

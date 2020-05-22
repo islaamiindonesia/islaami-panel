@@ -1,8 +1,9 @@
 <?php
 
-use App\Notifications\AfterRegister;
+use App\Notifications\NewVideo;
 use App\Notifications\RequestResetPassword;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -44,9 +45,11 @@ Route::get('', function () {
 
 // test api
 Route::get('sendnotification', function (Request $request) {
-    $user = new User();
-    $user->fcm_token = $request->query('fcm_token');
-    $user->notify(new AfterRegister());
+    $user = User::find(1);
+
+    $date = Carbon::now()->addSeconds(2);
+    $user->notify((new NewVideo("test", "test", 1))->delay($date));
+//    $user->notify(new NewVideo("test", "test", 1));
 });
 
 Route::post('login', 'API\AuthController@login');

@@ -35,7 +35,7 @@ class UserController extends Controller
 
         $users->whereNull('deleted_at');
 
-        return view('user.index', ['users' => $users->get(), 'selected' => $selected]);
+        return view('user.index', ['users' => $users->get(), 'selected' => $selected, 'menu' => 'manageUser']);
     }
 
     /**

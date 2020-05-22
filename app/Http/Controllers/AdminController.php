@@ -36,7 +36,7 @@ class AdminController extends Controller
     {
         $users = Admin::where('is_super', false)->get();
 
-        return view('admin.index', ['users' => $users]);
+        return view('admin.index', ['users' => $users, 'menu' => 'manageAdmin']);
     }
 
     /**

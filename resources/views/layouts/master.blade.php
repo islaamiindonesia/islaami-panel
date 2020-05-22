@@ -33,7 +33,7 @@
                     </li>
                     @if(Auth::user()->hasRole("super admin"))
                         <li class="nav-item">
-                            <a href="{{ route('admin.manage')  }}" class="nav-link">
+                            <a href="{{ route('admin.manage')  }}" class="nav-link @if($menu == "manageAdmin") active @endif">
                                 <i class="nav-icon fas fa-user-shield"></i>
                                 <p>
                                     Manage Admin
@@ -51,7 +51,7 @@
                     @endif
                     @if(Auth::user()->hasRole("islaami"))
                         <li class="nav-item">
-                            <a href="{{ route('admin.users.all') }}" class="nav-link">
+                            <a href="{{ route('admin.users.all') }}" class="nav-link @if($menu == "manageUser") active @endif">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Manage Users
@@ -78,7 +78,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.videos.all')  }}"
+                                    <a href="{{ route('admin.videos.all')  }}" style="text-indent: 10px;"
                                        class="nav-link @if($menu == "video") active @endif">
                                         <i class="nav-icon fab fa-youtube"></i>
                                         <p>
@@ -87,7 +87,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.channels.all')  }}"
+                                    <a href="{{ route('admin.channels.all')  }}" style="text-indent: 10px;"
                                        class="nav-link @if($menu == "channel") active @endif">
                                         <i class="nav-icon fas fa-video"></i>
                                         <p>
@@ -96,7 +96,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.categories.all')  }}"
+                                    <a href="{{ route('admin.categories.all')  }}" style="text-indent: 10px;"
                                        class="nav-link @if($menu == "category") active @endif">
                                         <i class="nav-icon fas fa-folder-open"></i>
                                         <p>
@@ -105,7 +105,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.recommendations.all')  }}"
+                                    <a href="{{ route('admin.recommendations.all')  }}" style="text-indent: 10px;"
                                        class="nav-link @if($menu == "recommendation") active @endif">
                                         <i class="nav-icon fas fa-user-check"></i>
                                         <p>
@@ -162,7 +162,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.about')  }}"
+                                    <a href="{{ route('admin.about')  }}" style="text-indent: 10px;"
                                        class="nav-link @if($menu == "about") active @endif">
                                         <i class="nav-icon fas fa-mobile-alt"></i>
                                         <p>
@@ -171,7 +171,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.cooperation')  }}"
+                                    <a href="{{ route('admin.cooperation')  }}" style="text-indent: 10px;"
                                        class="nav-link @if($menu == "coop") active @endif">
                                         <i class="nav-icon fas fa-handshake"></i>
                                         <p>
@@ -180,7 +180,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.usertnc')  }}"
+                                    <a href="{{ route('admin.usertnc')  }}" style="text-indent: 10px;"
                                        class="nav-link @if($menu == "user_tnc") active @endif">
                                         <i class="nav-icon fas fa-address-book"></i>
                                         <p>
@@ -189,7 +189,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.privacy')  }}"
+                                    <a href="{{ route('admin.privacy')  }}" style="text-indent: 10px;"
                                        class="nav-link @if($menu == "privacy") active @endif">
                                         <i class="nav-icon fas fa-user-shield"></i>
                                         <p>

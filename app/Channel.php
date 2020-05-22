@@ -5,16 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-/**
- * @method static firstOrCreate(array $array, array $array1)
- * @method static find(int $id)
- * @method static where(string $string, int $int)
- * @method static updateOrCreate(array $array, array $array1)
- */
 class Channel extends Model
 {
-    use Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *

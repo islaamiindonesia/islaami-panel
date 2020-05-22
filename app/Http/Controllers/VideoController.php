@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Channel;
+use App\Notifications\NewVideo;
 use App\Subcategory;
 use App\Video;
 use App\VideoLabel;
@@ -11,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\View\View;
 
 class VideoController extends Controller
@@ -70,12 +72,12 @@ class VideoController extends Controller
         if ($request->action == 'publish') {
             $video->drafted_at = null;
             if ($request->uploadNow == "on") {
-                $video->published_at = Carbon::now()->toDateString();
+                $video->published_at = Carbon::now()->toDateTimeString();
             } else {
-                $video->published_at = Carbon::make($request->published)->toDateString();
+                $video->published_at = Carbon::make($request->published)->toDateTimeString();
             }
         } elseif ($request->action == 'draft') {
-            $video->drafted_at = Carbon::now()->toDateString();
+            $video->drafted_at = Carbon::now()->toDateTimeString();
         }
 
         $video->title = $request->title;
@@ -88,6 +90,15 @@ class VideoController extends Controller
         $video->subcategory_id = $request->subcategory;
         $video->save();
         $video->labels()->attach($request->labels);
+
+        Notification::send(
+            $video->channel->followers()->get(),
+            new NewVideo(
+                $video->channel->name,
+                $video->title,
+                $video->id
+            )
+        );
 
         return redirect()->route('admin.videos.all');
     }
@@ -171,12 +182,12 @@ class VideoController extends Controller
         if ($request->action == 'publish') {
             $video->drafted_at = null;
             if ($request->uploadNow == "on") {
-                $video->published_at = Carbon::now()->toDateString();
+                $video->published_at = Carbon::now()->toDateTimeString();
             } else {
-                $video->published_at = Carbon::make($request->published)->toDateString();
+                $video->published_at = Carbon::make($request->published)->toDateTimeString();
             }
         } elseif ($request->action == 'draft') {
-            $video->drafted_at = Carbon::now()->toDateString();
+            $video->drafted_at = Carbon::now()->toDateTimeString();
         }
 
         $video->title = $request->title;
@@ -188,26 +199,6 @@ class VideoController extends Controller
         $video->subcategory_id = $request->subcategory;
         $video->save();
         $video->labels()->sync($request->labels);
-
-        /*$video = Video::updateOrCreate(
-            ['id' => $id],
-            [
-                'title' => $request->title,
-                'url' => $request->url,
-                'thumbnail' => $thumbnail,
-                'description' => $request->description,
-                'channel_id' => $request->channel,
-                'category_id' => $request->category,
-                'subcategory_id' => $request->subcategory,
-            ]
-        );*/
-
-        /*VideoLabel::where('video_id', $video->id)->delete();
-        foreach ($request->labels as $label) {
-            VideoLabel::updateOrCreate(
-                ['video_id' => $video->id, 'label_id' => $label]
-            );
-        }*/
 
         return redirect()->route('admin.videos.all');
     }
