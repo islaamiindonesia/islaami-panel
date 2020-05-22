@@ -141,7 +141,7 @@
         });
 
         // SweetAlert
-        $('#videoTable .swalDelete').on('click', function () {
+        $('.swalDelete').on('click', function () {
             Swal.fire({
                 icon: 'question',
                 title: 'Apakah Anda yakin ?',
