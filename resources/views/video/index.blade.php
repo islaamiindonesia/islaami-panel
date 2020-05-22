@@ -113,14 +113,14 @@
     <script src="{{ asset("assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js") }}"></script>
     <script src="{{ asset("assets/plugins/datatables-responsive/js/dataTables.responsive.min.js") }}"></script>
     <script src="{{ asset("assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js") }}"></script>
-    <script src="https://cdn.datatables.net/plug-ins/1.10.21/sorting/datetime-moment.js"></script>
+    <script src="{{ asset("assets/dist/js/datetime-moment.js") }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset("assets/dist/js/adminlte.min.js") }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset("assets/dist/js/demo.js") }}"></script>
     <!-- page script -->
     <script>
-        $.fn.dataTable.moment( 'DD/MM/YYYY' );
+        $.fn.dataTable.moment('DD/MM/YYYY');
         $("#videoTable").DataTable({
             "autoWidth": true,
             "responsive": true,
