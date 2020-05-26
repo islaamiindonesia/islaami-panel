@@ -27,7 +27,7 @@
 
                             <ul class="list-group list-group-unbordered mt-3">
                                 <li class="list-group-item">
-                                    <b>Views</b> <a class="float-right">{{ $video->views->count() }}x</a>
+                                    <b>Ditonton</b> <a class="float-right">{{ $video->views->count() }}x</a>
                                 </li>
                                 <li class="list-group-item">
                                     @if($video->drafted_at != null)
@@ -49,6 +49,12 @@
                             <h3 class="card-title">Info Kanal</h3>
                         </div>
                         <div class="card-body">
+                            <div class="text-center">
+                                <img class="img-fluid img-rounded"
+                                     src="{{ asset('storage/'. $video->channel->thumbnail) }}"
+                                     alt="User profile picture">
+                            </div>
+
                             <h3 class="profile-username text-center">{{ $video->channel->name }}</h3>
 
                             <a href="{{ route('admin.channels.show', ['id'=>$video->channel_id]) }}"

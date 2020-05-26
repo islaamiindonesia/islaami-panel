@@ -15,16 +15,57 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <!-- select -->
-                        <div class="form-group">
-                            <label>Tampilkan</label>
-                            <select class="form-control" id="filterDropdown">
-                                <option value="active" @if($selected == "active") selected @endif>Aktif</option>
-                                <option value="suspended" @if($selected == "suspended") selected @endif>Ditangguhkan
-                                </option>
-                            </select>
-                        </div>
-                        <table id="channelTable" class="table table-bordered table-striped">
+                        <form role="form" action="{{ route('admin.channels.all') }}" method="get">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <input name="query" type="search" class="form-control"
+                                               placeholder="Cari Kanal" value="{{ $query }}">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <!-- filter -->
+                                    <div class="form-group">
+                                        <select class="form-control" name="filterBy">
+                                            @foreach(["active", "suspended"] as $col)
+                                                <option @if($col == $filterBy) selected @endif value="{{ $col }}">
+                                                    @if($col == "active")
+                                                        Aktif
+                                                    @else
+                                                        Ditangguhkan
+                                                    @endif
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <!-- sort -->
+                                    <div class="form-group">
+                                        <select class="form-control" name="sortBy">
+                                            @foreach(["created_at", "videos", "followers"] as $col)
+                                                <option @if($col == $sortBy) selected @endif value="{{ $col }}">
+                                                    @switch($col)
+                                                        @case("created_at")
+                                                            Dibuat Terbaru
+                                                            @break
+                                                        @case("videos")
+                                                            Video Terbanyak
+                                                            @break
+                                                        @default
+                                                            Follower Terbanyak
+                                                    @endswitch
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button type="submit" class="btn btn-block btn-primary">Terapkan</button>
+                                </div>
+                            </div>
+                        </form>
+                        <table class="table table-bordered table-striped mb-1" style="width:100%">
                             <thead>
                             <tr style="text-align: center;">
                                 <th>Nama Kanal</th>
@@ -37,7 +78,7 @@
                             <tbody>
                             @foreach($channels as $channel)
                                 <tr style="text-align: center;">
-                                    <td>
+                                    <td style="width:300px; max-width: 300px">
                                         <img src="{{ asset('storage/'. $channel->thumbnail) }}" width="120"/>
                                         <br>
                                         <a href="{{ route('admin.channels.show', ['id' => $channel->id]) }}">
@@ -76,6 +117,8 @@
                             @endforeach
                             </tbody>
                         </table>
+
+                        <div class="float-right pagination">{{ $channels->withQueryString()->links() }}</div>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -125,28 +168,6 @@
     <script src="{{ asset("assets/dist/js/demo.js") }}"></script>
     <!-- page script -->
     <script>
-        // DataTable
-        $(function () {
-            $("#channelTable").DataTable({
-                "autoWidth": true,
-                "responsive": true,
-                "columnDefs": [
-                    {
-                        "targets": [0],
-                        "width": 200,
-                    },
-                    {
-                        "targets": [4],
-                        "width": 250,
-                        "orderable": false,
-                    }
-                ],
-            });
-            $('#filterDropdown').on('change', function () {
-                window.location.href = route('admin.channels.all', {filter: $(this).val()});
-            });
-        });
-
         // SweetAlert
         $('.swalDelete').click(function () {
             Swal.fire({

@@ -58,7 +58,20 @@
                         <!-- /.modal -->
                     </div>
                     <div class="card-body">
-                        <table id="channelTable" class="table table-bordered table-striped">
+                        <form role="form" action="{{ route('admin.categories.subcategories.all', ['categoryId'=>$category->id]) }}" method="get">
+                            <div class="row">
+                                <div class="col-10">
+                                    <div class="form-group">
+                                        <input name="query" type="search" class="form-control"
+                                               placeholder="Cari Kategori" value="{{ $query }}">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button type="submit" class="btn btn-block btn-primary">Cari</button>
+                                </div>
+                            </div>
+                        </form>
+                        <table class="table table-bordered table-striped mb-1">
                             <thead>
                             <tr style="text-align: center;">
                                 <th>No. Urut</th>
@@ -92,6 +105,8 @@
                             @endforeach
                             </tbody>
                         </table>
+
+                        <div class="float-right pagination">{{ $subcategories->withQueryString()->links() }}</div>
                     </div>
                 </div>
                 <!-- /.card -->
@@ -146,102 +161,76 @@
     <script src="{{ asset("assets/dist/js/demo.js") }}"></script>
     <!-- page script -->
     <script>
-        // DataTable
-        $(function () {
-            $("#channelTable").DataTable({
-                "autoWidth": true,
-                "responsive": true,
-                "columnDefs": [
-                    {
-                        "targets":[0],
-                        "width":80
-                    },
-                    {
-                        "targets":[1],
-                        "width":500
-                    },
-                    {
-                        "targets": [2],
-                        "orderable": false,
-                    },
-                    {
-                        "target": [1],
-                        "searchable": true
-                    }
-                ],
-            });
+        $("#btnSave").click(function () {
+            window.location.href = route('admin.categories.subcategories.all', {categoryId: '{{ $category->id }}'});
+        });
 
-            $("#btnSave").click(function () {
-                window.location.href = route('admin.categories.subcategories.all', {categoryId: '{{ $category->id }}'});
-            });
+        // SweetAlert x Toast
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
 
-            // SweetAlert x Toast
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-            });
-
-            // SweetAlert
-            $('.swalDelete').click(function () {
-                Swal.fire({
-                    icon: 'question',
-                    title: 'Apakah Anda yakin ?',
-                    text: 'Kategori ini akan dihapus.',
-                    confirmButtonText: 'Yakin',
-                    cancelButtonText: 'Batal',
-                    showCancelButton: true,
-                    preConfirm: (confirmed) => {
-                        if (confirmed) {
-                            axios.post(route('admin.categories.subcategories.delete', {
-                                categoryId: '{{ $category->id }}',
-                                subcategoryId: $(this).data("id")
-                            }).url())
-                                .then(() => {
-                                    Swal.fire(
-                                        'Berhasil',
-                                        'Anda sudah menghapus kategori ini',
-                                        'success'
-                                    ).then((result) => {
-                                        if (result) window.location.href = route('admin.categories.subcategories.all', {categoryId: '{{ $category->id }}'});
-                                    });
-                                })
-                        }
-                    },
-                })
-            });
-
-            // Sortable
-            const sort = new Sortable(subcategoryList, {
-                animation: 150,
-                ghostClass: 'blue-background-class',
-                dataIdAttr: 'data-id',
-                onUpdate: function () {
-                    const idList = sort.toArray();
-                    for (let i = 0; i < idList.length; i++) {
-                        var position = (i + 1);
-                        axios.patch(route('admin.categories.subcategories.updateNumber', {
+        // SweetAlert
+        $('.swalDelete').click(function () {
+            Swal.fire({
+                icon: 'question',
+                title: 'Apakah Anda yakin ?',
+                text: 'Kategori ini akan dihapus.',
+                confirmButtonText: 'Yakin',
+                cancelButtonText: 'Batal',
+                showCancelButton: true,
+                preConfirm: (confirmed) => {
+                    if (confirmed) {
+                        axios.post(route('admin.categories.subcategories.delete', {
                             categoryId: '{{ $category->id }}',
-                            subcategoryId: idList[i]
-                        }).url(), {
-                            number: position
-                        }).then((result) => {
-                            if (result) {
-                                Toast.fire({
-                                    icon: 'success',
-                                    title: 'Berhasil membuat perubahan.'
-                                })
-                            } else {
-                                Toast.fire({
-                                    icon: 'error',
-                                    title: 'Terjadi kesalahan. Mohon coba sesaat lagi.'
-                                })
-                            }
-                        })
+                            subcategoryId: $(this).data("id")
+                        }).url())
+                            .then(() => {
+                                Swal.fire(
+                                    'Berhasil',
+                                    'Anda sudah menghapus kategori ini',
+                                    'success'
+                                ).then((result) => {
+                                    if (result) window.location.href = route('admin.categories.subcategories.all', {categoryId: '{{ $category->id }}'});
+                                });
+                            })
                     }
+                },
+            })
+        });
+
+        // Sortable
+        const sort = new Sortable(subcategoryList, {
+            animation: 150,
+            ghostClass: 'blue-background-class',
+            dataIdAttr: 'data-id',
+            onUpdate: function () {
+                const idList = sort.toArray();
+                for (let i = 0; i < idList.length; i++) {
+                    var position = (i + 1);
+                    axios.patch(route('admin.categories.subcategories.updateNumber', {
+                        categoryId: '{{ $category->id }}',
+                        subcategoryId: idList[i]
+                    }).url(), {
+                        number: position
+                    }).then((result) => {
+                        if (result) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Berhasil membuat perubahan.'
+                            })
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: 'Terjadi kesalahan. Mohon coba sesaat lagi.'
+                            })
+                        }
+                    })
                 }
-            });
+            }
         });
     </script>
 @endpush

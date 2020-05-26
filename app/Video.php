@@ -88,4 +88,12 @@ class Video extends Model
     {
         return $this->belongsToMany('App\User', 'video_views', 'video_id', 'user_id');
     }
+
+    public function scopeSearch($query, $searchQuery, $filter)
+    {
+        if ($searchQuery == null) return $query->where($filter, '<>', null);
+        return $query
+            ->where('title', 'LIKE', "%{$searchQuery}%")
+            ->where($filter, '<>', null);
+    }
 }

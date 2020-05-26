@@ -2,8 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Channel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Channel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/VideoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/VideoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ChannelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ChannelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LabelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LabelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RecommendationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RecommendationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SubcategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SubcategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VideoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VideoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Label.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Label.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Subcategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Subcategory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Video.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Video.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/VideoTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/VideoTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/category/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/category/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/channel/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/channel/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/channel/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/channel/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/label/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/label/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/recommendation/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/recommendation/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/subcategory/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/subcategory/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/video/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/video/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/video/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/video/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -303,7 +326,9 @@
       <workItem from="1589941530979" duration="969000" />
       <workItem from="1589944825539" duration="4984000" />
       <workItem from="1589978762991" duration="5050000" />
-      <workItem from="1590125723196" duration="6964000" />
+      <workItem from="1590125723196" duration="11924000" />
+      <workItem from="1590405292358" duration="119000" />
+      <workItem from="1590468670086" duration="10028000" />
     </task>
     <servers />
   </component>
@@ -331,6 +356,10 @@
       <screen x="0" y="23" width="1280" height="734" />
     </state>
     <state x="240" y="55" key="#Plugins/0.23.1280.734@0.23.1280.734" timestamp="1585830313963" />
+    <state x="240" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590468760510">
+      <screen x="0" y="23" width="1280" height="732" />
+    </state>
+    <state x="240" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.732@0.23.1280.732" timestamp="1590468760510" />
     <state x="453" y="123" key="#com.intellij.ide.util.MemberChooser" timestamp="1589982147417">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
@@ -372,10 +401,11 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="584" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1587387869042" />
-    <state x="317" y="226" key="com.intellij.ide.util.TipDialog" timestamp="1590125745370">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state x="317" y="233" key="com.intellij.ide.util.TipDialog" timestamp="1590468718003">
+      <screen x="0" y="23" width="1280" height="732" />
     </state>
-    <state x="317" y="226" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1590125745370" />
+    <state x="317" y="230" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1590405291662" />
+    <state x="317" y="233" key="com.intellij.ide.util.TipDialog/0.23.1280.732@0.23.1280.732" timestamp="1590468718003" />
     <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.23.1280.734@0.23.1280.734" timestamp="1589000208558" />
     <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587197991282">
       <screen x="0" y="0" width="1280" height="800" />
@@ -385,10 +415,15 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.0.1280.800@0.0.1280.800" timestamp="1588332994037" />
-    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup" timestamp="1590138879962">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state x="305" y="174" key="run.anything.popup" timestamp="1590468842960">
+      <screen x="0" y="23" width="1280" height="732" />
     </state>
-    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1590138879962" />
+    <state x="305" y="174" key="run.anything.popup/0.23.1280.732@0.23.1280.732" timestamp="1590468842960" />
+    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup" timestamp="1590498531525">
+      <screen x="0" y="23" width="1280" height="732" />
+    </state>
+    <state x="305" y="63" width="670" height="411" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1590149239263" />
+    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup/0.23.1280.732@0.23.1280.732" timestamp="1590498531525" />
     <state x="305" y="63" width="670" height="158" key="search.everywhere.popup/0.23.1280.734@0.23.1280.734" timestamp="1588037942591" />
   </component>
 </project>

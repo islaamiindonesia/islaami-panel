@@ -14,15 +14,29 @@ class SubcategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @param $categoryId
      * @return Factory|View
      */
-    public function index($categoryId)
+    public function index(Request $request, $categoryId)
     {
-        $category = Category::find($categoryId);
-        $subcategories = Subcategory::where('category_id', $categoryId)->orderBy('number')->get();
+        $query = null; // search query
 
-        return view('subcategory.index', ['subcategories' => $subcategories, 'category' => $category, 'parent' => 'playmi', 'menu' => 'category']);
+        if ($request->has('query')) $query = $request->query('query');
+
+        $category = Category::find($categoryId);
+        $subcategories = Subcategory::search($query)
+            ->where('category_id', $categoryId)
+            ->orderBy('number')
+            ->paginate(10);
+
+        return view('subcategory.index', [
+            'subcategories' => $subcategories,
+            'category' => $category,
+            'query' => $query,
+            'parent' => 'playmi',
+            'menu' => 'category'
+        ]);
     }
 
     /**

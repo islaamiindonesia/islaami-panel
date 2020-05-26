@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Channel;
-use App\Notifications\NewVideo;
 use App\Subcategory;
 use App\Video;
 use App\VideoLabel;
@@ -12,7 +11,6 @@ use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\View\View;
 
 class VideoController extends Controller
@@ -25,22 +23,27 @@ class VideoController extends Controller
      */
     public function index(Request $request)
     {
-        $selected = "published";
-        $filter = $request->query('filter');
+        $filterBy = "published_at"; // column to sort
+        $sortBy = "created_at"; // column to sort
+        $query = null; // search query
+
+        if ($request->has('filterBy')) $filterBy = $request->query('filterBy');
+        if ($request->has('sortBy')) $sortBy = $request->query('sortBy');
+        if ($request->has('query')) $query = $request->query('query');
+
         $now = Carbon::now()->toDateTimeString();
 
-        if ($filter != null) {
-            if ($filter == "draft") {
-                $videos = Video::where('drafted_at', '<>', null);
-            } else {
-                $videos = Video::where('drafted_at', null);
-            }
-            $selected = $filter;
-        } else {
-            $videos = Video::where('drafted_at', null);
-        }
+        $result = Video::search($query, $filterBy)->withCount('views as views')->orderBy($sortBy, 'desc')->paginate(10);
 
-        return view('video.index', ['now' => $now, 'videos' => $videos->get(), 'selected' => $selected, 'parent' => 'playmi', 'menu' => 'video']);
+        return view('video.index', [
+            'now' => $now,
+            'videos' => $result,
+            'filterBy' => $filterBy,
+            'sortBy' => $sortBy,
+            'query' => $query,
+            'parent' => 'playmi',
+            'menu' => 'video'
+        ]);
     }
 
     /**

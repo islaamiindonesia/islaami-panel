@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 
 class Channel extends Model
 {
@@ -49,5 +48,17 @@ class Channel extends Model
     public function videos()
     {
         return $this->hasMany('App\Video');
+    }
+
+    public function scopeSearch($query, $searchQuery, $filter)
+    {
+        if ($filter == "active") {
+            $finalQuery = $query->where('suspended_at', null);
+        } else {
+            $finalQuery = $query->where('suspended_at', '<>', null);
+        }
+
+        if ($searchQuery == null) return $finalQuery;
+        return $finalQuery->where('name', 'LIKE', "%{$searchQuery}%");
     }
 }

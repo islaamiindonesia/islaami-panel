@@ -3,6 +3,7 @@
 
 @section('contentHeaderExtra')
     <a href="{{ route('admin.videos.create')  }}" type="button" class="btn btn-primary float-right">Unggah Video</a>
+{{--    <a href="{{ route('admin.videos.draft')  }}" type="button" class="btn btn-primary float-right mr-1">Lihat Draf</a>--}}
 @endsection
 
 @section('mainContent')
@@ -13,16 +14,52 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <!-- select -->
-                        <div class="form-group">
-                            <label>Tampilkan</label>
-                            <select class="form-control" id="filterDropdown">
-                                <option value="published" @if($selected == "published") selected @endif>Diunggah
-                                <option value="draft" @if($selected == "draft") selected @endif>Draft</option>
-                                </option>
-                            </select>
-                        </div>
-                        <table id="videoTable" class="table table-bordered table-striped display" style="width:100%">
+                        <form role="form" action="{{ route('admin.videos.all') }}" method="get">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <input name="query" type="search" class="form-control"
+                                               placeholder="Cari Judul" value="{{ $query }}">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <!-- filter -->
+                                    <div class="form-group">
+                                        <select class="form-control" name="filterBy">
+                                            @foreach(["published_at", "drafted_at"] as $col)
+                                                <option @if($col == $filterBy) selected @endif value="{{ $col }}">
+                                                    @if($col == "published_at")
+                                                        Diunggah
+                                                    @else
+                                                        Draft
+                                                    @endif
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <!-- sort -->
+                                    <div class="form-group">
+                                        <select class="form-control" name="sortBy">
+                                            @foreach(["created_at", "views"] as $col)
+                                                <option @if($col == $sortBy) selected @endif value="{{ $col }}">
+                                                    @if($col == "created_at")
+                                                        Dibuat Terbaru
+                                                    @else
+                                                        Ditonton Terbanyak
+                                                    @endif
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button type="submit" class="btn btn-block btn-primary">Terapkan</button>
+                                </div>
+                            </div>
+                        </form>
+                        <table class="table table-bordered table-striped display mb-1" style="width:100%">
                             <thead>
                             <tr style="text-align: center">
                                 <th>Judul Video</th>
@@ -34,12 +71,12 @@
                             <tbody>
                             @foreach($videos as $video)
                                 <tr style="text-align: center;">
-                                    <td>
+                                    <td style="width:300px; max-width: 300px">
                                         <img src="{{ $video->thumbnail }}" width="120">
                                         <br>
-                                        {{ $video->title }}
+                                        <a href="{{ route('admin.videos.show', ['id'=>$video->id]) }}">{{ $video->title }}</a>
                                     </td>
-                                    <td>{{ $video->views->count() }}x</td>
+                                    <td>{{ $video->views()->count() }}x</td>
                                     <td>
                                         @if($video->published_at != null)
                                             {{ date('d/m/Y', strtotime($video->published_at)) }}
@@ -68,6 +105,8 @@
                             @endforeach
                             </tbody>
                         </table>
+
+                        <div class="float-right pagination">{{ $videos->withQueryString()->links() }}</div>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -120,27 +159,6 @@
     <script src="{{ asset("assets/dist/js/demo.js") }}"></script>
     <!-- page script -->
     <script>
-        $.fn.dataTable.moment('DD/MM/YYYY');
-        $("#videoTable").DataTable({
-            "autoWidth": true,
-            "responsive": true,
-            "order": [[ 2, "asc" ]],
-            "columnDefs": [
-                {
-                    "targets": [0, 1, 2],
-                    "width": 100
-                },
-                {
-                    "targets": [3],
-                    'width': 200,
-                    "orderable": false,
-                }
-            ],
-        });
-        $('#filterDropdown').on('change', function () {
-            window.location.href = route('admin.videos.all', {filter: $(this).val()});
-        });
-
         // SweetAlert
         $('.swalDelete').on('click', function () {
             Swal.fire({

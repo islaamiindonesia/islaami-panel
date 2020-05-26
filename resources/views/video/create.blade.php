@@ -11,12 +11,8 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <!-- left column -->
                 <div class="col-md-12">
-                    <!-- general form elements -->
                     <div class="card">
-                        <!-- /.card-header -->
-                        <!-- form start -->
                         <form role="form" action="{{ route('admin.videos.store') }}" method="post">
                             @csrf
                             <div class="card-body">
@@ -32,11 +28,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Deskripsi</label>
-                                    <textarea name="description" class="textarea" required
-                                              {{--placeholder="Place some text here"--}}
-                                              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
-                                    </textarea>
+                                    <label>Deskripsi <small>(opsional)</small></label>
+                                    <textarea name="description" class="textarea" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                 </div>
 
                                 <div class="form-group">
@@ -107,10 +100,8 @@
                     </div>
                     <!-- /.card -->
                 </div>
-                <!--/.col (left) -->
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
     <!-- /.content -->
 @endsection

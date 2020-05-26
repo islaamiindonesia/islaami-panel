@@ -48,4 +48,10 @@ class Category extends Model
     {
         return $this->hasMany('App\Subcategory');
     }
+
+    public function scopeSearch($query, $searchQuery)
+    {
+        if ($searchQuery == null) return $query;
+        return $query->where('name', 'LIKE', "%{$searchQuery}%");
+    }
 }

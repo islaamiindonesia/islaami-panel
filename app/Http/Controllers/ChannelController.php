@@ -22,27 +22,23 @@ class ChannelController extends Controller
      */
     public function index(Request $request)
     {
-        $selected = "active";
-        $filter = $request->query('filter');
-        if ($filter != null) {
-            if ($filter == "active") {
-                $channels = Channel::where('suspended_at', null);
-            } else {
-                $channels = Channel::where('suspended_at', '<>', null);
-            }
-            $selected = $filter;
-        } else {
-            $channels = Channel::where('suspended_at', null);
-        }
+        $filterBy = "active"; // column to sort
+        $sortBy = "created_at"; // column to sort
+        $query = null; // search query
 
-        $channelArray = array();
-        foreach ($channels->get() as $channel) {
-            $channel->followers = $channel->followers->count();
-            $channel->videos = $channel->videos->count();
-            array_push($channelArray, $channel);
-        }
+        if ($request->has('filterBy')) $filterBy = $request->query('filterBy');
+        if ($request->has('sortBy')) $sortBy = $request->query('sortBy');
+        if ($request->has('query')) $query = $request->query('query');
 
-        return view('channel.index', ['channels' => $channelArray, 'selected' => $selected, 'parent' => 'playmi', 'menu' => 'channel']);
+        $now = Carbon::now()->toDateTimeString();
+
+        $result = Channel::search($query, $filterBy)
+            ->withCount('followers as followers')
+            ->withCount('videos as videos')
+            ->orderBy($sortBy, 'desc')
+            ->paginate(10);
+
+        return view('channel.index', ['now' => $now, 'channels' => $result, 'filterBy' => $filterBy, 'sortBy' => $sortBy, 'query' => $query, 'parent' => 'playmi', 'menu' => 'channel']);
     }
 
     /**
@@ -99,26 +95,29 @@ class ChannelController extends Controller
         $channel = Channel::find($id);
         $createdAt = Carbon::parse($channel->created_at);
 
-        $selectedFilter = "published";
-        $filter = $request->query('filter');
+        $filterBy = "published_at"; // column to sort
+        $sortBy = "created_at"; // column to sort
+        $query = null; // search query
+
+        if ($request->has('filterBy')) $filterBy = $request->query('filterBy');
+        if ($request->has('sortBy')) $sortBy = $request->query('sortBy');
+        if ($request->has('query')) $query = $request->query('query');
+
         $now = Carbon::now()->toDateTimeString();
 
-        if ($filter != null) {
-            if ($filter == "draft") {
-                $videos = Video::where('drafted_at', '<>', null);
-            } else {
-                $videos = Video::where('drafted_at', null);
-            }
-            $selectedFilter = $filter;
-        } else {
-            $videos = Video::where('drafted_at', null);
-        }
+        $result = Video::search($query, $filterBy)
+            ->withCount('views as views')
+            ->where('channel_id', $id)
+            ->orderBy($sortBy, 'desc')
+            ->paginate(10);
 
         return view('channel.show', [
             'channel' => $channel,
-            'videos' => $videos->where('channel_id', $id)->get(),
+            'videos' => $result,
             'now' => $now,
-            'selected' => $selectedFilter,
+            'filterBy' => $filterBy,
+            'sortBy' => $sortBy,
+            'query' => $query,
             'createdAt' => $createdAt,
             'parent' => 'playmi',
             'menu' => 'channel']);

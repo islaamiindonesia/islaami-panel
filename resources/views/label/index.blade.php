@@ -61,7 +61,20 @@
                         <!-- /.modal -->
                     </div>
                     <div class="card-body">
-                        <table id="labelTable" class="table table-bordered table-striped">
+                        <form role="form" action="{{ route('admin.categories.subcategories.labels.all', ['categoryId'=>$categoryID, 'subcategoryId'=>$subcategoryID]) }}" method="get">
+                            <div class="row">
+                                <div class="col-10">
+                                    <div class="form-group">
+                                        <input name="query" type="search" class="form-control"
+                                               placeholder="Cari Label" value="{{ $query }}">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button type="submit" class="btn btn-block btn-primary">Cari</button>
+                                </div>
+                            </div>
+                        </form>
+                        <table class="table table-bordered table-striped mb-1">
                             <thead>
                             <tr style="text-align: center">
                                 <th>No. Urut</th>
@@ -90,6 +103,8 @@
                             @endforeach
                             </tbody>
                         </table>
+
+                        <div class="float-right pagination">{{ $labels->withQueryString()->links() }}</div>
                     </div>
                 </div>
                 <!-- /.card -->

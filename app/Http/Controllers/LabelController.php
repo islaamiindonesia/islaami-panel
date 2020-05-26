@@ -14,14 +14,32 @@ class LabelController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     * @param $categoryId
+     * @param $subcategoryId
      * @return Factory|View
      */
-    public function index($categoryId, $subcategoryId)
+    public function index(Request $request, $categoryId, $subcategoryId)
     {
-        $subcategory = Subcategory::find($subcategoryId);
-        $labels = Label::where('subcategory_id', $subcategoryId)->orderBy('number')->get();
+        $query = null; // search query
 
-        return view('label.index', ['labels' => $labels, 'categoryID' => $categoryId, 'subcategoryID' => $subcategoryId, 'subcategory' => $subcategory, 'parent' => 'playmi', 'menu' => 'category']);
+        if ($request->has('query')) $query = $request->query('query');
+
+        $subcategory = Subcategory::find($subcategoryId);
+        $labels = Label::search($query)
+            ->where('subcategory_id', $subcategoryId)
+            ->orderBy('number')
+            ->paginate(10);
+
+        return view('label.index', [
+            'labels' => $labels,
+            'categoryID' => $categoryId,
+            'subcategoryID' => $subcategoryId,
+            'subcategory' => $subcategory,
+            'query' => $query,
+            'parent' => 'playmi',
+            'menu' => 'category'
+        ]);
     }
 
     /**

@@ -36,7 +36,7 @@ class VideoController extends Controller
             ])
             ->where('published_at', '<=', $now)
             ->where('drafted_at', null)
-            ->orderBy('published_at', 'desc')
+            ->orderBy('views', 'desc')
             ->paginate(10);
 
         $videoArray = array();

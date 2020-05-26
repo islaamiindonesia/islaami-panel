@@ -52,4 +52,10 @@ class Subcategory extends Model
     {
         return $this->belongsTo('App\Category');
     }
+
+    public function scopeSearch($query, $searchQuery)
+    {
+        if ($searchQuery == null) return $query;
+        return $query->where('name', 'LIKE', "%{$searchQuery}%");
+    }
 }

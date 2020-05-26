@@ -57,4 +57,10 @@ class Label extends Model
     {
         return $this->belongsToMany('App\Video', 'video_labels');
     }
+
+    public function scopeSearch($query, $searchQuery)
+    {
+        if ($searchQuery == null) return $query;
+        return $query->where('name', 'LIKE', "%{$searchQuery}%");
+    }
 }

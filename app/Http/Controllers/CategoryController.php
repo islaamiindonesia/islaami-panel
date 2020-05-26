@@ -16,11 +16,20 @@ class CategoryController extends Controller
      * @param Request $request
      * @return Factory|View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::orderBy('number')->get();
+        $query = null; // search query
 
-        return view('category.index', ['categories' => $categories, 'parent' => 'playmi', 'menu' => 'category']);
+        if ($request->has('query')) $query = $request->query('query');
+
+        $categories = Category::search($query)->orderBy('number')->paginate(10);
+
+        return view('category.index', [
+            'categories' => $categories,
+            'query' => $query,
+            'parent' => 'playmi',
+            'menu' => 'category'
+        ]);
     }
 
     /**

@@ -13,7 +13,7 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="recommendationTable" class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped mb-1">
                             <thead>
                             <tr style="text-align: center">
                                 <th>Nama Pengguna</th>
@@ -28,11 +28,13 @@
                                     <td>{{ $recommendation->user->fullname }}</td>
                                     <td>{{ $recommendation->channel_name }}</td>
                                     <td><a href="{{ $recommendation->channel_url }}">Link Channel</a></td>
-                                    <td>{{ date('d F Y', strtotime($recommendation->created_at)) }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($recommendation->created_at)) }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
+
+                        <div class="float-right pagination">{{ $recommendations->withQueryString()->links() }}</div>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -58,6 +60,12 @@
     <link rel="stylesheet" href="{{ asset("assets/dist/css/adminlte.min.css") }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <style>
+        td {
+            width: 25%;
+            max-width: 25%;
+        }
+    </style>
 @endprepend
 
 @push('scripts')

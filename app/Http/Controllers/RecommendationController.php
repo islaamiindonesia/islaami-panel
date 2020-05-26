@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Recommedation;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class RecommendationController extends Controller
@@ -16,8 +15,12 @@ class RecommendationController extends Controller
      */
     public function index()
     {
-        $recommendations = Recommedation::orderBy('created_at', 'desc')->get();
+        $recommendations = Recommedation::orderBy('created_at', 'desc')->paginate(10);
 
-        return view('recommendation.index', ['recommendations' => $recommendations, 'parent' => 'playmi', 'menu' => 'recommendation']);
+        return view('recommendation.index', [
+            'recommendations' => $recommendations,
+            'parent' => 'playmi',
+            'menu' => 'recommendation'
+        ]);
     }
 }
