@@ -121,7 +121,11 @@
                                             <div class="input-group-text"><i class="far fa-clock"></i></div>
                                         </div>
                                         <input id="timeField" name="publishedAt"
+                                               @if($video->is_published_now == true)
                                                disabled
+                                               @else
+                                               placeholder="{{ date("d/m/Y H:i", strtotime($published_at)) }}"
+                                               @endif
                                                type="text" class="form-control datetimepicker-input"
                                                value="{{ date("d/m/Y H:i", strtotime($published_at)) }}"
                                                data-target="#timepicker"/>
@@ -130,20 +134,14 @@
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <!-- if draft -->
-                                    @if(!$video->is_published)
-                                        <button type="submit" class="btn btn-primary" name="action" value="publish">
-                                            Terbitkan
-                                        </button>
-                                        <button type="submit" class="btn btn-link" name="action" value="draft"
-                                                data-toggle="tooltip" data-placement="top"
-                                                title="Video ini tidak akan dipublikasi">
-                                            Simpan Sebagai Draft
-                                        </button>
-                                        <!-- if publish -->
-                                    @else
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
-                                    @endif
+                                    <button type="submit" class="btn btn-primary" name="action" value="publish">
+                                        Terbitkan
+                                    </button>
+                                    <button type="submit" class="btn btn-link" name="action" value="draft"
+                                            data-toggle="tooltip" data-placement="top"
+                                            title="Video ini tidak akan dipublikasi">
+                                        Simpan Sebagai Draft
+                                    </button>
                                 </div>
                         </form>
                     </div>
@@ -273,6 +271,7 @@
                     if ($(this).is(':checked')) {
                         $('#timeField').attr('disabled', true);
                         $('#timeField').attr('required', false);
+                        $('#timeField').attr('placeholder', '');
                         $('#timeField').val('')
                     }
                 });
