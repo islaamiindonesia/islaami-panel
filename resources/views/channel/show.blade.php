@@ -231,7 +231,7 @@
                                     title: 'Berhasil',
                                     text: 'Video sudah tersimpan sebagai draft',
                                     preConfirm: (confirmed) => {
-                                        if (confirmed) window.location.href = route('admin.videos.all');
+                                        if (confirmed) window.location.href = route('admin.channels.show', {id: '{{ $channel->id }}'});
                                     }
                                 });
                             })
