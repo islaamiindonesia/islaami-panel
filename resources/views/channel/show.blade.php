@@ -75,7 +75,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <form role="form" action="{{ route('admin.channels.show', ['id'=>$channel->id]) }}" method="get">
+                            <form role="form" action="{{ route('admin.videos.all') }}" method="get">
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
@@ -86,16 +86,11 @@
                                     <div class="col-2">
                                         <!-- filter -->
                                         <div class="form-group">
-                                            <select class="form-control" name="filterBy">
-                                                @foreach(["published_at", "drafted_at"] as $col)
-                                                    <option @if($col == $filterBy) selected @endif value="{{ $col }}">
-                                                        @if($col == "published_at")
-                                                            Diunggah
-                                                        @else
-                                                            Draft
-                                                        @endif
-                                                    </option>
-                                                @endforeach
+                                            <select class="form-control" name="isPublished">
+                                                <option @if($isPublished == "true") selected @endif value="true">Diunggah
+                                                </option>
+                                                <option @if($isPublished == "false") selected @endif value="false">Draft
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -135,16 +130,10 @@
                                         <td style="width:300px; max-width: 300px">
                                             <img src="{{ $video->thumbnail }}" width="120">
                                             <br>
-                                            {{ $video->title }}
+                                            <a href="{{ route('admin.videos.show', ['id'=>$video->id]) }}">{{ $video->title }}</a>
                                         </td>
                                         <td>{{ $video->views()->count() }}x</td>
-                                        <td>
-                                            @if($video->published_at != null)
-                                                {{ date('d/m/Y', strtotime($video->published_at)) }}
-                                            @else
-                                                -
-                                            @endif
-                                        </td>
+                                        <td>{{ date('d/m/Y', strtotime($video->created_at)) }}</td>
                                         <td class="project-actions" style="text-align: center;">
                                             <a class="btn btn-primary btn-sm"
                                                href="{{ route('admin.videos.show', ['id' => $video->id]) }}">
@@ -156,7 +145,14 @@
                                                 <i class="fas fa-pencil-alt"></i>
                                                 Ubah
                                             </a>
-                                            <a class="btn btn-danger btn-sm swalDelete" data-id="{{ $video->id  }}"
+                                            @if($video->is_published)
+                                                <a class="btn btn-secondary btn-sm swalDraft" data-id="{{ $video->id }}"
+                                                   href="#">
+                                                    <i class="fas fa-edit"></i>
+                                                    Draft
+                                                </a>
+                                            @endif
+                                            <a class="btn btn-danger btn-sm swalDelete" data-id="{{ $video->id }}"
                                                href="#">
                                                 <i class="fas fa-trash"></i>
                                                 Hapus
@@ -218,6 +214,32 @@
     <!-- page script -->
     <script>
         // SweetAlert
+        $('.swalDraft').on('click', function () {
+            Swal.fire({
+                icon: 'question',
+                title: 'Apakah Anda yakin ?',
+                text: 'Video ini tidak akan dipublikasi',
+                confirmButtonText: 'Yakin',
+                cancelButtonText: 'Batal',
+                showCancelButton: true,
+                preConfirm: (confirmed) => {
+                    if (confirmed) {
+                        axios.post(route('admin.videos.draft', {id: $(this).data("id")}).url())
+                            .then(() => {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Berhasil',
+                                    text: 'Video sudah tersimpan sebagai draft',
+                                    preConfirm: (confirmed) => {
+                                        if (confirmed) window.location.href = route('admin.videos.all');
+                                    }
+                                });
+                            })
+                    }
+                },
+            })
+        });
+
         $('.swalDelete').click(function () {
             Swal.fire({
                 icon: 'question',

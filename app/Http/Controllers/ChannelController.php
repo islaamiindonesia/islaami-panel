@@ -95,27 +95,23 @@ class ChannelController extends Controller
         $channel = Channel::find($id);
         $createdAt = Carbon::parse($channel->created_at);
 
-        $filterBy = "published_at"; // column to sort
+        $isPublished = "true"; // column to sort
         $sortBy = "created_at"; // column to sort
         $query = null; // search query
 
-        if ($request->has('filterBy')) $filterBy = $request->query('filterBy');
+        if ($request->has('isPublished')) $isPublished = $request->query('isPublished');
         if ($request->has('sortBy')) $sortBy = $request->query('sortBy');
         if ($request->has('query')) $query = $request->query('query');
 
         $now = Carbon::now()->toDateTimeString();
 
-        $result = Video::search($query, $filterBy)
-            ->withCount('views as views')
-            ->where('channel_id', $id)
-            ->orderBy($sortBy, 'desc')
-            ->paginate(10);
+        $result = Video::search($query, $isPublished)->withCount('views as views')->where('channel_id', $id)->orderBy($sortBy, 'desc')->paginate(10);
 
         return view('channel.show', [
             'channel' => $channel,
             'videos' => $result,
             'now' => $now,
-            'filterBy' => $filterBy,
+            'isPublished' => $isPublished,
             'sortBy' => $sortBy,
             'query' => $query,
             'createdAt' => $createdAt,
