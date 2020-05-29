@@ -135,7 +135,7 @@
 
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary" name="action" value="publish">
-                                        Terbitkan
+                                        Unggah & Terbitkan
                                     </button>
                                     <button type="submit" class="btn btn-link" name="action" value="draft"
                                             data-toggle="tooltip" data-placement="top"
