@@ -223,7 +223,6 @@
                         clear: 'fas fa-trash',
                         close: 'far fa-times'
                     },
-                minDate: moment(),
             }
         );
 

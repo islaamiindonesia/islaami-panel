@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VideoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VideoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/channel/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/channel/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/recommendation/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/recommendation/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/report/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/report/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/video/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/video/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/video/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/video/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/video/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/video/edit.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -317,7 +312,8 @@
       <workItem from="1590661521959" duration="38000" />
       <workItem from="1590665150864" duration="1529000" />
       <workItem from="1590672122007" duration="2946000" />
-      <workItem from="1590710279861" duration="5371000" />
+      <workItem from="1590710279861" duration="5870000" />
+      <workItem from="1590721866692" duration="452000" />
     </task>
     <servers />
   </component>
@@ -391,11 +387,11 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="584" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1587387869042" />
-    <state x="317" y="233" key="com.intellij.ide.util.TipDialog" timestamp="1590710544048">
+    <state x="317" y="233" key="com.intellij.ide.util.TipDialog" timestamp="1590725117912">
       <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="317" y="230" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1590405291662" />
-    <state x="317" y="233" key="com.intellij.ide.util.TipDialog/0.23.1280.732@0.23.1280.732" timestamp="1590710544048" />
+    <state x="317" y="233" key="com.intellij.ide.util.TipDialog/0.23.1280.732@0.23.1280.732" timestamp="1590725117912" />
     <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.23.1280.734@0.23.1280.734" timestamp="1589000208558" />
     <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587197991282">
       <screen x="0" y="0" width="1280" height="800" />
@@ -409,11 +405,11 @@
       <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="305" y="174" key="run.anything.popup/0.23.1280.732@0.23.1280.732" timestamp="1590468842960" />
-    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup" timestamp="1590716640460">
+    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup" timestamp="1590729810677">
       <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="305" y="63" width="670" height="411" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1590149239263" />
-    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup/0.23.1280.732@0.23.1280.732" timestamp="1590716640460" />
+    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup/0.23.1280.732@0.23.1280.732" timestamp="1590729810677" />
     <state x="305" y="63" width="670" height="158" key="search.everywhere.popup/0.23.1280.734@0.23.1280.734" timestamp="1588037942591" />
   </component>
 </project>
