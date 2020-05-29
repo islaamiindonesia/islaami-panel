@@ -30,13 +30,11 @@
                                     <b>Ditonton</b> <a class="float-right">{{ $video->views->count() }}x</a>
                                 </li>
                                 <li class="list-group-item">
-                                    @if($video->drafted_at != null)
-                                        <b>Draft Pada</b> <a
-                                            class="float-right">{{ date('d/m/Y', strtotime($video->drafted_at)) }}</a>
-                                    @else
-                                        <b>Diunggah Pada</b> <a
-                                            class="float-right">{{ date('d/m/Y', strtotime($video->published_at)) }}</a>
-                                    @endif
+                                    <b>Waktu Upload</b> <a
+                                        class="float-right">{{ date('d/m/Y', strtotime($video->created_at)) }}</a>
+
+                                    <b>Waktu Publish</b> <a
+                                        class="float-right">{{ date('d/m/Y', strtotime($video->published_at)) }}</a>
                                 </li>
                             </ul>
                         </div>

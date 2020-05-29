@@ -101,7 +101,7 @@
                                                 @foreach(["created_at", "views"] as $col)
                                                     <option @if($col == $sortBy) selected @endif value="{{ $col }}">
                                                         @if($col == "created_at")
-                                                            Dibuat Terbaru
+                                                            Diunggah Terkini
                                                         @else
                                                             Ditonton Terbanyak
                                                         @endif
@@ -120,7 +120,7 @@
                                 <tr style="text-align: center">
                                     <th>Judul Video</th>
                                     <th>Ditonton</th>
-                                    <th>Diunggah Pada</th>
+                                    <th>Waktu Upload</th>
                                     <th>Aksi</th>
                                 </tr>
                                 </thead>
