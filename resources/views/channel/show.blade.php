@@ -75,7 +75,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <form role="form" action="{{ route('admin.videos.all') }}" method="get">
+                            <form role="form" action="{{ route('admin.channel.show', ['id'=>$channel->id]) }}" method="get">
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
