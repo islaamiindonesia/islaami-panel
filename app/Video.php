@@ -13,8 +13,8 @@ class Video extends Model
      */
     protected $fillable = [
         'title', 'video_id', 'url', 'thumbnail', 'description',
-        'published_at', 'is_published', 'is_published_now', 'channel_id',
-        'category_id', 'subcategory_id',
+        'published_at', 'is_published', 'is_published_now', 'is_upload_shown',
+        'channel_id', 'category_id', 'subcategory_id',
     ];
 
     /**
@@ -37,6 +37,7 @@ class Video extends Model
         'updated_at' => 'datetime',
         'is_published' => 'boolean',
         'is_published_now' => 'boolean',
+        'is_upload_shown' => 'boolean',
     ];
 
     /* RELATIONSHIP */

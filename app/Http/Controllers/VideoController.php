@@ -86,6 +86,12 @@ class VideoController extends Controller
             $video->published_at = Carbon::createFromFormat('d/m/Y H:i', $request->publishedAt);
         }
 
+        if ($request->showUpload == "on") {
+            $video->is_upload_shown = true;
+        } else {
+            $video->is_upload_shown = false;
+        }
+
         $video->title = $request->title;
         $video->video_id = $videoID;
         $video->url = $request->url;
@@ -199,6 +205,12 @@ class VideoController extends Controller
             if ($request->publishedAt != null) {
                 $video->published_at = Carbon::createFromFormat('d/m/Y H:i', $request->publishedAt);
             }
+        }
+
+        if ($request->showUpload == "on") {
+            $video->is_upload_shown = true;
+        } else {
+            $video->is_upload_shown = false;
         }
 
         $video->title = $request->title;

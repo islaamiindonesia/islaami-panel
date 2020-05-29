@@ -23,9 +23,10 @@ class CreateVideosTable extends Migration
             $table->unsignedBigInteger('channel_id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('subcategory_id')->nullable();
+            $table->timestamp('published_at')->nullable();
             $table->boolean('is_published');
             $table->boolean('is_published_now');
-            $table->timestamp('published_at')->nullable();
+            $table->boolean('is_upload_shown')->default(true);
             $table->timestamps();
 
             $table->foreign('channel_id')->references('id')->on('channels')->cascadeOnDelete();

@@ -93,8 +93,14 @@
                                                data-target="#timepicker" data-toggle="datetimepicker"/>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <div class="icheck-material-blue">
+                                        <input type="checkbox" id="show" name="showUpload" />
+                                        <label for="show">Tampilkan Waktu Unggah</label>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- /.card-body -->
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary" name="action" value="publish">Unggah & Terbitkan

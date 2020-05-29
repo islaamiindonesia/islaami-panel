@@ -130,8 +130,14 @@
                                                value="{{ date("d/m/Y H:i", strtotime($published_at)) }}"
                                                data-target="#timepicker"/>
                                     </div>
+
+                                    <div class="form-group">
+                                        <div class="icheck-material-blue">
+                                            <input type="checkbox" id="show" name="showUpload" @if($video->is_upload_shown) checked @endif />
+                                            <label for="show">Tampilkan Waktu Unggah</label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- /.card-body -->
 
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary" name="action" value="publish">
