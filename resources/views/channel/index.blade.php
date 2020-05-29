@@ -94,11 +94,6 @@
                                             <i class="fas fa-pencil-alt"></i>
                                             Ubah
                                         </a>
-                                        <a class="btn btn-danger btn-sm swalDelete" data-id="{{ $channel->id  }}"
-                                           href="#">
-                                            <i class="fas fa-trash"></i>
-                                            Hapus
-                                        </a>
                                         @if($channel->suspended_at)
                                             <a class="btn btn-warning btn-sm swalActivate" data-id="{{ $channel->id  }}"
                                                href="#">
@@ -112,6 +107,11 @@
                                                 Tangguhkan
                                             </a>
                                         @endif
+                                        <a class="btn btn-danger btn-sm swalDelete" data-id="{{ $channel->id  }}"
+                                           href="#">
+                                            <i class="fas fa-trash"></i>
+                                            Hapus
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Article.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ArticleCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ArticleCategory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/VideoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/VideoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ArticleCategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ArticleCategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InsightController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InsightController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VideoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VideoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Insight.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Insight.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Report.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Report.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Video.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Video.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_07_091825_create_videos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_07_091825_create_videos_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/article/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/article/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/article/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/article/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/article_category/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/article_category/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/insight/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/insight/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/report/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/report/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/video/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/video/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/video/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/video/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/video/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/video/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/video/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/video/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -333,7 +308,7 @@
       <workItem from="1590661521959" duration="38000" />
       <workItem from="1590665150864" duration="1529000" />
       <workItem from="1590672122007" duration="2946000" />
-      <workItem from="1590710279861" duration="2700000" />
+      <workItem from="1590710279861" duration="2971000" />
     </task>
     <servers />
   </component>
