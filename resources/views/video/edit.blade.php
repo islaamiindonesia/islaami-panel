@@ -33,7 +33,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Deskripsi</label>
+                                    <label>Deskripsi <small>(opsional)</small></label>
                                     <textarea name="description" class="textarea" placeholder="Place some text here"
                                               style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
                                         {{$video->description}}
@@ -102,58 +102,49 @@
 
 
                                 <!-- time Picker -->
-                                @if($video->published_at)
-                                    @php($published_at = \Carbon\Carbon::make($video->published_at)->toDateString())
-                                @endif
-                                @php($now = \Carbon\Carbon::now()->toDateString())
+                                @php($published_at = \Carbon\Carbon::make($video->published_at)->toDateTimeString())
                                 <div class="form-group">
-                                    <label>Waktu Unggah</label>
+                                    <label>Waktu Publikasi</label>
                                     <div class="icheck-material-blue">
-                                        <input type="radio" id="now" name="uploadNow" value="on"
-                                               @if($video->published_at != null) checked disabled @endif
-                                               @if($video->published_at == null && $video->drafted_at != null) checked @endif
-                                        />
-                                        <label for="now">Hari Ini</label>
+                                        <input type="radio" id="now" name="publishNow" value="on"
+                                               @if($video->is_published_now == true) checked @endif />
+                                        <label for="now">Segera</label>
                                     </div>
                                     <div class="icheck-material-blue">
-                                        <input type="radio" id="later" name="uploadNow" value="off"
-                                               @if($video->published_at != null) disabled @endif
-                                               @if($video->published_at != null && $published_at > $now) checked @endif
-                                        />
-                                        <label for="later">Nanti</label>
+                                        <input type="radio" id="later" name="publishNow" value="off"
+                                               @if($video->is_published_now == false) checked @endif />
+                                        <label for="later">Atur Jadwal</label>
                                     </div>
                                     <div class="input-group date" id="timepicker" data-target-input="nearest">
                                         <div class="input-group-append" data-target="#timepicker"
                                              data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="far fa-clock"></i></div>
                                         </div>
-                                        <input id="timeField" name="published"
-                                               @if($video->published_at != null || $video->drafted_at != null) disabled @endif
+                                        <input id="timeField" name="publishedAt"
+                                               disabled
                                                type="text" class="form-control datetimepicker-input"
-                                               data-target="#timepicker"
-                                               placeholder="{{ date('d/m/Y', strtotime($now)) }}"
-                                        />
+                                               value="{{ date("d/m/Y H:i", strtotime($published_at)) }}"
+                                               data-target="#timepicker"/>
                                     </div>
-                                    <!-- /.input group -->
                                 </div>
-                                <!-- /.form group -->
-                            </div>
-                            <!-- /.card-body -->
+                                <!-- /.card-body -->
 
-                            <div class="card-footer">
-                                <!-- if draft -->
-                                @if($video->drafted_at != null)
-                                    <button type="submit" class="btn btn-primary" name="action" value="publish">
-                                        Terbitkan
-                                    </button>
-                                    <button type="submit" class="btn btn-link" name="action" value="draft">
-                                        Simpan Sebagai Draft
-                                    </button>
-                                    <!-- if publish -->
-                                @else
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                @endif
-                            </div>
+                                <div class="card-footer">
+                                    <!-- if draft -->
+                                    @if(!$video->is_published)
+                                        <button type="submit" class="btn btn-primary" name="action" value="publish">
+                                            Terbitkan
+                                        </button>
+                                        <button type="submit" class="btn btn-link" name="action" value="draft"
+                                                data-toggle="tooltip" data-placement="top"
+                                                title="Video ini tidak akan dipublikasi">
+                                            Simpan Sebagai Draft
+                                        </button>
+                                        <!-- if publish -->
+                                    @else
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    @endif
+                                </div>
                         </form>
                     </div>
                     <!-- /.card -->
@@ -206,6 +197,9 @@
     <script src="{{ asset("assets/plugins/summernote/summernote-bs4.min.js") }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            // tooltip
+            $('[data-toggle="tooltip"]').tooltip();
+
             //Initialize Select2 Elements
             $('.select2').select2();
 
@@ -256,16 +250,29 @@
             });
 
             //Timepicker
-            $('#timepicker').datetimepicker({
-                format: 'DD/MM/YYYY',
-                defaultDate: '{{ $video->published_at }}',
-            });
+            $('#timepicker').datetimepicker(
+                {
+                    format: 'DD/MM/YYYY HH:mm',
+                    icons:
+                        {
+                            time: 'fas fa-clock',
+                            date: 'fas fa-calendar',
+                            up: 'fas fa-arrow-up',
+                            down: 'fas fa-arrow-down',
+                            previous: 'fas fa-arrow-circle-left',
+                            next: 'fas fa-arrow-circle-right',
+                            today: 'far fa-calendar-check-o',
+                            clear: 'fas fa-trash',
+                            close: 'far fa-times'
+                        },
+                    minDate: moment(),
+                });
 
             $('#now').change(
                 function () {
                     if ($(this).is(':checked')) {
-                        $('#timeField').attr('disabled', true)
-                        $('#timeField').attr('required', false)
+                        $('#timeField').attr('disabled', true);
+                        $('#timeField').attr('required', false);
                         $('#timeField').val('')
                     }
                 });
@@ -273,8 +280,9 @@
             $('#later').change(
                 function () {
                     if ($(this).is(':checked')) {
-                        $('#timeField').attr('disabled', false)
-                        $('#timeField').attr('required', true)
+                        $('#timeField').attr('disabled', false);
+                        $('#timeField').attr('required', true);
+                        $('#timeField').val('{{ date("d/m/Y H:i", strtotime($published_at)) }}')
                     }
                 });
         });

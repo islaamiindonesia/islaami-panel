@@ -26,7 +26,7 @@
                                            placeholder="Masukkan judul" value="{{ old('title') }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Content</label>
+                                    <label>Isi Konten</label>
                                     <textarea name="articleContent" class="textarea" required
                                               placeholder="Masukkan isi konten"
                                               style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
@@ -34,8 +34,6 @@
                                     </textarea>
                                 </div>
                             </div>
-                            <!-- /.card-body -->
-
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>

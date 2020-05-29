@@ -14,11 +14,22 @@ class ArticleCategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return Factory|View
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('article_category.index', ['admin' => Auth::user(), 'categories' => ArticleCategory::all(), 'menu' => 'article']);
+        $query = null; // search query
+
+        if ($request->has('query')) $query = $request->query('query');
+
+        $result = ArticleCategory::search($query)->paginate(10);
+
+        return view('article_category.index', [
+            'admin' => Auth::user(),
+            'categories' => $result,
+            'query' => $query,
+            'menu' => 'article']);
     }
 
     /**

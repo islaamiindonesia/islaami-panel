@@ -4,7 +4,7 @@
 
 @section('contentHeaderExtra')
     <a href="{{ route('admin.articleCategories.create')  }}" type="button" class="btn btn-primary float-right">Buat
-        Kategori</a>
+        Kategori Artikel</a>
 @endsection
 
 @section('mainContent')
@@ -16,7 +16,22 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="categoryTable" class="table table-bordered table-striped">
+                        <form role="form"
+                              action="{{ route('admin.articleCategories.all') }}"
+                              method="get">
+                            <div class="row">
+                                <div class="col-10">
+                                    <div class="form-group">
+                                        <input name="query" type="search" class="form-control"
+                                               placeholder="Cari Kategori" value="{{ $query }}">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button type="submit" class="btn btn-block btn-primary">Cari</button>
+                                </div>
+                            </div>
+                        </form>
+                        <table class="table table-bordered table-striped mb-1">
                             <thead>
                             <tr style="text-align: center">
                                 <th>Nama Kategori</th>
@@ -85,6 +100,8 @@
                             @endforeach
                             </tbody>
                         </table>
+
+                        <div class="float-right pagination">{{ $categories->withQueryString()->links() }}</div>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -112,6 +129,12 @@
     <link rel="stylesheet" href="{{ asset("assets/dist/css/adminlte.min.css") }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <style>
+        td {
+            width: 50%;
+            max-width: 50%;
+        }
+    </style>
 @endprepend
 
 @push('scripts')
@@ -123,35 +146,12 @@
     <script src="{{ asset("assets/plugins/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
     <!-- SweetAlert2 -->
     <script src="{{ asset("assets/plugins/sweetalert2/sweetalert2.min.js") }}"></script>
-    <!-- DataTables -->
-    <script src="{{ asset("assets/plugins/datatables/jquery.dataTables.min.js") }}"></script>
-    <script src="{{ asset("assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js") }}"></script>
-    <script src="{{ asset("assets/plugins/datatables-responsive/js/dataTables.responsive.min.js") }}"></script>
-    <script src="{{ asset("assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js") }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset("assets/dist/js/adminlte.min.js") }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset("assets/dist/js/demo.js") }}"></script>
     <!-- page script -->
     <script>
-        // DataTable
-        $(function () {
-            $("#categoryTable").DataTable({
-                "autoWidth": true,
-                "responsive": true,
-                "columnDefs": [
-                    {
-                        "targets":[0,1],
-                        "width":200
-                    },
-                    {
-                        "targets": [1],
-                        "orderable": false,
-                    }
-                ],
-            });
-        });
-
         // SweetAlert
         $('.swalDelete').click(function () {
             Swal.fire({

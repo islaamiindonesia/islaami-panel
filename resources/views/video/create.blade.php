@@ -29,7 +29,8 @@
 
                                 <div class="form-group">
                                     <label>Deskripsi <small>(opsional)</small></label>
-                                    <textarea name="description" class="textarea" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                    <textarea name="description" class="textarea"
+                                              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                 </div>
 
                                 <div class="form-group">
@@ -44,6 +45,7 @@
 
                                 <div class="form-group">
                                     <label>Saluran</label>
+
                                     <select id="category" name="category" required class="form-control select2"
                                             style="width: 100%;">
                                         <option value="">Pilih Saluran</option>
@@ -71,30 +73,36 @@
 
                                 <!-- time Picker -->
                                 <div class="form-group">
-                                    <label>Waktu Unggah</label>
+                                    <label>Waktu Publikasi</label>
                                     <div class="icheck-material-blue">
-                                        <input type="radio" id="now" name="uploadNow" value="on" checked/>
-                                        <label for="now">Hari Ini</label>
+                                        <input type="radio" id="now" name="publishNow" value="on" checked/>
+                                        <label for="now">Segera</label>
                                     </div>
                                     <div class="icheck-material-blue">
-                                        <input type="radio" id="later" name="uploadNow" value="off"/>
-                                        <label for="later">Nanti</label>
+                                        <input type="radio" id="later" name="publishNow" value="off"/>
+                                        <label for="later">Atur Jadwal</label>
                                     </div>
                                     <div class="input-group date" id="timepicker" data-target-input="nearest">
-                                        <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                                        <div class="input-group-append" data-target="#timepicker"
+                                             data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="far fa-clock"></i></div>
                                         </div>
-                                        <input id="timeField" name="published" placeholder="{{ date('d/m/Y', strtotime(\Carbon\Carbon::now()->toDateString()))}}" disabled type="text" class="form-control datetimepicker-input" data-target="#timepicker"/>
+                                        <input id="timeField" name="publishedAt"
+                                               disabled
+                                               type="text" class="form-control"
+                                               data-target="#timepicker" data-toggle="datetimepicker"/>
                                     </div>
-                                    <!-- /.input group -->
                                 </div>
-                                <!-- /.form group -->
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary" name="action" value="publish">Terbitkan</button>
-                                <button type="submit" class="btn btn-link" name="action" value="draft">Simpan Sebagai Draft</button>
+                                <button type="submit" class="btn btn-primary" name="action" value="publish">Terbitkan
+                                </button>
+                                <button type="submit" class="btn btn-link" name="action" value="draft"
+                                        data-toggle="tooltip" data-placement="top" title="Video ini tidak akan dipublikasi">
+                                Simpan Sebagai Draft
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -147,76 +155,93 @@
     <!-- Summernote -->
     <script src="{{ asset("assets/plugins/summernote/summernote-bs4.min.js") }}"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            //Initialize Select2 Elements
-            $('.select2').select2();
+        // tooltip
+        $('[data-toggle="tooltip"]').tooltip()
 
-            // Summernote
-            $('.textarea').summernote({
-                height: 300
-            });
+        //Initialize Select2 Elements
+        $('.select2').select2();
 
-            $('#category').on('change', function () {
-                let selectedCategoryID = $(this).find(':selected').attr('value');
-                $('#subcategory').empty();
-                $('#label').empty();
-                $('#subcategory').append('<option value="">Pilih Kategori </option>');
-                $('#label').append('<option value="">Pilih Label</option>');
-
-                if (selectedCategoryID) {
-                    $.ajax({
-                        url: route('allSubcategories', {categoryId: selectedCategoryID}),
-                        success: function (response) {
-                            for (let i = 0; i < response.data.length; i++) {
-                                let id = response.data[i].id;
-                                let name = response.data[i].name;
-                                $('#subcategory').append('<option value="' + id + '">' + name + '</option>');
-                            }
-                        }
-                    })
-                }
-            });
-
-            $('#subcategory').on('change', function () {
-                let selectedCategoryID = $(this).find(':selected').attr('value');
-                let selectedSubcategoryID = $(this).find(':selected').attr('value');
-                $('#label').empty();
-                $('#label').append('<option value="">Pilih Label</option>');
-
-                if (selectedSubcategoryID) {
-                    $.ajax({
-                        url: route('allLabels', {categoryId: selectedCategoryID, subcategoryId: selectedSubcategoryID}),
-                        success: function (response) {
-                            for (let i = 0; i < response.data.length; i++) {
-                                let id = response.data[i].id;
-                                let name = response.data[i].name;
-                                $('#label').append('<option value="' + id + '">' + name + '</option>');
-                            }
-                        }
-                    })
-                }
-            });
-
-            //Timepicker
-            $('#timepicker').datetimepicker({
-                format: 'L'
-            });
-
-            $('#now').change(
-                function(){
-                    if ($(this).is(':checked')) {
-                        $('#timeField').attr('disabled', true)
-                        $('#timeField').attr('required', false)
-                    }
-                });
-
-            $('#later').change(
-                function(){
-                    if ($(this).is(':checked')) {
-                        $('#timeField').attr('disabled', false)
-                        $('#timeField').attr('required', true)
-                    }
-                });
+        // Summernote
+        $('.textarea').summernote({
+            height: 300
         });
+
+        $('#category').on('change', function () {
+            let selectedCategoryID = $(this).find(':selected').attr('value');
+            $('#subcategory').empty();
+            $('#label').empty();
+            $('#subcategory').append('<option value="">Pilih Kategori </option>');
+            $('#label').append('<option value="">Pilih Label</option>');
+
+            if (selectedCategoryID) {
+                $.ajax({
+                    url: route('allSubcategories', {categoryId: selectedCategoryID}),
+                    success: function (response) {
+                        for (let i = 0; i < response.data.length; i++) {
+                            let id = response.data[i].id;
+                            let name = response.data[i].name;
+                            $('#subcategory').append('<option value="' + id + '">' + name + '</option>');
+                        }
+                    }
+                })
+            }
+        });
+
+        $('#subcategory').on('change', function () {
+            let selectedCategoryID = $(this).find(':selected').attr('value');
+            let selectedSubcategoryID = $(this).find(':selected').attr('value');
+            $('#label').empty();
+            $('#label').append('<option value="">Pilih Label</option>');
+
+            if (selectedSubcategoryID) {
+                $.ajax({
+                    url: route('allLabels', {categoryId: selectedCategoryID, subcategoryId: selectedSubcategoryID}),
+                    success: function (response) {
+                        for (let i = 0; i < response.data.length; i++) {
+                            let id = response.data[i].id;
+                            let name = response.data[i].name;
+                            $('#label').append('<option value="' + id + '">' + name + '</option>');
+                        }
+                    }
+                })
+            }
+        });
+
+        //Timepicker
+        $('#timepicker').datetimepicker(
+            {
+                format: 'DD/MM/YYYY HH:mm',
+                icons:
+                    {
+                        time: 'fas fa-clock',
+                        date: 'fas fa-calendar',
+                        up: 'fas fa-arrow-up',
+                        down: 'fas fa-arrow-down',
+                        previous: 'fas fa-arrow-circle-left',
+                        next: 'fas fa-arrow-circle-right',
+                        today: 'far fa-calendar-check-o',
+                        clear: 'fas fa-trash',
+                        close: 'far fa-times'
+                    },
+                minDate: moment(),
+            }
+        );
+
+
+        $('#now').change(
+            function () {
+                if ($(this).is(':checked')) {
+                    $('#timeField').attr('disabled', true);
+                    $('#timeField').attr('required', false)
+                }
+            });
+
+        $('#later').change(
+            function () {
+                if ($(this).is(':checked')) {
+                    $('#timeField').attr('disabled', false);
+                    $('#timeField').attr('required', true)
+                }
+            });
     </script>
 @endpush

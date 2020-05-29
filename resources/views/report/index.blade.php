@@ -14,16 +14,30 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <!-- select -->
-                        <div class="form-group">
-                            <label>Tampilkan</label>
-                            <select class="form-control" id="filterDropdown">
-                                <option value="unsolved" @if($selected == "unsolved") selected @endif>Belum Selesai
-                                </option>
-                                <option value="solved" @if($selected == "solved") selected @endif>Selesai</option>
-                            </select>
-                        </div>
-                        <table id="reportTable" class="table table-bordered table-striped">
+                        <form role="form" action="{{ route('admin.reports.all') }}" method="get">
+                            <div class="row">
+                                <div class="col-2">
+                                    <!-- filter -->
+                                    <div class="form-group">
+                                        <select class="form-control" name="filterBy">
+                                            @foreach(["solved", "unsolved"] as $col)
+                                                <option @if($col == $filterBy) selected @endif value="{{ $col }}">
+                                                    @if($col == "solved")
+                                                        Selesai
+                                                    @else
+                                                        Belum Selesai
+                                                    @endif
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button type="submit" class="btn btn-block btn-primary">Tampilkan</button>
+                                </div>
+                            </div>
+                        </form>
+                        <table class="table table-bordered table-striped mb-1">
                             <thead>
                             <tr style="text-align: center">
                                 <th>Nama</th>
@@ -36,7 +50,7 @@
                             @foreach($reports as $report)
                                 <tr style="text-align: center">
                                     <td>{{ $report->user->fullname }}</td>
-                                    <td>{{ date('d F Y', strtotime($report->created_at)) }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($report->created_at)) }}</td>
                                     <td>
                                         @if($report->is_solved)
                                             Selesai
@@ -72,6 +86,8 @@
                             @endforeach
                             </tbody>
                         </table>
+
+                        <div class="float-right pagination">{{ $reports->withQueryString()->links() }}</div>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -92,9 +108,6 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="{{ asset("assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css") }}">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset("assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css") }}">
-    <link rel="stylesheet" href="{{ asset("assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css") }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset("assets/dist/css/adminlte.min.css") }}">
     <!-- Google Font: Source Sans Pro -->
@@ -110,40 +123,12 @@
     <script src="{{ asset("assets/plugins/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
     <!-- SweetAlert2 -->
     <script src="{{ asset("assets/plugins/sweetalert2/sweetalert2.min.js") }}"></script>
-    <!-- DataTables -->
-    <script src="{{ asset("assets/plugins/datatables/jquery.dataTables.min.js") }}"></script>
-    <script src="{{ asset("assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js") }}"></script>
-    <script src="{{ asset("assets/plugins/datatables-responsive/js/dataTables.responsive.min.js") }}"></script>
-    <script src="{{ asset("assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js") }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset("assets/dist/js/adminlte.min.js") }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset("assets/dist/js/demo.js") }}"></script>
     <!-- page script -->
     <script>
-        // DataTable
-        $(function () {
-            $("#reportTable").DataTable({
-                "autoWidth": true,
-                "responsive": true,
-                "order": [[ 1, "asc" ]],
-                "columnDefs": [
-                    {
-                        "targets": [0],
-                        "width": 300,
-                    },
-                    {
-                        "targets": [3],
-                        "orderable": false,
-                        "width": 300,
-                    }
-                ],
-            });
-            $('#filterDropdown').on('change', function () {
-                window.location.href = route('admin.reports.all', {filter: $(this).val()});
-            });
-        });
-
         // SweetAlert
         $('.swalUpdateStatus').click(function () {
             Swal.fire({

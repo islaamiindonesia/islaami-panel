@@ -15,7 +15,7 @@ class InsightController extends Controller
      */
     public function index()
     {
-        return view('insight.index', ['insights' => Insight::all(), 'menu' => 'insight']);
+        return view('insight.index', ['insights' => Insight::paginate(10), 'menu' => 'insight']);
     }
 
     /**

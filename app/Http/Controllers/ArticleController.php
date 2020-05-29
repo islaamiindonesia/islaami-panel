@@ -8,7 +8,6 @@ use App\ArticleCategory;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\View\View;
 
 class ArticleController extends Controller
@@ -16,14 +15,25 @@ class ArticleController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @param $categoryId
      * @return Factory|View
      */
-    public function index($categoryId)
+    public function index(Request $request, $categoryId)
     {
+        $query = null; // search query
+
+        if ($request->has('query')) $query = $request->query('query');
+
         $category = ArticleCategory::find($categoryId);
+
+        $result = Article::search($query)
+            ->where('category_id', $categoryId)
+            ->paginate(10);
+
         return view('article.index', [
-            'articles' => Article::where('category_id', $categoryId)->get(),
+            'articles' => $result,
+            'query' => $query,
             'categoryName' => $category->name,
             'categoryID' => $category->id,
             'menu' => 'article'

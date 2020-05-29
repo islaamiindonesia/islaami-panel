@@ -3,7 +3,7 @@
 
 @section('contentHeaderExtra')
     <a href="{{ route('admin.videos.create')  }}" type="button" class="btn btn-primary float-right">Unggah Video</a>
-{{--    <a href="{{ route('admin.videos.draft')  }}" type="button" class="btn btn-primary float-right mr-1">Lihat Draf</a>--}}
+    {{--    <a href="{{ route('admin.videos.draft')  }}" type="button" class="btn btn-primary float-right mr-1">Lihat Draf</a>--}}
 @endsection
 
 @section('mainContent')
@@ -25,16 +25,11 @@
                                 <div class="col-2">
                                     <!-- filter -->
                                     <div class="form-group">
-                                        <select class="form-control" name="filterBy">
-                                            @foreach(["published_at", "drafted_at"] as $col)
-                                                <option @if($col == $filterBy) selected @endif value="{{ $col }}">
-                                                    @if($col == "published_at")
-                                                        Diunggah
-                                                    @else
-                                                        Draft
-                                                    @endif
-                                                </option>
-                                            @endforeach
+                                        <select class="form-control" name="isPublished">
+                                            <option @if($isPublished == "true") selected @endif value="true">Diunggah
+                                            </option>
+                                            <option @if($isPublished == "false") selected @endif value="false">Draft
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -77,13 +72,7 @@
                                         <a href="{{ route('admin.videos.show', ['id'=>$video->id]) }}">{{ $video->title }}</a>
                                     </td>
                                     <td>{{ $video->views()->count() }}x</td>
-                                    <td>
-                                        @if($video->published_at != null)
-                                            {{ date('d/m/Y', strtotime($video->published_at)) }}
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
+                                    <td>{{ date('d/m/Y', strtotime($video->created_at)) }}</td>
                                     <td class="project-actions" style="text-align: center;">
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('admin.videos.show', ['id' => $video->id]) }}">
@@ -95,6 +84,13 @@
                                             <i class="fas fa-pencil-alt"></i>
                                             Ubah
                                         </a>
+                                        @if($video->is_published)
+                                            <a class="btn btn-secondary btn-sm swalDraft" data-id="{{ $video->id }}"
+                                               href="#">
+                                                <i class="fas fa-edit"></i>
+                                                Draft
+                                            </a>
+                                        @endif
                                         <a class="btn btn-danger btn-sm swalDelete" data-id="{{ $video->id }}"
                                            href="#">
                                             <i class="fas fa-trash"></i>
@@ -160,11 +156,37 @@
     <!-- page script -->
     <script>
         // SweetAlert
+        $('.swalDraft').on('click', function () {
+            Swal.fire({
+                icon: 'question',
+                title: 'Apakah Anda yakin ?',
+                text: 'Video ini tidak akan dipublikasi',
+                confirmButtonText: 'Yakin',
+                cancelButtonText: 'Batal',
+                showCancelButton: true,
+                preConfirm: (confirmed) => {
+                    if (confirmed) {
+                        axios.post(route('admin.videos.draft', {id: $(this).data("id")}).url())
+                            .then(() => {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Berhasil',
+                                    text: 'Video sudah tersimpan sebagai draft',
+                                    preConfirm: (confirmed) => {
+                                        if (confirmed) window.location.href = route('admin.videos.all');
+                                    }
+                                });
+                            })
+                    }
+                },
+            })
+        });
+
         $('.swalDelete').on('click', function () {
             Swal.fire({
                 icon: 'question',
                 title: 'Apakah Anda yakin ?',
-                text: 'Video ini tidak akan dapat dilihat kembali jika terhapus.',
+                text: 'Video ini akan dihapus',
                 confirmButtonText: 'Yakin',
                 cancelButtonText: 'Batal',
                 showCancelButton: true,
@@ -174,7 +196,7 @@
                             .then(() => {
                                 Swal.fire({
                                     icon: 'success',
-                                    title: 'Video Deleted',
+                                    title: 'Berhasil',
                                     text: 'Anda sudah menghapus video ini',
                                     preConfirm: (confirmed) => {
                                         if (confirmed) window.location.href = route('admin.videos.all');

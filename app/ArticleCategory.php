@@ -51,4 +51,10 @@ class ArticleCategory extends Model
     {
         return $this->hasMany('App\Article');
     }
+
+    public function scopeSearch($query, $searchQuery)
+    {
+        if ($searchQuery == null) return $query;
+        return $query->where('name', 'LIKE', "%{$searchQuery}%");
+    }
 }

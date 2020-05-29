@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Channel;
 use App\Report;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,20 +21,18 @@ class ReportController extends Controller
      */
     public function index(Request $request)
     {
-        $selected = "unsolved";
-        $filter = $request->query('filter');
-        if ($filter != null) {
-            if ($filter == "solved") {
-                $reports = Report::where('is_solved', true)->get();
-            } else {
-                $reports = Report::where('is_solved', false)->get();
-            }
-            $selected = $filter;
-        } else {
-            $reports = Report::where('is_solved', false)->get();
-        }
+        $filterBy = "unsolved";
 
-        return view('report.index', ['admin' => Auth::user(), 'reports' => $reports, 'selected' => $selected, 'menu' => 'report']);
+        if ($request->has('filterBy')) $filterBy = $request->query('filterBy');
+
+        $result = Report::search($filterBy)->paginate(10);
+
+        return view('report.index', [
+            'admin' => Auth::user(),
+            'reports' => $result,
+            'filterBy' => $filterBy,
+            'menu' => 'report'
+        ]);
     }
 
     /**

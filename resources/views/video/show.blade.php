@@ -89,13 +89,15 @@
 
                             <hr>
 
-                            <strong><i class="fas fa-file-alt mr-1"></i> Deskripsi</strong>
+                            @if($video->description != "<p><br></p>")
+                                <strong><i class="fas fa-file-alt mr-1"></i> Deskripsi</strong>
 
-                            <p class="text-muted">
-                                {!! $video->description !!}
-                            </p>
+                                <p class="text-muted">
+                                    {!! $video->description !!}
+                                </p>
 
-                            <hr>
+                                <hr>
+                            @endif
 
                             <strong><i class="fas fa-folder-open mr-1"></i> Saluran</strong>
 

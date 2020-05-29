@@ -50,4 +50,10 @@ class Article extends Model
     {
         return $this->belongsTo('App\ArticleCategory');
     }
+
+    public function scopeSearch($query, $searchQuery)
+    {
+        if ($searchQuery == null) return $query;
+        return $query->where('title', 'LIKE', "%{$searchQuery}%");
+    }
 }

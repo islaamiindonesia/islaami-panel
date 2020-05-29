@@ -23,22 +23,22 @@ class VideoController extends Controller
      */
     public function index(Request $request)
     {
-        $filterBy = "published_at"; // column to sort
+        $isPublished = "true"; // column to sort
         $sortBy = "created_at"; // column to sort
         $query = null; // search query
 
-        if ($request->has('filterBy')) $filterBy = $request->query('filterBy');
+        if ($request->has('isPublished')) $isPublished = $request->query('isPublished');
         if ($request->has('sortBy')) $sortBy = $request->query('sortBy');
         if ($request->has('query')) $query = $request->query('query');
 
         $now = Carbon::now()->toDateTimeString();
 
-        $result = Video::search($query, $filterBy)->withCount('views as views')->orderBy($sortBy, 'desc')->paginate(10);
+        $result = Video::search($query, $isPublished)->withCount('views as views')->orderBy($sortBy, 'desc')->paginate(10);
 
         return view('video.index', [
             'now' => $now,
             'videos' => $result,
-            'filterBy' => $filterBy,
+            'isPublished' => $isPublished,
             'sortBy' => $sortBy,
             'query' => $query,
             'parent' => 'playmi',
@@ -73,14 +73,17 @@ class VideoController extends Controller
         $video = new Video();
 
         if ($request->action == 'publish') {
-            $video->drafted_at = null;
-            if ($request->uploadNow == "on") {
-                $video->published_at = Carbon::now()->toDateTimeString();
-            } else {
-                $video->published_at = Carbon::make($request->published)->toDateTimeString();
-            }
-        } elseif ($request->action == 'draft') {
-            $video->drafted_at = Carbon::now()->toDateTimeString();
+            $video->is_published = true;
+        } else {
+            $video->is_published = false;
+        }
+
+        if ($request->publishNow != "off") {
+            $video->is_published_now = true;
+            $video->published_at = Carbon::now()->format('Y-m-d H:i');
+        } else {
+            $video->is_published_now = false;
+            $video->published_at = Carbon::createFromFormat('d/m/Y H:i', $request->publishedAt);
         }
 
         $video->title = $request->title;
@@ -183,14 +186,19 @@ class VideoController extends Controller
         $video = Video::find($id);
 
         if ($request->action == 'publish') {
-            $video->drafted_at = null;
-            if ($request->uploadNow == "on") {
-                $video->published_at = Carbon::now()->toDateTimeString();
-            } else {
-                $video->published_at = Carbon::make($request->published)->toDateTimeString();
+            $video->is_published = true;
+        } else {
+            $video->is_published = false;
+        }
+
+        if ($request->publishNow != "off") {
+            $video->is_published_now = true;
+            $video->published_at = Carbon::now()->format('Y-m-d H:i');
+        } else {
+            $video->is_published_now = false;
+            if ($request->publishedAt != null) {
+                $video->published_at = Carbon::createFromFormat('d/m/Y H:i', $request->publishedAt);
             }
-        } elseif ($request->action == 'draft') {
-            $video->drafted_at = Carbon::now()->toDateTimeString();
         }
 
         $video->title = $request->title;
@@ -202,6 +210,22 @@ class VideoController extends Controller
         $video->subcategory_id = $request->subcategory;
         $video->save();
         $video->labels()->sync($request->labels);
+
+        return redirect()->route('admin.videos.all');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function draft($id)
+    {
+        $video = Video::find($id);
+        $video->is_published = false;
+
+        $video->save();
 
         return redirect()->route('admin.videos.all');
     }

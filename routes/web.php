@@ -82,7 +82,6 @@ Route::group(['middleware' => ['auth']], function () {
             Route::prefix("videos")->name('videos.')->group(function () {
 
                 Route::get('', 'VideoController@index')->name('all');
-//                Route::get('draft', 'VideoController@indexDraft')->name('drafted');
 
                 Route::get('create', 'VideoController@create')->name('create');
 
@@ -95,6 +94,8 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('{id}/show', 'VideoController@show')->name('show');
 
                 Route::post('{id}/delete', 'VideoController@destroy')->name('delete');
+
+                Route::post('{id}/draft', 'VideoController@draft')->name('draft');
             });
 
             /* CHANNELS */

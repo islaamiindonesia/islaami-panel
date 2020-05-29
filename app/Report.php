@@ -52,4 +52,13 @@ class Report extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function scopeSearch($query, $filter)
+    {
+        if ($filter == "solved") {
+            return $query->where('is_solved', true);
+        } else {
+            return $query->where('is_solved', false);
+        }
+    }
 }

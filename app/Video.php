@@ -13,7 +13,8 @@ class Video extends Model
      */
     protected $fillable = [
         'title', 'video_id', 'url', 'thumbnail', 'description',
-        'published_at', 'drafted_at', 'channel_id', 'category_id', 'subcategory_id',
+        'published_at', 'is_published', 'is_published_now', 'channel_id',
+        'category_id', 'subcategory_id',
     ];
 
     /**
@@ -31,10 +32,11 @@ class Video extends Model
      * @var array
      */
     protected $casts = [
-        'drafted_at' => 'datetime',
-        'published_at' => 'datetime',
+        'published_at' => 'datetime:Y-m-d H:i',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'is_published' => 'boolean',
+        'is_published_now' => 'boolean',
     ];
 
     /* RELATIONSHIP */
@@ -91,9 +93,10 @@ class Video extends Model
 
     public function scopeSearch($query, $searchQuery, $filter)
     {
-        if ($searchQuery == null) return $query->where($filter, '<>', null);
+        $isPublished = $filter == "true";
+        if ($searchQuery == null) return $query->where('is_published', $isPublished);
         return $query
             ->where('title', 'LIKE', "%{$searchQuery}%")
-            ->where($filter, '<>', null);
+            ->where('is_published', $isPublished);
     }
 }
