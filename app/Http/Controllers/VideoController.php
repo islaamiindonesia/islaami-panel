@@ -220,6 +220,22 @@ class VideoController extends Controller
      * @param int $id
      * @return RedirectResponse
      */
+    public function upload($id)
+    {
+        $video = Video::find($id);
+        $video->is_published = true;
+
+        $video->save();
+
+        return redirect()->route('admin.videos.all');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param int $id
+     * @return RedirectResponse
+     */
     public function draft($id)
     {
         $video = Video::find($id);

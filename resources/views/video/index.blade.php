@@ -87,8 +87,14 @@
                                         @if($video->is_published)
                                             <a class="btn btn-secondary btn-sm swalDraft" data-id="{{ $video->id }}"
                                                href="#">
-                                                <i class="fas fa-edit"></i>
+                                                <i class="fas fa-archive"></i>
                                                 Draft
+                                            </a>
+                                        @else
+                                            <a class="btn btn-secondary btn-sm swalUpload" data-id="{{ $video->id }}"
+                                               href="#">
+                                                <i class="fas fa-cloud-upload-alt"></i>
+                                                Upload
                                             </a>
                                         @endif
                                         <a class="btn btn-danger btn-sm swalDelete" data-id="{{ $video->id }}"
@@ -156,6 +162,32 @@
     <!-- page script -->
     <script>
         // SweetAlert
+        $('.swalUpload').on('click', function () {
+            Swal.fire({
+                icon: 'question',
+                title: 'Apakah Anda yakin ?',
+                text: 'Video ini akan dipublikasikan',
+                confirmButtonText: 'Yakin',
+                cancelButtonText: 'Batal',
+                showCancelButton: true,
+                preConfirm: (confirmed) => {
+                    if (confirmed) {
+                        axios.post(route('admin.videos.upload', {id: $(this).data("id")}).url())
+                            .then(() => {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Berhasil',
+                                    text: 'Video sudah dipublikasikan',
+                                    preConfirm: (confirmed) => {
+                                        if (confirmed) window.location.href = route('admin.videos.all');
+                                    }
+                                });
+                            })
+                    }
+                },
+            })
+        });
+
         $('.swalDraft').on('click', function () {
             Swal.fire({
                 icon: 'question',

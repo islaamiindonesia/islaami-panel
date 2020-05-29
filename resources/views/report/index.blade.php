@@ -69,7 +69,7 @@
                                                data-id="{{ $report->id  }}"
                                                href="#" @if($report->is_solved) aria-disabled="true"
                                                role="button" @endif>
-                                                <i class="fas fa-trash"></i>
+                                                <i class="fas fa-check"></i>
                                                 Tandai Selesai
                                             </a>
                                         @else
@@ -77,10 +77,15 @@
                                                data-id="{{ $report->id  }}"
                                                href="#" @if($report->is_solved) aria-disabled="true"
                                                role="button" @endif>
-                                                <i class="fas fa-trash"></i>
+                                                <i class="fas fa-check"></i>
                                                 Tandai Selesai
                                             </a>
                                         @endif
+                                        <a class="btn btn-danger btn-sm swalDelete" data-id="{{ $report->id }}"
+                                           href="#">
+                                            <i class="fas fa-trash"></i>
+                                            Hapus
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -156,6 +161,32 @@
                                 }
                             });
                         })
+                    }
+                },
+            })
+        });
+
+        $('.swalDelete').click(function () {
+            Swal.fire({
+                icon: 'question',
+                title: 'Apakah Anda yakin ?',
+                text: 'Laporan akan dihapus.',
+                confirmButtonText: 'Yakin',
+                cancelButtonText: 'Batal',
+                showCancelButton: true,
+                preConfirm: (confirmed) => {
+                    if (confirmed) {
+                        axios.post(route('admin.reports.delete', {id: $(this).data("id")}).url())
+                            .then(() => {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Video Deleted',
+                                    text: 'Anda sudah menghapus video ini',
+                                    preConfirm: (confirmed) => {
+                                        if (confirmed) window.location.href = route('admin.reports.all');
+                                    }
+                                });
+                            })
                     }
                 },
             })

@@ -27,7 +27,7 @@
                                 <tr style="text-align: center">
                                     <td>{{ $recommendation->user->fullname }}</td>
                                     <td>{{ $recommendation->channel_name }}</td>
-                                    <td><a href="{{ $recommendation->channel_url }}">Link Channel</a></td>
+                                    <td><a href="{{ $recommendation->channel_url }}" target="_blank">Link Channel</a></td>
                                     <td>{{ date('d/m/Y', strtotime($recommendation->created_at)) }}</td>
                                 </tr>
                             @endforeach

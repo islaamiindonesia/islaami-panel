@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Channel;
 use App\Report;
+use App\Video;
+use App\VideoLabel;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -59,6 +61,19 @@ class ReportController extends Controller
         $report = Report::find($id);
         $report->is_solved = true;
         $report->save();
+
+        return redirect()->route('admin.reports.all');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function destroy($id)
+    {
+        Report::destroy($id);
 
         return redirect()->route('admin.reports.all');
     }

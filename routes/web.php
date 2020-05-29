@@ -95,6 +95,8 @@ Route::group(['middleware' => ['auth']], function () {
 
                 Route::post('{id}/delete', 'VideoController@destroy')->name('delete');
 
+                Route::post('{id}/upload', 'VideoController@upload')->name('upload');
+
                 Route::post('{id}/draft', 'VideoController@draft')->name('draft');
             });
 
@@ -249,6 +251,8 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('{id}/show', 'ReportController@show')->name('show');
 
                 Route::patch('{id}/verify', 'ReportController@verify')->name('verify');
+
+                Route::post('{id}/delete', 'ReportController@destroy')->name('delete');
             });
 
             /* INSIGHTS */
