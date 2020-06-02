@@ -40,7 +40,7 @@ class VideoController extends Controller
             ->orderBy('views', 'desc');
 
         if ($request->has("query")) {
-            $videos = $videos->where('title', $request->query('query'));
+            $videos = $videos->searchTitle($request->query('query'));
         }
 
         $videoArray = array();
