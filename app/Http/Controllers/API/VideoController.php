@@ -8,15 +8,17 @@ use App\User;
 use App\Video;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class VideoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
         $authID = auth('api')->id();
         $now = Carbon::now()->toDateTimeString();
@@ -35,11 +37,14 @@ class VideoController extends Controller
                 'labels'
             ])
             ->where('published_at', '<=', $now)
-            ->orderBy('views', 'desc')
-            ->paginate(10);
+            ->orderBy('views', 'desc');
+
+        if ($request->has("query")) {
+            $videos = $videos->where('title', $request->query('query'));
+        }
 
         $videoArray = array();
-        foreach ($videos->toArray()["data"] as $video) {
+        foreach ($videos->paginate(10)->toArray()["data"] as $video) {
             $video["is_saved_later"] = Video::find($video["id"])->users->contains($video["id"]);
             $video["channel"]["is_followed"] = Channel::find($video["channel"]["id"])->followers->contains($authID);
             if (!Channel::find($video["channel"]["id"])->blacklists->contains($authID)) {
