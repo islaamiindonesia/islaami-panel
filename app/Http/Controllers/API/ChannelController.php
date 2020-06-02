@@ -67,7 +67,6 @@ class ChannelController extends Controller
      */
     public function videosChannel($id)
     {
-        $authID = auth('api')->id();
         $now = Carbon::now()->toDateTimeString();
 
         $videos = Channel::find($id)->videos()->withCount('views as views')
@@ -85,7 +84,7 @@ class ChannelController extends Controller
             ])
             ->where('published_at', '<=', $now)
             ->orderBy('published_at', 'desc')
-            ->paginate(10);
+            ->paginate(100);
 
         $videoArray = array();
         foreach ($videos->toArray()["data"] as $video) {
