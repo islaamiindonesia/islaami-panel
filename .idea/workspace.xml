@@ -316,6 +316,7 @@
       <workItem from="1590750781251" duration="1020000" />
       <workItem from="1590929157323" duration="142000" />
       <workItem from="1591063610553" duration="1134000" />
+      <workItem from="1591099653721" duration="830000" />
     </task>
     <servers />
   </component>
@@ -395,10 +396,11 @@
     <state x="317" y="230" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1590405291662" />
     <state x="317" y="233" key="com.intellij.ide.util.TipDialog/0.23.1280.732@0.23.1280.732" timestamp="1591099653692" />
     <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.23.1280.734@0.23.1280.734" timestamp="1589000208558" />
-    <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587197991282">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state x="423" y="319" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591100911681">
+      <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.800@0.0.1280.800" timestamp="1587197991282" />
+    <state x="423" y="319" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1280.732@0.23.1280.732" timestamp="1591100911681" />
     <state width="600" height="424" key="javadoc.popup" timestamp="1588332994037">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
@@ -407,11 +409,11 @@
       <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="305" y="174" key="run.anything.popup/0.23.1280.732@0.23.1280.732" timestamp="1590468842960" />
-    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup" timestamp="1591099684946">
+    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup" timestamp="1591100147508">
       <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="305" y="63" width="670" height="411" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1590149239263" />
-    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup/0.23.1280.732@0.23.1280.732" timestamp="1591099684946" />
+    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup/0.23.1280.732@0.23.1280.732" timestamp="1591100147508" />
     <state x="305" y="63" width="670" height="158" key="search.everywhere.popup/0.23.1280.734@0.23.1280.734" timestamp="1588037942591" />
   </component>
 </project>

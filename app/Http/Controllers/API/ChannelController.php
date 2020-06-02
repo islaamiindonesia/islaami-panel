@@ -83,11 +83,10 @@ class ChannelController extends Controller
                 'labels'
             ])
             ->where('published_at', '<=', $now)
-            ->orderBy('published_at', 'desc')
-            ->paginate(100);
+            ->orderBy('published_at', 'desc');
 
         $videoArray = array();
-        foreach ($videos->toArray()["data"] as $video) {
+        foreach ($videos->paginate(10)->toArray()["data"] as $video) {
             $video["is_saved_later"] = Video::find($video["id"])->users->contains($video["id"]);
             array_push($videoArray, $video);
         }
