@@ -45,7 +45,7 @@ class VideoController extends Controller
         }
 
         $videoArray = array();
-        foreach ($videos->paginate(10)->toArray()["data"] as $video) {
+        foreach ($videos->paginate(100)->toArray()["data"] as $video) {
             $video["is_saved_later"] = Video::find($video["id"])->users->contains($video["id"]);
             $video["channel"]["is_followed"] = Channel::find($video["channel"]["id"])->followers->contains($authID);
             if (!Channel::find($video["channel"]["id"])->blacklists->contains($authID)) {

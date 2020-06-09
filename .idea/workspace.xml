@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/VideoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/VideoController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +159,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -318,25 +316,25 @@
       <workItem from="1590929157323" duration="142000" />
       <workItem from="1591063610553" duration="1134000" />
       <workItem from="1591099653721" duration="1088000" />
-      <workItem from="1591157178366" duration="1834000" />
+      <workItem from="1591157178366" duration="2102000" />
+      <workItem from="1591159539717" duration="289000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -354,6 +352,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="453" y="123" key="#com.intellij.ide.util.MemberChooser/0.0.1280.800@0.0.1280.800" timestamp="1589982147417" />
+    <state x="328" y="132" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1591159280521">
+      <screen x="0" y="23" width="1280" height="732" />
+    </state>
+    <state x="328" y="132" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1280.732@0.23.1280.732" timestamp="1591159280521" />
     <state x="402" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587203042584">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
