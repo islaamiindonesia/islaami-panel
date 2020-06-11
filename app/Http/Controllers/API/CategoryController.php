@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('number', 'asc')->get();
         return $this->successResponseWithData($categories);
     }
 

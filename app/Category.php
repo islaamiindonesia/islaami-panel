@@ -5,14 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-/**
- * @method static orderBy(string $string)
- * @method static find(int $id)
- * @method static firstOrCreate(array $array, array $array1)
- * @method static updateOrCreate(array $array, array $array1)
- * @method static where(string $string, $number)
- * @method static max(string $string)
- */
 class Category extends Model
 {
     use Notifiable;
