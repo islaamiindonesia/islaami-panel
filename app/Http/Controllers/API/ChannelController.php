@@ -8,6 +8,7 @@ use App\User;
 use App\Video;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ChannelController extends Controller
 {
@@ -39,16 +40,20 @@ class ChannelController extends Controller
      *
      * @return JsonResponse
      */
-    public function indexFollow()
+    public function indexFollow(Request $request)
     {
         $authID = auth('api')->id();
 
         $user = User::find($authID);
 
-        $channels = $user->followChannels()->get();
+        $channels = $user->followChannels();
+
+        if ($request->has("query")) {
+            $videos = $channels->searchName($request->query('query'));
+        }
 
         $channelArray = array();
-        foreach ($channels as $channel) {
+        foreach ($channels->get() as $channel) {
             $channel->followers = $channel->followers()->count();
             if (Channel::find($channel->id)->followers->contains($authID) &&
                 !Channel::find($channel->id)->blacklists->contains($authID)) {

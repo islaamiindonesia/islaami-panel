@@ -61,4 +61,10 @@ class Channel extends Model
         if ($searchQuery == null) return $finalQuery;
         return $finalQuery->where('name', 'LIKE', "%{$searchQuery}%");
     }
+
+    public function scopeName($query, $searchQuery)
+    {
+        if ($searchQuery == null) return $query;
+        return $query->where('name', 'LIKE', "%{$searchQuery}%");
+    }
 }
