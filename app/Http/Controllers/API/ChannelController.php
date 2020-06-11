@@ -134,12 +134,9 @@ class ChannelController extends Controller
         $channel = Channel::where('id', $id)->where('suspended_at', null)->first();
 
         $channel->is_followed = Channel::find($id)->followers->contains($authID);
+        $channel->is_blacklisted = Channel::find($id)->blacklists->contains($authID);
         $channel->followers = $channel->followers()->count();
         $channel->videos = $channel->videos()->count();
-
-        if (Channel::find($id)->blacklists->contains($authID)) {
-            return $this->errorResponse("CHANNEL_BLACKLISTED", 401);
-        }
 
         return $this->successResponseWithData($channel);
     }

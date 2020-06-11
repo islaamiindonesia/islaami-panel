@@ -17,6 +17,7 @@ class CreateFollowersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('channel_id');
+            $table->boolean('is_notif_active')->default(true);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
