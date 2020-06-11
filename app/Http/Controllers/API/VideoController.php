@@ -37,7 +37,7 @@ class VideoController extends Controller
                 'labels'
             ])
             ->where('published_at', '<=', $now)
-            ->orderBy('rand()');
+            ->inRandomOrder();
 
         if ($request->has("query")) {
             $videos = $videos->searchTitle($request->query('query'));
