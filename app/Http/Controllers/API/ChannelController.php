@@ -49,7 +49,7 @@ class ChannelController extends Controller
         $channels = $user->followChannels();
 
         if ($request->has("query")) {
-            $videos = $channels->searchName($request->query('query'));
+            $videos = $channels->name($request->query('query'));
         }
 
         $channelArray = array();
