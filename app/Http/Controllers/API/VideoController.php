@@ -9,7 +9,6 @@ use App\Video;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Kreait\Firebase\Auth\UserRecord;
 
 class VideoController extends Controller
 {
@@ -38,7 +37,7 @@ class VideoController extends Controller
                 'labels'
             ])
             ->where('published_at', '<=', $now)
-            ->orderBy('published_at', 'desc');
+            ->orderBy('rand()');
 
         if ($request->has("query")) {
             $videos = $videos->searchTitle($request->query('query'));
