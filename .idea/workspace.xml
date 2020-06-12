@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_07_094318_create_followers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_07_094318_create_followers_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/CategoryController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,7 +321,8 @@
       <workItem from="1591159539717" duration="289000" />
       <workItem from="1591735001681" duration="280000" />
       <workItem from="1591735870886" duration="256000" />
-      <workItem from="1591898622600" duration="2179000" />
+      <workItem from="1591898622600" duration="2923000" />
+      <workItem from="1591961757409" duration="302000" />
     </task>
     <servers />
   </component>
