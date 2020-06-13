@@ -185,6 +185,7 @@ class ChannelController extends Controller
 
         if (!$user->blacklistChannels->contains($id)) {
             $user->blacklistChannels()->attach($id);
+            $user->followChannels()->detach($id);
         }
 
         return $this->successResponse();
