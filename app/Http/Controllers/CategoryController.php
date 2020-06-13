@@ -119,7 +119,7 @@ class CategoryController extends Controller
 
         $this->rearrange();
 
-        return redirect()->route('admin.category.all');
+        return redirect()->route('admin.categories.all');
     }
 
     // Re-arrange categories item
