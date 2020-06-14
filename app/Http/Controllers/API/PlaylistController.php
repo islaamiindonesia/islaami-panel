@@ -60,7 +60,7 @@ class PlaylistController extends Controller
      * @param null $videoId
      * @return JsonResponse
      */
-    public function addVideo(Request $request = null, $id = null, $videoId = null)
+    public function addVideo(Request $request, $id = null, $videoId = null)
     {
         $authID = auth('api')->id();
         $playlist = User::find($authID)->playlists()->where('id', $id)->first();
@@ -73,9 +73,11 @@ class PlaylistController extends Controller
             $playlist->videos()->attach($videoId);
         }*/
 
-        if (!$playlist->videos()->contains($request->video_id)) {
-            $playlist->videos()->attach($request->video_id);
-        }
+        /*if (!$playlist->videos->contains($request->video_id)) {
+
+        }*/
+
+        $playlist->videos()->attach($request->video_id);
 
         return $this->successResponse();
     }
