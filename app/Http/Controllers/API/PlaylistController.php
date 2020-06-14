@@ -56,7 +56,7 @@ class PlaylistController extends Controller
      * @param null $videoId
      * @return JsonResponse
      */
-    public function addVideo(Request $request)
+    public function addVideo(Request $request, $id)
     {
         $authID = auth('api')->id();
         $playlist = User::find($authID)->playlists()->where('id', $id)->first();
