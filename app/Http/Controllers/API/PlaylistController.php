@@ -65,13 +65,15 @@ class PlaylistController extends Controller
         $authID = auth('api')->id();
         $playlist = User::find($authID)->playlists()->where('id', $id)->first();
 
-        if ($request != null) {
+        /*if ($request != null) {
             if (!$playlist->videos->contains($request->video_id)) {
                 $playlist->videos()->attach($request->video_id);
             }
         } else {
             $playlist->videos()->attach($videoId);
-        }
+        }*/
+
+        $playlist->videos()->attach($videoId);
 
         return $this->successResponse();
     }
