@@ -86,7 +86,6 @@ class PlaylistController extends Controller
     {
         $authID = auth('api')->id();
         $playlist = User::find($authID)->playlists()->where('id', $id)->first();
-        $videos = $playlist->videos()->get();
 
         $videoArray = array();
         foreach ($playlist->videos as $video) {
