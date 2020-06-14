@@ -88,7 +88,7 @@ class PlaylistController extends Controller
         $playlist = User::find($authID)->playlists()->where('id', $id)->first();
 
         $videoArray = array();
-        foreach ($playlist->videos as $video) {
+        foreach ($playlist->videos->get() as $video) {
             $video->channel;
             $video->category;
             $video->subcategory;
