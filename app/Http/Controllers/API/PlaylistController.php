@@ -45,10 +45,6 @@ class PlaylistController extends Controller
         $playlist->user_id = $authID;
         $playlist->save();
 
-        if ($request->video_id != null) {
-            $this->addVideo(null, $playlist->id, $request->video_id);
-        }
-
         return $this->successResponseWithData($playlist);
     }
 
@@ -60,25 +56,14 @@ class PlaylistController extends Controller
      * @param null $videoId
      * @return JsonResponse
      */
-    public function addVideo(Request $request, $id = null, $videoId = null)
+    public function addVideo(Request $request)
     {
         $authID = auth('api')->id();
         $playlist = User::find($authID)->playlists()->where('id', $id)->first();
 
-        /*if ($request != null) {
-            if (!$playlist->videos->contains($request->video_id)) {
-                $playlist->videos()->attach($request->video_id);
-            }
-        } else {
-            $playlist->videos()->attach($videoId);
-        }*/
-
         if (!$playlist->videos->contains($request->video_id)) {
             $playlist->videos()->attach($request->video_id);
         }
-        /*if () {
-            $playlist->videos()->sync($request->video_id);
-        }*/
 
         return $this->successResponse();
     }
