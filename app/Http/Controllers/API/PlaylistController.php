@@ -87,21 +87,25 @@ class PlaylistController extends Controller
         $authID = auth('api')->id();
         $playlist = User::find($authID)->playlists()->where('id', $id)->first();
 
-        $videoArray = array();
-        foreach ($playlist->videos()->get() as $video) {
-            $video->channel;
-            $video->category;
-            $video->subcategory;
-            $video->labels;
-            $video->views = $video->views()->count();
+        if ($playlist != null) {
+            $videoArray = array();
+            foreach ($playlist->videos()->get() as $video) {
+                $video->channel;
+                $video->category;
+                $video->subcategory;
+                $video->labels;
+                $video->views = $video->views()->count();
 
-            array_push($videoArray, $video);
+                array_push($videoArray, $video);
+            }
+
+            $playlist->video_count = $playlist->videos()->count();
+            $playlist->videos = $videoArray;
+
+            return $this->successResponseWithData($playlist);
         }
 
-        $playlist->video_count = $playlist->videos()->count();
-        $playlist->videos = $videoArray;
-
-        return $this->successResponseWithData($playlist);
+        return $this->errorResponse("PLAYLIST_NOT_FOUND", 404);
     }
 
     /**
