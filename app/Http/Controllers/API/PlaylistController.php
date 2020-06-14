@@ -73,7 +73,9 @@ class PlaylistController extends Controller
             $playlist->videos()->attach($videoId);
         }*/
 
-        $playlist->videos()->attach($videoId);
+        if (!$playlist->videos->contains($request->video_id)) {
+            $playlist->videos()->attach($request->video_id);
+        }
 
         return $this->successResponse();
     }
