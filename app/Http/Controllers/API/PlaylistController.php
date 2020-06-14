@@ -73,8 +73,9 @@ class PlaylistController extends Controller
             $playlist->videos()->attach($videoId);
         }*/
 
+        return $playlist->videos->where('video_id', $request->video_id)->first();
         if ($playlist->videos->where('video_id', $request->video_id)->first() == null) {
-            $playlist->videos()->attach($request->video_id);
+            $playlist->videos()->sync($request->video_id);
         }
 
         return $this->successResponse();
