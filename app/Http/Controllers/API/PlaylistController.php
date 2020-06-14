@@ -73,8 +73,8 @@ class PlaylistController extends Controller
             $playlist->videos()->attach($videoId);
         }*/
 
-        if ($playlist->videos->contains($request->video_id)) {
-            dd(true);
+        if (!$playlist->videos->contains($request->video_id)) {
+            $playlist->videos()->attach($request->video_id);
         }
         /*if () {
             $playlist->videos()->sync($request->video_id);
