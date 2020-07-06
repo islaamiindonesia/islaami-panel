@@ -34,9 +34,7 @@ class SubcategoryController extends Controller
         $authID = auth('api')->id();
         $now = Carbon::now()->toDateTimeString();
 
-        $videos = Video::where('category_id', $categoryId)
-            ->where('subcategory_id', $subcategoryId)
-            ->withCount('views as views')
+        $videos = Video::withCount('views as views')
             ->with([
                 'channel' => function ($query) {
                     $query->select(['id', 'name', 'thumbnail']);
@@ -50,7 +48,9 @@ class SubcategoryController extends Controller
                 'labels'
             ])
             ->where('published_at', '<=', $now)
-            ->orderBy('published_at', 'desc')
+            ->where('category_id', $categoryId)
+            ->where('subcategory_id', $subcategoryId)
+            ->inRandomOrder()
             ->paginate(10);
 
         $videoArray = array();
