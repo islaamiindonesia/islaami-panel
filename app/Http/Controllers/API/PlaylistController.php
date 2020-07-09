@@ -182,7 +182,6 @@ class PlaylistController extends Controller
                 },
                 'labels'
             ])
-            ->whereIn('channel_id', User::find($authID)->followChannels->pluck('id'))
             ->where('published_at', '<=', $now)
             ->orderBy('published_at', 'desc')
             ->paginate(10);
