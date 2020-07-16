@@ -48,6 +48,14 @@ class PlaylistController extends Controller
         $playlist->user_id = $authID;
         $playlist->save();
 
+        if ($request->has('video')) {
+            $playlist = User::find($authID)->playlists()->where('id', $playlist->id)->first();
+
+            if (!$playlist->videos->contains($request->query('video'))) {
+                $playlist->videos()->attach($request->query('video'));
+            }
+        }
+
         return $this->successResponseWithData($playlist);
     }
 
