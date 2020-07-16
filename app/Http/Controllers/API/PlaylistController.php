@@ -98,7 +98,7 @@ class PlaylistController extends Controller
             $playlist->video_count = $playlist->videos()->count();
 
             if ($request->has("query")) {
-                $playlist->videos = $playlist->searchVideo($request->query('query'));
+                $playlist->videos = $playlist->videos()->where('title', 'LIKE', "%{$request->query('query')}%")->get();
             } else {
                 $playlist->videos = $videoArray;
             }

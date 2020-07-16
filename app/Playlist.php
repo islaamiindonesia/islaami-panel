@@ -47,9 +47,4 @@ class Playlist extends Model
     {
         return $this->belongsToMany('App\Video', 'playlist_video', 'playlist_id', 'video_id');
     }
-
-    public function scopeSearchVideo($searchQuery)
-    {
-        return $this->videos()->where('title', 'LIKE', "%{$searchQuery}%");
-    }
 }
