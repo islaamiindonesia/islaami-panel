@@ -74,10 +74,11 @@ class PlaylistController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param Request $request
      * @param int $id
      * @return JsonResponse
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $authID = auth('api')->id();
         $playlist = User::find($authID)->playlists()->where('id', $id)->first();
@@ -95,7 +96,12 @@ class PlaylistController extends Controller
             }
 
             $playlist->video_count = $playlist->videos()->count();
-            $playlist->videos = $videoArray;
+
+            if ($request->has("query")) {
+                $playlist->videos = $playlist->searchVideo($request->query('query'));
+            } else {
+                $playlist->videos = $videoArray;
+            }
 
             return $this->successResponseWithData($playlist);
         }
