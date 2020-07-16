@@ -56,7 +56,7 @@ class PlaylistController extends Controller
             }
         }
 
-        return $this->successResponseWithData($playlist);
+        return $this->successResponse();
     }
 
     /**
