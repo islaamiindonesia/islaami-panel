@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\Channel;
 use App\Role;
 use App\User;
 use App\Video;
@@ -24,7 +25,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('home', ['users' => User::all(), 'videos' => Video::all(), 'menu' => 'dashboard']);
+        return view('home', ['users' => User::all(), 'videos' => Video::all(), 'channels' => Channel::all(), 'menu' => 'dashboard']);
     }
 
     /**
