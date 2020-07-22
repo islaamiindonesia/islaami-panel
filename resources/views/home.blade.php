@@ -54,7 +54,7 @@
                                 <p>Jumlah Kanal</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-ios-logo-youtube"></i>
+                                <i class="ion ion-social-youtube"></i>
                             </div>
                             @if(!Auth::user()->hasRole('super admin'))
                                 <a href="{{ route('admin.channels.all') }}" class="small-box-footer">Lihat Selengkapnya <i
