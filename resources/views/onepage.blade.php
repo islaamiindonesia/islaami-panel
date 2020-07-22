@@ -25,10 +25,10 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-sm-12">
-                <div class="p-5" style="text-align: center">
+                <div style="text-align: center">
                     <!-- Brand Logo -->
                     <img src="{{ asset("assets/img/playmi_logo.png") }}" alt="Islaami Logo" style="width: 200px;" class="mb-3">
-                    <h3 class="display-4 mb-3">{{ $title }}</h3>
+                    <h1>{{ $title }}</h1>
                     {!! $content !!}
                 </div>
             </div>
