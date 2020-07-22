@@ -27,8 +27,8 @@
             <div class="col-sm-12">
                 <div class="p-5" style="text-align: center">
                     <!-- Brand Logo -->
-                    <img src="{{ asset("assets/img/islaami_logo.png") }}" alt="Islaami Logo" style="width: 200px;" class="mb-3">
-                    <h2 class="display-4 mb-3">{{ $title }}</h2>
+                    <img src="{{ asset("assets/img/playmi_logo.png") }}" alt="Islaami Logo" style="width: 200px;" class="mb-3">
+                    <h2 class="display-3 mb-3">{{ $title }}</h2>
                     {!! $content !!}
                 </div>
             </div>

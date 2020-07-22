@@ -43,6 +43,12 @@ Route::get('', function () {
     ]);
 });
 
+/* APP POLICY */
+Route::get('about', 'API\ArticleController@about');
+Route::get('cooperation', 'API\ArticleController@cooperation');
+Route::get('tnc', 'API\ArticleController@tnc');
+Route::get('privacy', 'API\ArticleController@privacy');
+
 // test api
 Route::get('sendnotification', function (Request $request) {
     $user = User::find(1);
@@ -184,10 +190,4 @@ Route::middleware('auth.api:api')->group(function () {
 
         Route::post('add', 'API\RecommendationController@store');
     });
-
-    /* APP POLICY */
-    Route::get('about', 'API\ArticleController@about');
-    Route::get('cooperation', 'API\ArticleController@cooperation');
-    Route::get('tnc', 'API\ArticleController@tnc');
-    Route::get('privacy', 'API\ArticleController@privacy');
 });
