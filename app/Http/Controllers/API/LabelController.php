@@ -34,10 +34,50 @@ class LabelController extends Controller
         $authID = auth('api')->id();
         $now = Carbon::now()->toDateTimeString();
 
-        $videos = Label::find($labelId)
-            ->videos()
+        $videos = Label::find($labelId)->videos()
+            ->withCount('views as views')
+            ->with([
+                'channel' => function ($query) {
+                    $query->select(['id', 'name', 'thumbnail']);
+                },
+                'category' => function ($query) {
+                    $query->select(['id', 'name']);
+                },
+                'subcategory' => function ($query) {
+                    $query->select(['id', 'name']);
+                },
+                'labels'
+            ])
+            ->where('published_at', '<=', $now)
             ->where('category_id', $categoryId)
             ->where('subcategory_id', $subcategoryId)
+            ->orderBy('published_at', 'desc')
+            ->inRandomOrder()
+            ->paginate(10);
+
+        $videoArray = array();
+        foreach ($videos->toArray()["data"] as $video) {
+            $video["is_saved_later"] = Video::find($video["id"])->users->contains($video["id"]);
+            $video["channel"]["is_followed"] = Channel::find($video["channel"]["id"])->followers->contains($authID);
+            if (!Channel::find($video["channel"]["id"])->blacklists->contains($authID)) {
+                array_push($videoArray, $video);
+            }
+        }
+
+        return $this->successResponseWithData($videoArray);
+    }
+
+    /**
+     * Display video listing based on category.
+     *
+     * @return JsonResponse
+     */
+    public function videoByLabel($labelId)
+    {
+        $authID = auth('api')->id();
+        $now = Carbon::now()->toDateTimeString();
+
+        $videos = Label::find($labelId)->videos()
             ->withCount('views as views')
             ->with([
                 'channel' => function ($query) {
@@ -53,6 +93,7 @@ class LabelController extends Controller
             ])
             ->where('published_at', '<=', $now)
             ->orderBy('published_at', 'desc')
+            ->inRandomOrder()
             ->paginate(10);
 
         $videoArray = array();

@@ -173,6 +173,12 @@ Route::middleware('auth.api:api')->group(function () {
         });
     });
 
+    /* LABEL */
+    Route::prefix("labels")->group(function () {
+
+        Route::get('{labelId}/videos', 'API\LabelController@videoLabel');
+    });
+
     /* REPORTS */
     Route::prefix("reports")->group(function () {
 
