@@ -174,9 +174,9 @@ Route::middleware('auth.api:api')->group(function () {
     });
 
     /* LABEL */
-    Route::prefix("labels")->group(function () {
+    Route::prefix("labelvideos")->group(function () {
 
-        Route::get('{labelId}/videos', 'API\LabelController@videoByLabel');
+        Route::get('{labelId}/videos', 'API\LabelController@videos');
     });
 
     /* REPORTS */

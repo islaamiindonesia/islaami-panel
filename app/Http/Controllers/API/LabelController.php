@@ -72,7 +72,7 @@ class LabelController extends Controller
      *
      * @return JsonResponse
      */
-    public function videoByLabel($labelId)
+    public function videos($labelId)
     {
         $authID = auth('api')->id();
         $now = Carbon::now()->toDateTimeString();
