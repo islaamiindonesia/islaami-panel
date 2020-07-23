@@ -51,7 +51,6 @@ class LabelController extends Controller
             ->where('published_at', '<=', $now)
             ->where('category_id', $categoryId)
             ->where('subcategory_id', $subcategoryId)
-            ->orderBy('published_at', 'desc')
             ->inRandomOrder()
             ->paginate(10);
 
@@ -92,7 +91,6 @@ class LabelController extends Controller
                 'labels'
             ])
             ->where('published_at', '<=', $now)
-            ->orderBy('published_at', 'desc')
             ->inRandomOrder()
             ->paginate(10);
 
