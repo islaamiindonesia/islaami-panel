@@ -87,6 +87,7 @@ class ChannelController extends Controller
                 },
                 'labels'
             ])
+            ->where('is_published', true)
             ->where('published_at', '<=', $now)
             ->orderBy('published_at', 'desc');
 

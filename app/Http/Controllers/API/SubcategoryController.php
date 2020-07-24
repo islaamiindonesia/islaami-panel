@@ -47,6 +47,7 @@ class SubcategoryController extends Controller
                 },
                 'labels'
             ])
+            ->where('is_published', true)
             ->where('published_at', '<=', $now)
             ->where('category_id', $categoryId)
             ->where('subcategory_id', $subcategoryId)
