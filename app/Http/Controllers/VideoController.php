@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Channel;
+use App\Notifications\NewVideo;
 use App\Subcategory;
 use App\Video;
 use App\VideoLabel;
@@ -11,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use Illuminate\View\View;
 
 class VideoController extends Controller
@@ -103,14 +105,14 @@ class VideoController extends Controller
         $video->save();
         $video->labels()->attach($request->labels);
 
-        /*Notification::send(
+        Notification::send(
             $video->channel->followers()->get(),
             new NewVideo(
                 $video->channel->name,
                 $video->title,
                 $video->id
             )
-        );*/
+        );
 
         return redirect()->route('admin.videos.all');
     }

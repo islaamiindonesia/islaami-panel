@@ -21,6 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VideoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VideoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -362,6 +364,7 @@
       <workItem from="1595377728898" duration="2396000" />
       <workItem from="1595389494599" duration="329000" />
       <workItem from="1595468603694" duration="592000" />
+      <workItem from="1595570057649" duration="1873000" />
     </task>
     <servers />
   </component>
@@ -400,11 +403,11 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="402" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.800@0.0.1280.800" timestamp="1587203042584" />
-    <state x="378" y="141" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1594285355505">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state x="378" y="152" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1595572010330">
+      <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="378" y="141" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.800@0.0.1280.800" timestamp="1594285355505" />
-    <state x="378" y="152" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1280.732@0.23.1280.732" timestamp="1592050573237" />
+    <state x="378" y="152" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1280.732@0.23.1280.732" timestamp="1595572010330" />
     <state x="428" y="333" key="#com.jetbrains.php.lang.intentions.PhpImportClassDialog#" timestamp="1586948649466">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
@@ -444,11 +447,11 @@
       <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="305" y="174" key="run.anything.popup/0.23.1280.732@0.23.1280.732" timestamp="1590468842960" />
-    <state x="305" y="63" width="670" height="158" key="search.everywhere.popup" timestamp="1595468975270">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup" timestamp="1595571963038">
+      <screen x="0" y="23" width="1280" height="732" />
     </state>
-    <state x="305" y="63" width="670" height="158" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1595468975270" />
-    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup/0.23.1280.732@0.23.1280.732" timestamp="1592111598647" />
+    <state x="305" y="63" width="670" height="158" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1595570174803" />
+    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup/0.23.1280.732@0.23.1280.732" timestamp="1595571963038" />
     <state x="305" y="63" width="670" height="158" key="search.everywhere.popup/0.23.1280.734@0.23.1280.734" timestamp="1588037942591" />
   </component>
 </project>

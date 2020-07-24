@@ -5,6 +5,7 @@ use App\Notifications\RequestResetPassword;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,11 +52,20 @@ Route::get('privacy', 'API\ArticleController@privacy');
 
 // test api
 Route::get('sendnotification', function (Request $request) {
-    $user = User::find(1);
+    $user = User::find(32);
 
-    $date = Carbon::now()->addSeconds(2);
-    $user->notify((new NewVideo("test", "test", 1))->delay($date));
+    $date = Carbon::now()->addSeconds(3);
+    $user->notify((new NewVideo("test", "test", 4209))->delay($date));
 //    $user->notify(new NewVideo("test", "test", 1));
+
+   /* Notification::send(
+        $video->channel->followers()->get(),
+        new NewVideo(
+            $video->channel->name,
+            $video->title,
+            $video->id
+        )
+    );*/
 });
 
 Route::post('login', 'API\AuthController@login');
