@@ -105,14 +105,10 @@ class VideoController extends Controller
         $video->save();
         $video->labels()->attach($request->labels);
 
-        Notification::send(
-            $video->channel->followers()->get(),
-            new NewVideo(
-                $video->channel->name,
-                $video->title,
-                $video->id
-            )
-        );
+        if ($video->is_published == true) {
+            $channel = Channel::find($video->channel_id);
+            $channel->notify(new NewVideo($channel->name, $video->title,  $video->id));
+        }
 
         return redirect()->route('admin.videos.all');
     }
