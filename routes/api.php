@@ -1,5 +1,6 @@
 <?php
 
+use App\Channel;
 use App\Notifications\NewVideo;
 use App\Notifications\RequestResetPassword;
 use App\User;
