@@ -56,7 +56,7 @@ Route::get('sendnotification', function (Request $request) {
     $channel = Channel::find(19);
     $video = $channel->videos()->where('id', 5500)->first();
 
-    $date = Carbon::now()->addSeconds(1000);
+    $date = now()->addSeconds(100);
     $channel->notify((new NewVideo($channel->name, $video->title,  $video->id))->delay($date));
 //    $user->notify((new NewVideo("test", "test", 4209))->delay($date));
 });
