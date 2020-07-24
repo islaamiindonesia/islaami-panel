@@ -56,7 +56,9 @@ Route::get('sendnotification', function (Request $request) {
     $channel = Channel::find(19);
     $video = $channel->videos()->where('id', 5500)->first();
 
-    $channel->notify(new NewVideo($channel->name, $video->title,  $video->id));
+    $date = Carbon::now()->addSeconds(10);
+    $channel->notify((new NewVideo($channel->name, $video->title,  $video->id))->delay($date));
+//    $user->notify((new NewVideo("test", "test", 4209))->delay($date));
 });
 
 Route::post('login', 'API\AuthController@login');
