@@ -6,8 +6,8 @@ use App\Notifications\RequestResetPassword;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Route;
+use NotificationChannels\Fcm\Resources\Notification;
 
 /*
 |--------------------------------------------------------------------------
