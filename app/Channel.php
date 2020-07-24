@@ -39,7 +39,7 @@ class Channel extends Model
 
     public function routeNotificationForFcm()
     {
-        return $this->followers()->pluck('fcm_token');
+        return $this->followers()->pluck('fcm_token')->toArray();
     }
 
     /* RELATIONSHIP */
