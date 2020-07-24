@@ -103,6 +103,7 @@ class Video extends Model
 
     public function scopeSearchTitle($query, $searchQuery)
     {
-        return $query->where('title', 'LIKE', "%{$searchQuery}%");
+        return $query->where('title', 'LIKE', "%{$searchQuery}%")
+            ->where('is_published', true);
     }
 }

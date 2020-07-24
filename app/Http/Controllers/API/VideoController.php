@@ -36,6 +36,7 @@ class VideoController extends Controller
                 },
                 'labels'
             ])
+            ->where('is_published', true)
             ->where('published_at', '<=', $now)
             ->inRandomOrder();
 
