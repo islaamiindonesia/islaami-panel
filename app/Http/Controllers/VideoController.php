@@ -221,6 +221,11 @@ class VideoController extends Controller
         $video->save();
         $video->labels()->sync($request->labels);
 
+        if ($video->is_published == true) {
+            $channel = Channel::find($video->channel_id);
+            $channel->notify(new NewVideo($channel->name, $video->title,  $video->id));
+        }
+
         return redirect()->route('admin.videos.all');
     }
 
