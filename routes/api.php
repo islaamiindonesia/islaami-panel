@@ -7,7 +7,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use NotificationChannels\Fcm\Resources\Notification;
+use Kreait\Firebase\Messaging\Notification;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,22 +53,10 @@ Route::get('privacy', 'API\ArticleController@privacy');
 
 // test api
 Route::get('sendnotification', function (Request $request) {
-    $user = User::find(32);
     $channel = Channel::find(19);
     $video = $channel->videos()->where('id', 5500)->first();
 
-//    $date = Carbon::now()->addSeconds(3);
-//    $user->notify((new NewVideo("test", "test", 4209))->delay($date));
-//    $user->notify(new NewVideo("test", "test", 1));
-
-    Notification::send(
-        $channel->followers()->get(),
-        new NewVideo(
-            $channel->name,
-            $video->name,
-            $video->id
-        )
-    );
+    $channel->notify(new NewVideo($channel->name, $video->title,  $video->id));
 });
 
 Route::post('login', 'API\AuthController@login');

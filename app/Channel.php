@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Channel extends Model
 {
+    use Notifiable;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -33,6 +36,11 @@ class Channel extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function routeNotificationForFcm()
+    {
+        return $this->followers()->pluck('fcm_token');
+    }
 
     /* RELATIONSHIP */
     public function followers()

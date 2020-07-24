@@ -20,6 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/admin-panel-lte.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/admin-panel-lte.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Channel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Channel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,20 +36,6 @@
     <execution>
       <executable path="composer" />
     </execution>
-  </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -139,7 +129,6 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
       <path value="$PROJECT_DIR$/vendor/symfony/translation" />
       <path value="$PROJECT_DIR$/vendor/sebastian/version" />
-      <path value="$PROJECT_DIR$/vendor/voku/portable-ascii" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
       <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
       <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
@@ -362,7 +351,7 @@
       <workItem from="1595377728898" duration="2396000" />
       <workItem from="1595389494599" duration="329000" />
       <workItem from="1595468603694" duration="592000" />
-      <workItem from="1595570057649" duration="2506000" />
+      <workItem from="1595570057649" duration="3777000" />
     </task>
     <servers />
   </component>
@@ -445,11 +434,11 @@
       <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="305" y="174" key="run.anything.popup/0.23.1280.732@0.23.1280.732" timestamp="1590468842960" />
-    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup" timestamp="1595571963038">
+    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup" timestamp="1595575616310">
       <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="305" y="63" width="670" height="158" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1595570174803" />
-    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup/0.23.1280.732@0.23.1280.732" timestamp="1595571963038" />
+    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup/0.23.1280.732@0.23.1280.732" timestamp="1595575616310" />
     <state x="305" y="63" width="670" height="158" key="search.everywhere.popup/0.23.1280.734@0.23.1280.734" timestamp="1588037942591" />
   </component>
 </project>
