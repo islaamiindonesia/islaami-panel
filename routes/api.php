@@ -53,19 +53,21 @@ Route::get('privacy', 'API\ArticleController@privacy');
 // test api
 Route::get('sendnotification', function (Request $request) {
     $user = User::find(32);
+    $channel = Channel::find(19);
+    $video = $channel->videos()->where('id', 5500)->first();
 
-    $date = Carbon::now()->addSeconds(3);
-    $user->notify((new NewVideo("test", "test", 4209))->delay($date));
+//    $date = Carbon::now()->addSeconds(3);
+//    $user->notify((new NewVideo("test", "test", 4209))->delay($date));
 //    $user->notify(new NewVideo("test", "test", 1));
 
-   /* Notification::send(
-        $video->channel->followers()->get(),
+    Notification::send(
+        $channel->followers()->get(),
         new NewVideo(
-            $video->channel->name,
-            $video->title,
+            $channel->name,
+            $video->name,
             $video->id
         )
-    );*/
+    );
 });
 
 Route::post('login', 'API\AuthController@login');
