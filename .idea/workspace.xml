@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-    </list>
+    <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,7 +160,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
       <path value="$PROJECT_DIR$/vendor/symfony/string" />
-      <path value="$PROJECT_DIR$/vendor/thomasjohnkane/snooze" />
     </include_path>
   </component>
   <component name="ProjectId" id="1Zz5yvim5Rwv8SsgiDPxahOn8ab" />
@@ -356,7 +353,7 @@
       <workItem from="1595377728898" duration="2396000" />
       <workItem from="1595389494599" duration="329000" />
       <workItem from="1595468603694" duration="592000" />
-      <workItem from="1595570057649" duration="6738000" />
+      <workItem from="1595570057649" duration="7021000" />
     </task>
     <servers />
   </component>
