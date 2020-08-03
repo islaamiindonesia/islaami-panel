@@ -21,7 +21,7 @@
                         <div class="card-body box-profile">
                             <div class="text-center">
                                 <img class="img-fluid img-rounded"
-                                     src="{{ $video->thumbnail }}"
+                                     src="https://img.youtube.com/vi/{{ $video->video_id }}/maxresdefault.jpg"
                                      alt="User profile picture">
                             </div>
 
