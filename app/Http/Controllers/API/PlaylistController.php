@@ -6,8 +6,6 @@ use App\Channel;
 use App\Http\Controllers\Controller;
 use App\Playlist;
 use App\User;
-use App\Video;
-use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -74,6 +72,35 @@ class PlaylistController extends Controller
 
         if (!$playlist->videos->contains($request->video_id)) {
             $playlist->videos()->attach($request->video_id);
+        }
+
+        return $this->successResponse();
+    }
+
+    /**
+     * Add video to mutiple playlist
+     *
+     * @param Request $request
+     * @param int $id
+     * @param null $videoId
+     * @return JsonResponse
+     */
+    public function addVideoToMulti(Request $request)
+    {
+        $authID = auth('api')->id();
+
+        $json = $request->all();
+        $videoId = $json["video_id"];
+        $playlistIds = $json["playlists"];
+
+        foreach ($playlistIds as $id) {
+            $playlist = User::find($authID)->playlists()->where('id', $id)->first();
+
+            if ($playlist != null) {
+                if (!$playlist->videos->contains($videoId)) {
+                    $playlist->videos()->attach($videoId);
+                }
+            }
         }
 
         return $this->successResponse();
@@ -184,7 +211,7 @@ class PlaylistController extends Controller
         $videoArray = array();
         foreach ($videos as $video) {
             $video->channel;
-            $video->channel->is_followed = Channel::find($video["channel"]["id"])->followers->contains($authID);;
+            $video->channel->is_followed = Channel::find($video["channel"]["id"])->followers->contains($authID);
             $video->category;
             $video->subcategory;
             $video->labels;

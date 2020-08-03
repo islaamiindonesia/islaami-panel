@@ -135,6 +135,8 @@ Route::middleware('auth.api:api')->group(function () {
 
             Route::put('{id}/addvideo', 'API\PlaylistController@addVideo');
 
+            Route::put('addvideo', 'API\PlaylistController@addVideoToMulti');
+
             Route::put('{id}/removevideo', 'API\PlaylistController@removeVideo');
         });
 

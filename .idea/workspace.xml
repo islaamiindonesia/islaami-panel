@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="" />
+    <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/PlaylistController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/PlaylistController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -176,7 +180,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Notifications" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -353,7 +357,9 @@
       <workItem from="1595377728898" duration="2396000" />
       <workItem from="1595389494599" duration="329000" />
       <workItem from="1595468603694" duration="592000" />
-      <workItem from="1595570057649" duration="7021000" />
+      <workItem from="1595570057649" duration="7192000" />
+      <workItem from="1595848209503" duration="17000" />
+      <workItem from="1596440241880" duration="2661000" />
     </task>
     <servers />
   </component>
@@ -388,32 +394,16 @@
       <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="328" y="132" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1280.732@0.23.1280.732" timestamp="1591159280521" />
-    <state x="402" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587203042584">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state x="402" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.800@0.0.1280.800" timestamp="1587203042584" />
     <state x="378" y="152" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1595572010330">
       <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="378" y="141" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.800@0.0.1280.800" timestamp="1594285355505" />
     <state x="378" y="152" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1280.732@0.23.1280.732" timestamp="1595572010330" />
-    <state x="428" y="333" key="#com.jetbrains.php.lang.intentions.PhpImportClassDialog#" timestamp="1586948649466">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state x="428" y="333" key="#com.jetbrains.php.lang.intentions.PhpImportClassDialog#/0.0.1280.800@0.0.1280.800" timestamp="1586948649466" />
     <state x="100" y="114" width="1080" height="549" key="DiffContextDialog" timestamp="1595580278045">
       <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="100" y="100" width="1080" height="600" key="DiffContextDialog/0.0.1280.800@0.0.1280.800" timestamp="1588925864355" />
     <state x="100" y="114" width="1080" height="549" key="DiffContextDialog/0.23.1280.732@0.23.1280.732" timestamp="1595580278045" />
-    <state x="354" y="118" key="RollbackChangesDialog" timestamp="1587195686192">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state x="354" y="118" key="RollbackChangesDialog/0.0.1280.800@0.0.1280.800" timestamp="1587195686192" />
-    <state width="584" height="445" key="SwitcherDM" timestamp="1587387869042">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="584" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1587387869042" />
     <state x="100" y="100" width="1080" height="600" key="VCS.FileHistoryDialog" timestamp="1594097982282">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
@@ -427,7 +417,6 @@
     <state x="423" y="319" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591100911681">
       <screen x="0" y="23" width="1280" height="732" />
     </state>
-    <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.800@0.0.1280.800" timestamp="1587197991282" />
     <state x="423" y="319" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1280.732@0.23.1280.732" timestamp="1591100911681" />
     <state width="600" height="424" key="javadoc.popup" timestamp="1588332994037">
       <screen x="0" y="0" width="1280" height="800" />
@@ -437,11 +426,11 @@
       <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="305" y="174" key="run.anything.popup/0.23.1280.732@0.23.1280.732" timestamp="1590468842960" />
-    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup" timestamp="1595580265893">
+    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup" timestamp="1596440339491">
       <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="305" y="63" width="670" height="158" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1595570174803" />
-    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup/0.23.1280.732@0.23.1280.732" timestamp="1595580265893" />
+    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup/0.23.1280.732@0.23.1280.732" timestamp="1596440339491" />
     <state x="305" y="63" width="670" height="158" key="search.everywhere.popup/0.23.1280.734@0.23.1280.734" timestamp="1588037942591" />
   </component>
 </project>
