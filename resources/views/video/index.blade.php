@@ -69,7 +69,7 @@
                                     <td style="width:300px; max-width: 300px">
                                         <img src="https://img.youtube.com/vi/{{ $video->video_id }}/maxresdefault.jpg" width="120">
                                         <br>
-                                        <a href="{{ route('admin.videos.show', ['id'=>$video->id]) }}">{{ $video->title }}</a>
+                                        <a href="{{ route('admin.videos.show', ['id'=>$video->id]) }}">{{ $video->title }} - {{ $video->channel->name }}</a>
                                     </td>
                                     <td>{{ $video->views()->count() }}x</td>
                                     <td>{{ date('d/m/Y', strtotime($video->created_at)) }}</td>
