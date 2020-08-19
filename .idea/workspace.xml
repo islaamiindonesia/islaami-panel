@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4a486dae-6eac-4d9e-a24d-7c527cfa6255" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/VideoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/VideoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -362,7 +362,8 @@
       <workItem from="1596445382537" duration="244000" />
       <workItem from="1596445890234" duration="18000" />
       <workItem from="1596447995409" duration="581000" />
-      <workItem from="1596471860756" duration="493000" />
+      <workItem from="1596471860756" duration="964000" />
+      <workItem from="1597805802141" duration="1111000" />
     </task>
     <servers />
   </component>
@@ -393,10 +394,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="453" y="123" key="#com.intellij.ide.util.MemberChooser/0.0.1280.800@0.0.1280.800" timestamp="1589982147417" />
-    <state x="328" y="132" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1591159280521">
+    <state x="328" y="132" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1597805831161">
       <screen x="0" y="23" width="1280" height="732" />
     </state>
-    <state x="328" y="132" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1280.732@0.23.1280.732" timestamp="1591159280521" />
+    <state x="328" y="132" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1280.732@0.23.1280.732" timestamp="1597805831161" />
     <state x="378" y="152" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1595572010330">
       <screen x="0" y="23" width="1280" height="732" />
     </state>
@@ -405,7 +406,6 @@
     <state x="100" y="114" width="1080" height="549" key="DiffContextDialog" timestamp="1595580278045">
       <screen x="0" y="23" width="1280" height="732" />
     </state>
-    <state x="100" y="100" width="1080" height="600" key="DiffContextDialog/0.0.1280.800@0.0.1280.800" timestamp="1588925864355" />
     <state x="100" y="114" width="1080" height="549" key="DiffContextDialog/0.23.1280.732@0.23.1280.732" timestamp="1595580278045" />
     <state x="100" y="100" width="1080" height="600" key="VCS.FileHistoryDialog" timestamp="1594097982282">
       <screen x="0" y="0" width="1280" height="800" />
@@ -416,24 +416,18 @@
     </state>
     <state x="317" y="230" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1590405291662" />
     <state x="317" y="233" key="com.intellij.ide.util.TipDialog/0.23.1280.732@0.23.1280.732" timestamp="1591157178667" />
-    <state x="317" y="222" key="com.intellij.ide.util.TipDialog/0.23.1280.734@0.23.1280.734" timestamp="1589000208558" />
     <state x="423" y="319" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591100911681">
       <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="423" y="319" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1280.732@0.23.1280.732" timestamp="1591100911681" />
-    <state width="600" height="424" key="javadoc.popup" timestamp="1588332994037">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="600" height="424" key="javadoc.popup/0.0.1280.800@0.0.1280.800" timestamp="1588332994037" />
     <state x="305" y="174" key="run.anything.popup" timestamp="1590468842960">
       <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="305" y="174" key="run.anything.popup/0.23.1280.732@0.23.1280.732" timestamp="1590468842960" />
-    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup" timestamp="1596472240633">
+    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup" timestamp="1597806900902">
       <screen x="0" y="23" width="1280" height="732" />
     </state>
     <state x="305" y="63" width="670" height="158" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1595570174803" />
-    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup/0.23.1280.732@0.23.1280.732" timestamp="1596472240633" />
-    <state x="305" y="63" width="670" height="158" key="search.everywhere.popup/0.23.1280.734@0.23.1280.734" timestamp="1588037942591" />
+    <state x="305" y="81" width="670" height="377" key="search.everywhere.popup/0.23.1280.732@0.23.1280.732" timestamp="1597806900902" />
   </component>
 </project>
