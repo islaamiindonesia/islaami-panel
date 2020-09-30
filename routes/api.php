@@ -3,15 +3,24 @@
 use App\Channel;
 use App\Notifications\NewVideo;
 use App\Notifications\RequestResetPassword;
-use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Kreait\Firebase\Messaging\Notification;
 
-/*
+/**
+ * API Testing Routes
+ */
+Route::get('sendnotification', function (Request $request) {
+    $channel = Channel::find(19);
+    $video = $channel->videos()->where('id', 5500)->first();
+
+    $date = now()->addSeconds(100);
+    $channel->notify((new NewVideo($channel->name, $video->title,  $video->id))->delay($date));
+//    $user->notify((new NewVideo("test", "test", 4209))->delay($date));
+});
+
+/**
 |--------------------------------------------------------------------------
-| API Routes
+| API Live Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
@@ -50,16 +59,6 @@ Route::get('about', 'API\ArticleController@about');
 Route::get('cooperation', 'API\ArticleController@cooperation');
 Route::get('tnc', 'API\ArticleController@tnc');
 Route::get('privacy', 'API\ArticleController@privacy');
-
-// test api
-Route::get('sendnotification', function (Request $request) {
-    $channel = Channel::find(19);
-    $video = $channel->videos()->where('id', 5500)->first();
-
-    $date = now()->addSeconds(100);
-    $channel->notify((new NewVideo($channel->name, $video->title,  $video->id))->delay($date));
-//    $user->notify((new NewVideo("test", "test", 4209))->delay($date));
-});
 
 Route::post('login', 'API\AuthController@login');
 

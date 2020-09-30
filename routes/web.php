@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/* PUBLIC ROUTES */
 Route::get('about', function () {
     $policy = AppPolicy::find("ABOUT_PLAYMI");
     return view('onepage', ['title' => "Tentang Aplikasi", "content" => $policy->content]);
@@ -41,6 +42,7 @@ Route::group(['middleware' => ['guest']], function () {
     Route::post('login', 'AuthController@login')->name('login');
 });
 
+/* PRIVATE ROUTES */
 Route::group(['middleware' => ['auth']], function () {
 
     /* ADMIN */

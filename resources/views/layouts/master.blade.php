@@ -31,6 +31,9 @@
                             </p>
                         </a>
                     </li>
+                    {{--
+                    If user has "super admin" role
+                     --}}
                     @if(Auth::user()->hasRole("super admin"))
                         <li class="nav-item">
                             <a href="{{ route('admin.manage')  }}" class="nav-link @if($menu == "manageAdmin") active @endif">
@@ -40,15 +43,10 @@
                                 </p>
                             </a>
                         </li>
-                        {{--<li class="nav-item">
-                            <a href="{{ route('admin.roles.manage')  }}" class="nav-link">
-                                <i class="nav-icon fas fa-user-tag"></i>
-                                <p>
-                                    Manage Roles
-                                </p>
-                            </a>
-                        </li>--}}
                     @endif
+                    {{--
+                    If user has "islaami" role
+                     --}}
                     @if(Auth::user()->hasRole("islaami"))
                         <li class="nav-item">
                             <a href="{{ route('admin.users.all') }}" class="nav-link @if($menu == "manageUser") active @endif">
@@ -58,15 +56,10 @@
                                 </p>
                             </a>
                         </li>
-                        {{--<li class="nav-item">
-                            <a href="{{ route('admin.calendar') }}" class="nav-link">
-                                <i class="nav-icon fas fa-calendar-alt"></i>
-                                <p>
-                                    Calendar
-                                </p>
-                            </a>
-                        </li>--}}
                     @endif
+                    {{--
+                    If user has "playmi" role
+                     --}}
                     @if(Auth::user()->hasRole("playmi"))
                         <li class="nav-item has-treeview @isset($parent) @if($parent== "playmi") menu-open @endif @endisset">
                             <a href="#" class="nav-link @isset($parent) @if($parent== "playmi") active @endif @endisset">
@@ -116,6 +109,9 @@
                             </ul>
                         </li>
                     @endif
+                    {{--
+                    If user has "islaami" and "playmi" roles
+                     --}}
                     @if(Auth::user()->hasAnyRole(['islaami', 'playmi']))
                         <li class="nav-item">
                             <a href="{{ route('admin.reports.all')  }}"
@@ -132,15 +128,6 @@
                                 <i class="nav-icon fas fa-comment-alt"></i>
                                 <p>
                                     Saran/Masukan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.articleCategories.all')  }}"
-                               class="nav-link @if($menu == "article") active @endif">
-                                <i class="nav-icon fas fa-newspaper"></i>
-                                <p>
-                                    Artikel
                                 </p>
                             </a>
                         </li>
