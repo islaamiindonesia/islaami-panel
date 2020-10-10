@@ -82,14 +82,14 @@ class ChannelController extends Controller
             $channels->name($request->query('query'));
         }
 
-        $channelArray = array();
-        foreach ($channels->get() as $channel) {
-            $channel->is_followed = Channel::find($channel->id)->followers->contains($authID);
-            $channel->followers = $channel->followers()->count();
-            array_push($channelArray, $channel);
-        }
+        // $channelArray = array();
+        // foreach ($channels->get() as $channel) {
+        //     $channel->is_followed = Channel::find($channel->id)->followers->contains($authID);
+        //     $channel->followers = $channel->followers()->count();
+        //     array_push($channelArray, $channel);
+        // }
 
-        return $this->successResponseWithData($channelArray);
+        return $this->successResponseWithData($channels->get());
     }
 
     /**
