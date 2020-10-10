@@ -66,6 +66,33 @@ class ChannelController extends Controller
     }
 
     /**
+     * Get blacklisted channel.
+     *
+     * @return JsonResponse
+     */
+    public function indexBlacklist()
+    {
+        $authID = auth('api')->id();
+
+        $user = User::find($authID);
+
+        $channels = $user->blacklistChannels()->get();
+
+        if ($request->has("query")) {
+            $channels->name($request->query('query'));
+        }
+
+        $channelArray = array();
+        foreach ($channels as $channel) {
+            $channel->is_followed = Channel::find($channel->id)->followers->contains($authID);
+            $channel->followers = $channel->followers()->count();
+            array_push($channelArray, $channel);
+        }
+
+        return $this->successResponseWithData($channelArray);
+    }
+
+    /**
      * Videos by Channel.
      *
      * @return JsonResponse
@@ -100,28 +127,6 @@ class ChannelController extends Controller
         return $this->successResponseWithData($videoArray);
     }
 
-    /**
-     * Get blacklisted channel.
-     *
-     * @return JsonResponse
-     */
-    public function indexBlacklist()
-    {
-        $authID = auth('api')->id();
-
-        $user = User::find($authID);
-
-        $channels = $user->blacklistChannels()->get();
-
-        $channelArray = array();
-        foreach ($channels as $channel) {
-            $channel->is_followed = Channel::find($channel->id)->followers->contains($authID);
-            $channel->followers = $channel->followers()->count();
-            array_push($channelArray, $channel);
-        }
-
-        return $this->successResponseWithData($channelArray);
-    }
 
     /**
      * Display the specified resource.
