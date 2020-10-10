@@ -76,7 +76,7 @@ class ChannelController extends Controller
 
         $user = User::find($authID);
 
-        $channels = $user->blacklistChannels();
+        $channels = $user->followChannels();
 
         if ($request->has("query")) {
             $channels->name($request->query('query'));
