@@ -76,20 +76,20 @@ class ChannelController extends Controller
 
         $user = User::find($authID);
 
-        $channels = $user->followChannels();
+        $channels = $user->blacklistChannels();
 
         if ($request->has("query")) {
             $channels->name($request->query('query'));
         }
 
-        // $channelArray = array();
-        // foreach ($channels->get() as $channel) {
-        //     $channel->is_followed = Channel::find($channel->id)->followers->contains($authID);
-        //     $channel->followers = $channel->followers()->count();
-        //     array_push($channelArray, $channel);
-        // }
+        $channelArray = array();
+        foreach ($channels->get() as $channel) {
+            $channel->is_followed = Channel::find($channel->id)->followers->contains($authID);
+            $channel->followers = $channel->followers()->count();
+            array_push($channelArray, $channel);
+        }
 
-        return $this->successResponseWithData($channels->get());
+        return $this->successResponseWithData($channelArray);
     }
 
     /**
