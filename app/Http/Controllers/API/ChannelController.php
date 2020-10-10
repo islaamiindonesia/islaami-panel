@@ -70,7 +70,7 @@ class ChannelController extends Controller
      *
      * @return JsonResponse
      */
-    public function indexBlacklist()
+    public function indexBlacklist(Request $request)
     {
         $authID = auth('api')->id();
 
