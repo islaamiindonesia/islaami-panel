@@ -122,6 +122,7 @@ class PlaylistController extends Controller
             $videoArray = array();
             foreach ($playlist->videos()->get() as $video) {
                 $video->channel;
+                $video->channel->is_followed = Channel::find($video["channel"]["id"])->followers->contains($authID);
                 $video->category;
                 $video->subcategory;
                 $video->labels;
