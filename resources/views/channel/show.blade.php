@@ -128,7 +128,7 @@
                                 @foreach($videos as $video)
                                     <tr style="text-align: center;">
                                         <td style="width:300px; max-width: 300px">
-                                            <img src="https://img.youtube.com/vi/{{ $video->video_id }}/maxresdefault.jpg" width="120">
+                                            <img src="https://img.youtube.com/vi/{{ $video->video_id }}/sddefault.jpg" width="120">
                                             <br>
                                             <a href="{{ route('admin.videos.show', ['id'=>$video->id]) }}">{{ $video->title }}</a>
                                         </td>

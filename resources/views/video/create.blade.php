@@ -19,7 +19,7 @@
                                 <div class="form-group">
                                     <label for="title">Judul</label>
                                     <input name="title" type="text" class="form-control" required
-                                           placeholder="Masukkan judul video">
+                                           placeholder="Masukkan judul video" maxlength="100">
                                 </div>
                                 <div class="form-group">
                                     <label for="url">Link Youtube</label>

@@ -25,11 +25,11 @@
                                 <div class="form-group">
                                     <label for="title">Judul</label>
                                     <input name="title" type="text" class="form-control" placeholder="Enter video title"
-                                           value="{{$video->title}}">
+                                           value="{{$video->title}}" maxlength="100">
                                 </div>
                                 <div class="form-group">
                                     <label for="url">Link Youtube</label>
-                                    <input name="url" type="text" class="form-control" value="{{$video->url}}">
+                                    <input name="url" type="text" class="form-control" value="{{$video->url}}" disabled>
                                 </div>
 
                                 <div class="form-group">
